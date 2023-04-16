@@ -17,7 +17,6 @@ How to Contribute
 Contribution Guidelines
 -----------------------
 
--   Follow the [code of conduct](https://chat.openai.com/c/CODE_OF_CONDUCT.md) of the project.
 -   Ensure that your contribution is relevant to the goals and scope of the project.
 -   Make sure your changes do not introduce new bugs and pass all existing tests.
 -   Keep your code clean, well-organized, and documented.
@@ -28,18 +27,13 @@ Contribution Guidelines
 Issue Reporting
 ---------------
 
-If you encounter any issues or bugs while using LifeList, please report them in the [Issues](https://github.com/your-username/lifelist/issues) section of this repository. When reporting an issue, please provide the following information:
+If you encounter any issues or bugs while using LifeList, please report them in the [Issues](https://github.com/Spyy004/lifelist/issues) section of this repository. When reporting an issue, please provide the following information:
 
 -   Detailed description of the issue
 -   Steps to reproduce the issue
 -   Expected behavior
 -   Actual behavior
 -   Screenshots or code snippets if applicable
-
-Code of Conduct
----------------
-
-Please review and follow the [Code of Conduct](https://chat.openai.com/c/CODE_OF_CONDUCT.md) of the project, which outlines the expected behavior for all contributors.
 
 License
 -------
@@ -49,6 +43,6 @@ By contributing to LifeList, you agree that your contributions will be licensed 
 Contact
 -------
 
-If you have any questions or need further clarification, please contact <your-email@example.com>.
+If you have any questions or need further clarification, please contact <i.yush.004@gmai.com>.
 
 We appreciate your contributions to LifeList and look forward to your contributions! Thank you for your support.
