@@ -34,18 +34,7 @@ class LifeList extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         darkTheme: AppTheme.darkTheme,
-        theme: theme: ThemeData(
-          primaryColor: Colors.blueGrey[900], // sets the primary color of the app
-          accentColor: Colors.blue, // sets the accent color of the app
-          scaffoldBackgroundColor: Colors.grey[200], // sets the background color of the app
-          backgroundColor: Colors.grey[100], // sets the color of the app's canvas
-          cardColor: Colors.white, // sets the color of the card widgets
-          textTheme: TextTheme(
-            bodyText1: TextStyle(fontSize: 16.0, color: Colors.black), // sets the text style of the body text
-            bodyText2: TextStyle(fontSize: 14.0, color: Colors.black54), // sets the text style of the secondary body text
-            headline6: TextStyle(fontSize: 20.0, color: Colors.blueGrey[900]), // sets the text style of the app bar title
-          ),
-        ),
+        theme: AppTheme.lightTheme,
         themeMode: ThemeMode.system,
         initialRoute: isUserCreated ? HOME : ONBOARDING,
         routes: routes,
