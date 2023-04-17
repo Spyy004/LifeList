@@ -111,19 +111,21 @@ class BucketDetailsScreen extends StatelessWidget {
                                         : Icons.cancel,
                                     text: STATUS)
                                 : Column(
-                                  children: [
-                                    Switch(
-                                        value: singleBucketModal
-                                            .activeSingleBucket.isCompleted,
-                                        onChanged: (val) {
-                                          singleBucketModal
-                                              .changeCurrentBucketStatus();
-                                        }),
-                                        CustomText(
-                            text: STATUS,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                                  ],
-                                ),
+                                    children: [
+                                      Switch(
+                                          value: singleBucketModal
+                                              .activeSingleBucket.isCompleted,
+                                          onChanged: (val) {
+                                            singleBucketModal
+                                                .changeCurrentBucketStatus();
+                                          }),
+                                      CustomText(
+                                          text: STATUS,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium),
+                                    ],
+                                  ),
                           ],
                         ),
                         SizedBox(
@@ -162,7 +164,8 @@ class BucketDetailsScreen extends StatelessWidget {
                                             icon: const Icon(Icons
                                                 .check), // Replace with the desired tick-mark icon
                                             onPressed: () {
-                                              Fluttertoast.showToast(msg: FEATURE_COMING_SOON);
+                                              Fluttertoast.showToast(
+                                                  msg: FEATURE_COMING_SOON);
                                             },
                                           ),
                                           IconButton(
@@ -179,16 +182,78 @@ class BucketDetailsScreen extends StatelessWidget {
                                                         ATLEAST_ONE_TASK_PROMPT);
                                                 return;
                                               }
-                                              await singleBucketModal
-                                                  .deleteTasks(
-                                                      bucket,
-                                                      task.id,
-                                                      singleBucketModal
-                                                          .activeSingleBucket
-                                                          .id);
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return Consumer<
+                                                      BucketService>(
+                                                    builder: (context, value,
+                                                            child) =>
+                                                        AlertDialog(
+                                                      backgroundColor:
+                                                          Theme.of(context)
+                                                              .primaryColor,
+                                                      title: const Text(
+                                                          DELETE_TASK_CONFIRM),
+                                                      content: const Text(
+                                                          DELETE_TASK_SUBTITLE),
+                                                      actions: [
+                                                        TextButton(
+                                                          style: TextButton.styleFrom(
+                                                              backgroundColor:
+                                                                  Theme.of(
+                                                                          context)
+                                                                      .secondaryHeaderColor),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop(); // Close the dialog
+                                                          },
+                                                          child: CustomText(
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .labelLarge,
+                                                            text: CANCEL,
+                                                          ),
+                                                        ),
+                                                        TextButton(
+                                                            style: TextButton.styleFrom(
+                                                                backgroundColor:
+                                                                    Theme.of(
+                                                                            context)
+                                                                        .secondaryHeaderColor),
+                                                            onPressed:
+                                                                () async {
+                                                              await singleBucketModal
+                                                                  .deleteTasks(
+                                                                      bucket,
+                                                                      task.id,
+                                                                      singleBucketModal
+                                                                          .activeSingleBucket
+                                                                          .id);
 
-                                              await taskService
-                                                  .deleteSingleTask(task.id);
+                                                              await taskService
+                                                                  .deleteSingleTask(
+                                                                      task.id);
+                                                              // ignore: use_build_context_synchronously
+                                                              navigationService
+                                                                  .navigatePop(
+                                                                      context);
+                                                            },
+                                                            child: CustomText(
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .labelLarge,
+                                                              text: CONFIRM,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              );
                                             },
                                           ),
                                         ],

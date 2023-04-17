@@ -53,6 +53,7 @@ const PROFILE_IMAGE_ASSET = 'assets/profile.png';
 const SOURCE_CODE = 'Source Code';
 const CLEAR_DATA = 'Clear Data';
 const CLEAR_DATA_CONFIRM = 'Clear Data?';
+const DELETE_TASK_CONFIRM = "Delete Task?";
 const CANCEL = 'Cancel';
 const CONFIRM = 'Confirm';
 const STATUS = 'Status';
@@ -61,6 +62,7 @@ const ZERO_TASKS = 'You have got 0 tasks';
 const LETS_ADD_TASKS = "Let's add some tasks";
 const ATLEAST_ONE_TASK_PROMPT = "A bucket should have atleast one task";
 const CLEAR_DATA_SUBTITLE = 'Are you sure you want to clear all data?';
+const DELETE_TASK_SUBTITLE = 'Are you sure you want to delete this task?';
 
 int currIndex = 0;
 String appVersion = '0.0.0';
