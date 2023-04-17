@@ -10,7 +10,7 @@ How to Contribute
 2.  Create a new branch with a descriptive name for your contribution.
 3.  Make your changes and commit them with clear and meaningful commit messages.
 4.  Push your changes to your forked repository.
-5.  Submit a pull request to the `main` branch of the original repository.
+5.  Submit a pull request to the same branch in which you worked in your repository. If you worked in your `main` submit a pr to `your-name-main`
 6.  Your contribution will be reviewed by the project maintainers, and feedback will be provided if necessary.
 7.  Once your contribution is approved, it will be merged into the main branch.
 
