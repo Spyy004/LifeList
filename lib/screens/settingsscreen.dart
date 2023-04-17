@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifelist/components/index.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants/index.dart';
 
