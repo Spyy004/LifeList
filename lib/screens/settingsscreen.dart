@@ -65,6 +65,15 @@ class SettingsScreen extends StatelessWidget {
                   text: SOURCE_CODE,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
+                onTap: () async {
+                 const url = 'https://github.com/Spyy004/LifeList';
+                 final uri = Uri.parse(url);
+                 if (await canLaunchUrl(uri)) {
+                   await launchUrl(uri);
+                 } else {
+                   throw 'Could not launch $url';
+                 }
+                },
               ),
               ListTile(
                 leading: const Icon(
