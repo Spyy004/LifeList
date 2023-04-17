@@ -110,13 +110,20 @@ class BucketDetailsScreen extends StatelessWidget {
                                         ? Icons.check
                                         : Icons.cancel,
                                     text: STATUS)
-                                : Switch(
-                                    value: singleBucketModal
-                                        .activeSingleBucket.isCompleted,
-                                    onChanged: (val) {
-                                      singleBucketModal
-                                          .changeCurrentBucketStatus();
-                                    }),
+                                : Column(
+                                  children: [
+                                    Switch(
+                                        value: singleBucketModal
+                                            .activeSingleBucket.isCompleted,
+                                        onChanged: (val) {
+                                          singleBucketModal
+                                              .changeCurrentBucketStatus();
+                                        }),
+                                        CustomText(
+                            text: STATUS,
+                            style: Theme.of(context).textTheme.bodyMedium),
+                                  ],
+                                ),
                           ],
                         ),
                         SizedBox(

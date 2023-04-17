@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifelist/components/empty_page.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/services/bucketlistservice.dart';
-
 import 'package:provider/provider.dart';
-
 import '../components/index.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -40,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                                   navigationService.navigateReset(
                                       context, PROFILE);
                                 },
-                                icon: Icon(Icons.person))
+                                icon: const Icon(Icons.person))
                           ],
                         ),
                         Divider(
