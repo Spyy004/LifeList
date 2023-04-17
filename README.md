@@ -10,7 +10,7 @@ Features
 
 -   Goal creation and management: Users can easily create new goals, set deadlines, and organize them into categories for better management.
 
--   Deadline reminders: LifeList allows users to set reminders for goal deadlines, helping them stay on track and focused.
+-   Deadline reminders: LifeList allows users to set reminders for goal deadlines, helping them stay on track and focused. (WIP)
 
 -   Progress tracking: Users can track their progress towards their goals, with visual indicators showing the completion status.
 
