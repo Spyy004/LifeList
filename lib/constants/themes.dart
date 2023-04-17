@@ -3,8 +3,22 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primarySwatch: Colors.amber,
-    secondaryHeaderColor: Colors.blueGrey[700],
+    primarySwatch: MaterialColor(
+          0xFFFFFFFF,
+          <int, Color>{
+            50: Color(0xffefdbff),
+            100: Color(0xffefdbff),
+            200: Color(0xffefdbff),
+            300: Color(0xffefdbff),
+            400: Color(0xffefdbff),
+            500: Color(0xffefdbff),
+            600: Color(0xffefdbff),
+            700: Color(0xffefdbff),
+            800: Color(0xFFFFFFFF),
+            900: Color(0xFFFFFFFF),
+          },
+        ),
+    secondaryHeaderColor: Color(0xffcf89f8),
     dividerColor: Colors.grey,
     fontFamily: 'Roboto',
     textTheme: const TextTheme(
