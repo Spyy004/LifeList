@@ -19,7 +19,7 @@ class CreateBucketScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Consumer<BucketService>(
+        child: Consumer<CreateBucketService>(
           builder: (context, bucketModel, child) => FutureBuilder<void>(
               future: bucketModel.setActiveSingleBucket(tempBucket),
               builder: (context, snapshot) {
@@ -40,7 +40,6 @@ class CreateBucketScreen extends StatelessWidget {
                         Divider(
                           thickness: 1,
                           indent: Sizes.paddingSizeSmall - 6,
-                          endIndent: Sizes.paddingSizeLarge * 3,
                           color: Theme.of(context).dividerColor,
                         ),
                         SizedBox(
@@ -101,7 +100,7 @@ class CreateBucketScreen extends StatelessWidget {
                                   context: context,
                                   isScrollControlled: true,
                                   builder: (BuildContext context) {
-                                    return Consumer<BucketService>(
+                                    return Consumer<CreateBucketService>(
                                       builder: (context, bucketModel1, child) =>
                                           Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -244,7 +243,7 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
             style: BorderStyle.solid,
             width: 0.3), // Add border color
       ),
-      child: Consumer<BucketService>(
+      child: Consumer<CreateBucketService>(
         builder: (context, bucketModel, child) => DropdownButton<String>(
           hint: Text(SELECT_CATEGORY,
               style: Theme.of(context).textTheme.bodyLarge),

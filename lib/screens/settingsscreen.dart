@@ -37,7 +37,6 @@ class SettingsScreen extends StatelessWidget {
               Divider(
                 thickness: 1,
                 indent: Sizes.paddingSizeSmall - 6,
-                endIndent: Sizes.paddingSizeLarge * 4,
                 color: Theme.of(context).dividerColor,
               ),
               SizedBox(

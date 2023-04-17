@@ -28,7 +28,8 @@ class LifeList extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => BucketService()),
         ChangeNotifierProvider(create: (context) => TaskService()),
         ChangeNotifierProvider(create: (context) => BucketListService()),
-        ChangeNotifierProvider(create: (context) => SettingsService())
+        ChangeNotifierProvider(create: (context) => SettingsService()),
+        ChangeNotifierProvider(create: (context) => CreateBucketService())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primarySwatch: Colors.blueGrey[900],
+    primarySwatch: Colors.amber,
     secondaryHeaderColor: Colors.blueGrey[700],
     dividerColor: Colors.grey,
     fontFamily: 'Roboto',

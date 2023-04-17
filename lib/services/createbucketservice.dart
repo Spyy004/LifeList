@@ -5,7 +5,7 @@ import 'package:lifelist/models/index.dart';
 
 import '../controllers/global_controller.dart';
 
-class BucketService extends ChangeNotifier {
+class CreateBucketService extends ChangeNotifier {
   bool isEditing = false;
   List<Task> activeBucketTasks = [];
   bool loader = false;
@@ -26,9 +26,9 @@ class BucketService extends ChangeNotifier {
   }
 
   Future<void> setActiveSingleBucket(Bucket bucket) async {
- 
+    if (activeSingleBucket.id == null) {
       activeSingleBucket = bucket;
-    
+    }
   }
 
   void changeEditStatus() {
