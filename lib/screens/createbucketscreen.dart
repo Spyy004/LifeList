@@ -102,63 +102,90 @@ class CreateBucketScreen extends StatelessWidget {
                                   builder: (BuildContext context) {
                                     return Consumer<CreateBucketService>(
                                       builder: (context, bucketModel1, child) =>
-                                          Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: SizedBox(
-                                          height:
-                                              Sizes.screenHeight(context) * 0.8,
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.vertical,
+                                          SizedBox(
+                                            height:
+                                                Sizes.screenHeight(context) * 0.8,
                                             child: SingleChildScrollView(
-                                              child: Column(
-                                                children: [
-                                                  CustomText(
-                                                      text: ADD_TASKS,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .displayMedium),
-                                                  ListView.builder(
-                                                    controller:
-                                                        ScrollController(),
-                                                    shrinkWrap: true,
-                                                    physics:
-                                                        const NeverScrollableScrollPhysics(),
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount: bucketModel1
-                                                        .activeBucketTasks
-                                                        .length,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      return ListTile(
-                                                        title: Text(bucketModel1
-                                                            .activeBucketTasks[
-                                                                index]
-                                                            .name),
-                                                        trailing: IconButton(
-                                                          icon: const Icon(
-                                                              Icons.delete),
-                                                          onPressed: () {
-                                                            bucketModel1
-                                                                .deleteTaskFromActiveBucket(
-                                                                    index);
-                                                          },
+                                              scrollDirection: Axis.vertical,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  children: [
+                                                    CustomText(
+                                                        text: ADD_TASKS,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .displayMedium),
+                                                    ListView.builder(
+                                                      controller:
+                                                          ScrollController(),
+                                                      shrinkWrap: true,
+                                                      physics:
+                                                          const NeverScrollableScrollPhysics(),
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount: bucketModel1
+                                                          .activeBucketTasks
+                                                          .length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return ListTile(
+                                                          title: Text(bucketModel1
+                                                              .activeBucketTasks[
+                                                                  index]
+                                                              .name),
+                                                          trailing: IconButton(
+                                                            icon: const Icon(
+                                                                Icons.delete),
+                                                            onPressed: () {
+                                                              bucketModel1
+                                                                  .deleteTaskFromActiveBucket(
+                                                                      index);
+                                                            },
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                    InstagramMessageBar(
+                                                        onSendMessage: (message) {
+                                                      bucketModel1
+                                                          .addTaskInActiveBucket(
+                                                              message);
+                                                    }),
+                                                    SizedBox(
+                                                      height: Sizes.screenHeight(
+                                                              context) *
+                                                          0.6,
+                                                    ),
+                                                    SizedBox(
+                                                      width: Sizes.screenWidth(
+                                                          context),
+                                                      height: Sizes.screenHeight(
+                                                              context) *
+                                                          0.05,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton.styleFrom(
+                                                            backgroundColor: Theme
+                                                                    .of(context)
+                                                                .secondaryHeaderColor),
+                                                        onPressed: () async {
+                                                          navigationService
+                                                              .navigatePop(
+                                                                  context);
+                                                        },
+                                                        child: CustomText(
+                                                          style: Theme.of(context)
+                                                              .textTheme
+                                                              .labelLarge,
+                                                          text: DONE,
                                                         ),
-                                                      );
-                                                    },
-                                                  ),
-                                                  InstagramMessageBar(
-                                                      onSendMessage: (message) {
-                                                    bucketModel1
-                                                        .addTaskInActiveBucket(
-                                                            message);
-                                                  })
-                                                ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
                                     );
                                   },
                                 );
@@ -194,7 +221,7 @@ class CreateBucketScreen extends StatelessWidget {
                             },
                             child: CustomText(
                               style: Theme.of(context).textTheme.labelLarge,
-                              text: "Create",
+                              text: CREATE,
                             ),
                           ),
                         ),

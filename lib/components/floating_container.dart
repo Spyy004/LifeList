@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FloatingContainer extends StatelessWidget {
+  const FloatingContainer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +14,7 @@ class FloatingContainer extends StatelessWidget {
           BoxShadow(
             color: Colors.grey.withOpacity(0.3),
             blurRadius: 10,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -21,14 +23,14 @@ class FloatingContainer extends StatelessWidget {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Icon(Icons.person),
               Text('Profile'),
             ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Icon(Icons.dashboard),
               Text('Dashboard'),
             ],

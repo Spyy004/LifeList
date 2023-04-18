@@ -7,7 +7,6 @@ import 'package:lifelist/screens/settingsscreen.dart';
 import 'package:lifelist/screens/singlebucketscreen.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:lifelist/services/navigationservice.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import '../models/index.dart';
 import '../navigation/routes.dart';
 import '../screens/index.dart';
@@ -54,6 +53,7 @@ const SOURCE_CODE = 'Source Code';
 const CLEAR_DATA = 'Clear Data';
 const CLEAR_DATA_CONFIRM = 'Clear Data?';
 const DELETE_TASK_CONFIRM = "Delete Task?";
+const DELETE_BUCKET_CONFIRM = "Delete Bucket?";
 const CANCEL = 'Cancel';
 const CONFIRM = 'Confirm';
 const STATUS = 'Status';
@@ -63,6 +63,9 @@ const LETS_ADD_TASKS = "Let's add some tasks";
 const ATLEAST_ONE_TASK_PROMPT = "A bucket should have atleast one task";
 const CLEAR_DATA_SUBTITLE = 'Are you sure you want to clear all data?';
 const DELETE_TASK_SUBTITLE = 'Are you sure you want to delete this task?';
+const DELETE_BUCKET_SUBTITLE = 'Are you sure you want to delete this bucket?';
+const DONE = 'Done';
+const CREATE = 'Create';
 
 int currIndex = 0;
 String appVersion = '0.0.0';
@@ -71,8 +74,8 @@ var routes = <String, WidgetBuilder>{
   Routes.onBoardingPage: (context) => OnboardingScreen(),
   Routes.createBucket: (context) => CreateBucketScreen(),
   Routes.singleBucket: (contex) => BucketDetailsScreen(),
-  Routes.profilePage: (context) => ProfilePage(),
-  Routes.settingsPage: (context) => SettingsScreen()
+  Routes.profilePage: (context) => const ProfilePage(),
+  Routes.settingsPage: (context) => const SettingsScreen()
 };
 
 DBService dbService = DBService();

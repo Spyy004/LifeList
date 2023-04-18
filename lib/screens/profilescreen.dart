@@ -5,6 +5,8 @@ import '../components/index.dart';
 import '../constants/index.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Access the UserModel using Provider
@@ -17,7 +19,7 @@ class ProfilePage extends StatelessWidget {
             builder: (context, snapshot) {
               return SafeArea(
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +35,7 @@ class ProfilePage extends StatelessWidget {
                               onPressed: () {
                                 navigationService.navigateReset(context, HOME);
                               },
-                              icon: Icon(Icons.dashboard))
+                              icon: const Icon(Icons.dashboard))
                         ],
                       ),
                       Divider(

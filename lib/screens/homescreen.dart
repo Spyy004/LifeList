@@ -64,7 +64,68 @@ class HomeScreen extends StatelessWidget {
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                     onLongPress: () {
-                                      model.deleteBucket(model.buckets[index]!);
+                                      showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return Consumer<BucketListService>(
+                                                    builder: (context, bucketlist,
+                                                            child) =>
+                                                        AlertDialog(
+                                                      backgroundColor:
+                                                          Theme.of(context)
+                                                              .primaryColor,
+                                                      title: const Text(
+                                                          DELETE_BUCKET_CONFIRM),
+                                                      content: const Text(
+                                                          DELETE_BUCKET_SUBTITLE),
+                                                      actions: [
+                                                        TextButton(
+                                                          style: TextButton.styleFrom(
+                                                              backgroundColor:
+                                                                  Theme.of(
+                                                                          context)
+                                                                      .secondaryHeaderColor),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop(); // Close the dialog
+                                                          },
+                                                          child: CustomText(
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .labelLarge,
+                                                            text: CANCEL,
+                                                          ),
+                                                        ),
+                                                        TextButton(
+                                                            style: TextButton.styleFrom(
+                                                                backgroundColor:
+                                                                    Theme.of(
+                                                                            context)
+                                                                        .secondaryHeaderColor),
+                                                            onPressed:
+                                                                () async{
+                                                             await bucketlist.deleteBucket(bucketlist.buckets[index]!);
+                                                              // ignore: use_build_context_synchronously
+                                                              navigationService
+                                                                  .navigatePop(
+                                                                      context);
+                                                            },
+                                                            child: CustomText(
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .labelLarge,
+                                                              text: CONFIRM,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                      
                                     },
                                     child: CustomCard(
                                       onTap: () {

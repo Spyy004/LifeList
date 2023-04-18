@@ -18,7 +18,7 @@ class BucketDetailsScreen extends StatelessWidget {
     return true;
   }
 
-  BucketDetailsScreen();
+  BucketDetailsScreen({super.key});
   @override
   Widget build(BuildContext context) {
     final Map<String, Bucket?> args =
