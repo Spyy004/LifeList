@@ -14,6 +14,7 @@ Features
 
 -   Progress tracking: Users can track their progress towards their goals, with visual indicators showing the completion status.
 
+
 Upcoming Features
 -----------------
 
@@ -26,6 +27,18 @@ Upcoming Features
 -   Ability to edit the category and deadline of the bucket: Planned feature to enable users to edit the category and deadline of a created bucket.
 
 -   Ability to edit user profile: Planned feature to allow users to edit their profile information, such as name, age, and profile picture.
+
+Screenshots
+--------
+
+![createbucket](https://user-images.githubusercontent.com/54628130/232737618-3ba44a41-3e4b-4b9c-9367-4519d065e2eb.jpg)
+![home](https://user-images.githubusercontent.com/54628130/232738303-b11da326-eea6-432f-b779-947eedc2d519.jpg)
+![profile](https://user-images.githubusercontent.com/54628130/232738331-222e5a08-629c-4d06-a783-bedd21829d99.jpg)
+![setting](https://user-images.githubusercontent.com/54628130/232738835-208d51fe-02e1-474b-bd02-848568f37bcf.jpg)
+![task](https://user-images.githubusercontent.com/54628130/232738860-eccdb94e-f64d-44a9-ab2a-ade8780ad9d6.jpg)
+![viewbucke](https://user-images.githubusercontent.com/54628130/232738886-71d7b3a0-1f6c-481e-b873-ae1be523cc3d.jpg)
+
+
 
 Installation
 ------------
