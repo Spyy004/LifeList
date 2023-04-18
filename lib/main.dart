@@ -3,6 +3,7 @@ import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,6 +40,8 @@ class LifeList extends StatelessWidget {
         themeMode: ThemeMode.system,
         initialRoute: isUserCreated ? HOME : ONBOARDING,
         routes: routes,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales
       ),
     );
   }

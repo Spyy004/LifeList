@@ -52,7 +52,7 @@ class CreateBucketService extends ChangeNotifier {
     }
     Fluttertoast.showToast(msg: 'Bucket Created successfully');
 
-    navigationService.navigateReset(context, 'Home');
+    navigationService.navigateReset(context, HOME);
   }
 
   changeCurrentBucketStatus() {

@@ -4,6 +4,7 @@ import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/services/bucketlistservice.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: HOME,
+                              text: AppLocalizations.of(context).helloWorld,
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                             IconButton(

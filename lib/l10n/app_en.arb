@@ -1,0 +1,258 @@
+{
+  "home": "Home",
+  "@Home": {
+    "description": "Home"
+  },
+  "root": "Root",
+  "@Root": {
+    "description": "Home"
+  },
+  "zeroBucketListfound": "0 Bucket List found",
+  "@0 Bucket List found": {
+    "description": "Home"
+  },
+  "letscreatesomebucketLists": "Let's create some bucket Lists",
+  "@Let's create some bucket Lists": {
+    "description": "Home"
+  },
+  "settings": "Settings",
+  "@home": {
+    "description": "Home"
+  },
+  "createBucket": "CreateBucket",
+  "@home": {
+    "description": "Home"
+  },
+  "singleBucket": "SingleBucket",
+  "@home": {
+    "description": "Home"
+  },
+  "profilePage": "ProfilePage",
+  "@home": {
+    "description": "Home"
+  },
+  "name": "name",
+  "@home": {
+    "description": "Home"
+  },
+  "letsgetStarted": "Let's get Started",
+  "@home": {
+    "description": "Home"
+  },
+  "travel": "Travel",
+  "@home": {
+    "description": "Home"
+  },
+  "finance": "Finance",
+  "@home": {
+    "description": "Home"
+  },
+  "adventure": "Adventure",
+  "@home": {
+    "description": "Home"
+  },
+  "career": "Career",
+  "@home": {
+    "description": "Home"
+  },
+  "fitness": "Fitness",
+  "@home": {
+    "description": "Home"
+  },
+  "personalityDevelopment": "Personality Development",
+  "@home": {
+    "description": "Home"
+  },
+  "relationships": "Relationships",
+  "@home": {
+    "description": "Home"
+  },
+  "addTask": "Add Task",
+  "@home": {
+    "description": "Home"
+  },
+  "yourBuckets": "Your Buckets",
+  "@home": {
+    "description": "Home"
+  },
+  "onboarding": "Onboarding",
+  "@home": {
+    "description": "Home"
+  },
+  "selectCategory": "Select Category",
+  "@home": {
+    "description": "Home"
+  },
+  "addDeadline": "Add Deadline",
+  "@home": {
+    "description": "Home"
+  },
+  "addTasks": "Add Tasks",
+  "@home": {
+    "description": "Home"
+  },
+  "tasks": "Tasks",
+  "@home": {
+    "description": "Home"
+  },
+  "completed": "Completed",
+  "@home": {
+    "description": "Home"
+  },
+  "title": "Title",
+  "@home": {
+    "description": "Home"
+  },
+  "worldTour": "World Tour",
+  "@home": {
+    "description": "Home"
+  },
+  "description": "Description",
+  "@home": {
+    "description": "Home"
+  },
+  "kickingOffDreams": "Kicking Off Dreams",
+  "@home": {
+    "description": "Home"
+  },
+  "createaBucket": "Create a Bucket",
+  "@home": {
+    "description": "Home"
+  },
+  "firstName": "First Name",
+  "@home": {
+    "description": "Home"
+  },
+  "joeMama": "Joe Mama",
+  "@home": {
+    "description": "Home"
+  },
+  "lastName": "Last Name",
+  "@home": {
+    "description": "Home"
+  },
+  "age": "Age",
+  "@home": {
+    "description": "Home"
+  },
+  "sixtyNine": "69",
+  "@home": {
+    "description": "Home"
+  },
+  "profile": "Profile",
+  "@home": {
+    "description": "Home"
+  },
+  "appVersion": "App Version",
+  "@home": {
+    "description": "Home"
+  },
+  "assetsprofilepng": "assets/profile.png",
+  "@home": {
+    "description": "Home"
+  },
+  "sourceCode": "Source Code",
+  "@home": {
+    "description": "Home"
+  },
+  "clearData": "Clear Data",
+  "@home": {
+    "description": "Home"
+  },
+  "clearData": "Clear Data?",
+  "@home": {
+    "description": "Home"
+  },
+  "deleteTask": "Delete Task?",
+  "@home": {
+    "description": "Home"
+  },
+  "deleteBucket": "Delete Bucket?",
+  "@home": {
+    "description": "Home"
+  },
+  "cancel": "Cancel",
+  "@home": {
+    "description": "Home"
+  },
+  "confirm": "Confirm",
+  "@home": {
+    "description": "Home"
+  },
+  "status": "Status",
+  "@home": {
+    "description": "Home"
+  },
+  "featureComingSoon": "Feature Coming Soon",
+  "@home": {
+    "description": "Home"
+  },
+  "youhavegotzerotasks": "You have got 0 tasks",
+  "@home": {
+    "description": "Home"
+  },
+  "letsaddsometasks": "Let's add some tasks",
+  "@home": {
+    "description": "Home"
+  },
+  "abucketshouldhaveatleastonetask": "A bucket should have atleast one task",
+  "@home": {
+    "description": "Home"
+  },
+  "areyousureyouwanttoclearalldata": "Are you sure you want to clear all data?",
+  "@home": {
+    "description": "Home"
+  },
+  "areyousureyouwanttodeletethistask": "Are you sure you want to delete this task?",
+  "@home": {
+    "description": "Home"
+  },
+  "areyousureyouwanttodeletethisbucket": "Are you sure you want to delete this bucket?",
+  "@home": {
+    "description": "Home"
+  },
+  "done": "Done",
+  "@home": {
+    "description": "Home"
+  },
+  "create": "Create",
+  "@home": {
+    "description": "Home"
+  },
+  "bucketCreationFailedtryagainlater":"Bucket Creation Failed, try again later",
+  "@home": {
+    "description": "Home"
+  },
+  "bucketCreatedsuccessfully":"Bucket Created successfully",
+  "@home": {
+    "description": "Home"
+  },
+  "titlemustbeatleastthreecharacters":"Title must be atleast 3 characters",
+  "@home": {
+    "description": "Home"
+  },
+  "aBucketshouldhaveatleastonetask":"A Bucket should have atleast 1 task",
+  "@home": {
+    "description": "Home"
+  },
+  "nametoosmall": "Name too small",
+  "@home": {
+    "description": "Home"
+  },
+  "desctoosmall": "Desc too small",
+  "@home": {
+    "description": "Home"
+  },
+  "ageshouldbelessthanhundredandgreaterthanzero":"Age should be less than 100 & greater than 0",
+  "@home": {
+    "description": "Home"
+  },
+  "userregisteredsuccesfully":"User registered succesfully",
+  "@home": {
+    "description": "Home"
+  },
+  "userregisterationfailedTryagainlater":"User registeration failed, Try again later",
+  "@home": {
+    "description": "Home"
+  }
+}
