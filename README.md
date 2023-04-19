@@ -14,13 +14,17 @@ Features
 
 -   Progress tracking: Users can track their progress towards their goals, with visual indicators showing the completion status.
 
+-   Supports 2 languages. (More coming Soon!)
+
+-   Support for Light & Dark Theme.
+
 
 Upcoming Features
 -----------------
 
 -   Reminder a day before the deadline: Planned feature to add reminders to notify users one day before the goal deadline.
 
--   Better support for light theme: Planned feature to improve the user experience for users who prefer using the app in light theme mode.
+-   Ability to Filter lists based on status and category
 
 -   Ability to finish off tasks in the bucket: Planned feature to allow users to mark tasks as completed within a bucket.
 
