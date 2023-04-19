@@ -10,7 +10,7 @@ class OnboardingService extends ChangeNotifier {
   int userId = -1;
   void registerUser(String firstName, String lastName, int age) {}
   bool checkName(String name) {
-    bool status = name.length > 3;
+    bool status = name.length >= 3;
     if (!status) {
       Fluttertoast.showToast(
           msg: 'Name and LastName should be atleast 3 chars');
