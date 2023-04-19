@@ -41,7 +41,7 @@ class LifeList extends StatelessWidget {
         initialRoute: isUserCreated ? HOME : ONBOARDING,
         routes: routes,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }
