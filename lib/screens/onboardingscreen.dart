@@ -5,11 +5,10 @@ import 'package:provider/provider.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
 
-// ignore: must_be_immutable
 class OnboardingScreen extends StatelessWidget {
   final TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
 
   OnboardingScreen({super.key});
 
