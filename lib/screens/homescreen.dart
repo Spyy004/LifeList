@@ -163,13 +163,13 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                               )
-                            : const Center(
+                            : Center(
                                 child: SizedBox(
                                   height: 200,
                                   width: 200,
                                   child: EmptyWidget(
-                                    title: ZERO_BUCKET_LIST_FOUND,
-                                    subTitle: LETS_CREATE_BUCKETLIST,
+                                    title: AppLocalizations.of(context).zeroBucketListfound,
+                                    subTitle: AppLocalizations.of(context).letscreatesomebucketLists,
                                     hideBackgroundAnimation: true,
                                   ),
                                 ),

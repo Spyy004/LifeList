@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 // ignore: must_be_immutable
 class CreateBucketScreen extends StatelessWidget {
@@ -31,7 +32,7 @@ class CreateBucketScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(
-                          text:  AppLocalizations.of(context).createaBucket,
+                          text: AppLocalizations.of(context).createaBucket,
                           style: Theme.of(context).textTheme.displayLarge,
                         ),
                         SizedBox(
@@ -57,7 +58,8 @@ class CreateBucketScreen extends StatelessWidget {
                         CustomTextField(
                           nameController: descriptionController,
                           labelText: AppLocalizations.of(context).description,
-                          hintText: AppLocalizations.of(context).kickingOffDreams,
+                          hintText:
+                              AppLocalizations.of(context).kickingOffDreams,
                           textInputType: TextInputType.name,
                         ),
                         SizedBox(
@@ -103,89 +105,98 @@ class CreateBucketScreen extends StatelessWidget {
                                     return Consumer<CreateBucketService>(
                                       builder: (context, bucketModel1, child) =>
                                           SizedBox(
-                                            height:
-                                                Sizes.screenHeight(context) * 0.8,
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.vertical,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(16.0),
-                                                child: Column(
-                                                  children: [
-                                                    CustomText(
-                                                        text: AppLocalizations.of(context).addTasks,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .displayMedium),
-                                                    ListView.builder(
-                                                      controller:
-                                                          ScrollController(),
-                                                      shrinkWrap: true,
-                                                      physics:
-                                                          const NeverScrollableScrollPhysics(),
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount: bucketModel1
-                                                          .activeBucketTasks
-                                                          .length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return ListTile(
-                                                          title: Text(bucketModel1
-                                                              .activeBucketTasks[
-                                                                  index]
-                                                              .name),
-                                                          trailing: IconButton(
-                                                            icon: const Icon(
-                                                                Icons.delete),
-                                                            onPressed: () {
-                                                              bucketModel1
-                                                                  .deleteTaskFromActiveBucket(
-                                                                      index);
-                                                            },
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                    InstagramMessageBar(
-                                                        onSendMessage: (message) {
-                                                      bucketModel1
-                                                          .addTaskInActiveBucket(
-                                                              message);
-                                                    }),
-                                                    SizedBox(
-                                                      height: Sizes.screenHeight(
-                                                              context) *
-                                                          0.6,
-                                                    ),
-                                                    SizedBox(
-                                                      width: Sizes.screenWidth(
-                                                          context),
-                                                      height: Sizes.screenHeight(
-                                                              context) *
-                                                          0.05,
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton.styleFrom(
-                                                            backgroundColor: Theme
-                                                                    .of(context)
-                                                                .secondaryHeaderColor),
-                                                        onPressed: () async {
-                                                          navigationService
-                                                              .navigatePop(
-                                                                  context);
+                                        height:
+                                            Sizes.screenHeight(context) * 0.8,
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.vertical,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              children: [
+                                                CustomText(
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .addTasks,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .displayMedium),
+                                                ListView.builder(
+                                                  controller:
+                                                      ScrollController(),
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount: bucketModel1
+                                                      .activeBucketTasks.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return ListTile(
+                                                      title: Text(bucketModel1
+                                                          .activeBucketTasks[
+                                                              index]
+                                                          .name),
+                                                      trailing: IconButton(
+                                                        icon: const Icon(
+                                                            Icons.delete),
+                                                        onPressed: () {
+                                                          bucketModel1
+                                                              .deleteTaskFromActiveBucket(
+                                                                  index);
                                                         },
-                                                        child: CustomText(
-                                                          style: Theme.of(context)
-                                                              .textTheme
-                                                              .labelLarge,
-                                                          text: AppLocalizations.of(context).done,
-                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    );
+                                                  },
                                                 ),
-                                              ),
+                                                InstagramMessageBar(
+                                                    onSendMessage: (message) {
+                                                  if (message.length < 3) {
+                                                    Fluttertoast.showToast(
+                                                        msg: AppLocalizations
+                                                                .of(context)
+                                                            .taskNameTooShort);
+                                                    return;
+                                                  }
+                                                  bucketModel1
+                                                      .addTaskInActiveBucket(
+                                                          message);
+                                                }),
+                                                SizedBox(
+                                                  height: Sizes.screenHeight(
+                                                          context) *
+                                                      0.6,
+                                                ),
+                                                SizedBox(
+                                                  width: Sizes.screenWidth(
+                                                      context),
+                                                  height: Sizes.screenHeight(
+                                                          context) *
+                                                      0.05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        backgroundColor: Theme
+                                                                .of(context)
+                                                            .secondaryHeaderColor),
+                                                    onPressed: () async {
+                                                      navigationService
+                                                          .navigatePop(context);
+                                                    },
+                                                    child: CustomText(
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .labelLarge,
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .done,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
+                                        ),
+                                      ),
                                     );
                                   },
                                 );
@@ -255,7 +266,7 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
     PERSONALITY_DEVELOPMENT,
     RELATIONSHIPS
   ];
-  
+
   @override
   Widget build(
     BuildContext context,
@@ -281,7 +292,6 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
             bucketModel.setActiveBucketType(selectedItem!);
           },
           items: _items.map((item) {
-            
             return DropdownMenuItem<String>(
               value: item,
               child: Text(item),

@@ -255,6 +255,10 @@
   "@home": {
     "description": "Home"
   },
+  "taskNameTooShort": "Task name should be more than 3 letters",
+  "@home":{
+    "description":"Home"
+  },
   "ageshouldbelessthanhundredandgreaterthanzero":"Age should be less than 100 & greater than 0",
   "@home": {
     "description": "Home"
