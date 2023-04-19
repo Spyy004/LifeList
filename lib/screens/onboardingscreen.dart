@@ -7,7 +7,7 @@ import '../constants/index.dart';
 
 // ignore: must_be_immutable
 class OnboardingScreen extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
 
@@ -33,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
                   height: Sizes.screenHeight(context) * 0.05,
                 ),
                 CustomTextField(
-                  nameController: nameController,
+                  nameController: firstNameController,
                   labelText: FIRST_NAME,
                   hintText: JOE_MAMA,
                   textInputType: TextInputType.name,
@@ -69,14 +69,14 @@ class OnboardingScreen extends StatelessWidget {
                                   Theme.of(context).secondaryHeaderColor),
                           onPressed: () {
                             bool nameStatus = onboardingProvider
-                                .checkName(nameController.text);
+                                .checkName(firstNameController.text);
                             bool lastNameStatus = onboardingProvider
                                 .checkName(lastNameController.text);
                             bool ageStatus = onboardingProvider
                                 .checkAge(int.parse(ageController.text));
                             if (nameStatus && lastNameStatus && ageStatus) {
                               onboardingProvider.submitDetails(
-                                  nameController.text,
+                                  firstNameController.text,
                                   lastNameController.text,
                                   ageController.text,
                                   context);
