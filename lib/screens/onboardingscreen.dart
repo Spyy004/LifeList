@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
 
@@ -25,7 +25,7 @@ class OnboardingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                  text: LETS_GET_STARTED,
+                  text: AppLocalizations.of(context).letsgetStarted,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 SizedBox(
@@ -33,8 +33,8 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 CustomTextField(
                   nameController: firstNameController,
-                  labelText: FIRST_NAME,
-                  hintText: JOE_MAMA,
+                  labelText: AppLocalizations.of(context).firstName,
+                  hintText: AppLocalizations.of(context).joeMama,
                   textInputType: TextInputType.name,
                 ),
                 SizedBox(
@@ -42,8 +42,8 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 CustomTextField(
                   nameController: lastNameController,
-                  labelText: LAST_NAME,
-                  hintText: JOE_MAMA,
+                  labelText: AppLocalizations.of(context).lastName,
+                  hintText: AppLocalizations.of(context).joeMama,
                   textInputType: TextInputType.name,
                 ),
                 SizedBox(
@@ -51,8 +51,8 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 CustomTextField(
                   nameController: ageController,
-                  labelText: AGE,
-                  hintText: AGE_NO,
+                  labelText: AppLocalizations.of(context).age,
+                  hintText: AppLocalizations.of(context).sixtyNine,
                   textInputType: TextInputType.number,
                 ),
                 SizedBox(
@@ -68,11 +68,11 @@ class OnboardingScreen extends StatelessWidget {
                                   Theme.of(context).secondaryHeaderColor),
                           onPressed: () {
                             bool nameStatus = onboardingProvider
-                                .checkName(firstNameController.text);
+                                .checkName(firstNameController.text,context);
                             bool lastNameStatus = onboardingProvider
-                                .checkName(lastNameController.text);
+                                .checkName(lastNameController.text,context);
                             bool ageStatus = onboardingProvider
-                                .checkAge(int.parse(ageController.text));
+                                .checkAge(int.parse(ageController.text),context);
                             if (nameStatus && lastNameStatus && ageStatus) {
                               onboardingProvider.submitDetails(
                                   firstNameController.text,
@@ -83,7 +83,7 @@ class OnboardingScreen extends StatelessWidget {
                           },
                           child: CustomText(
                             style: Theme.of(context).textTheme.labelLarge,
-                            text: "Done",
+                            text: AppLocalizations.of(context).done,
                           ),
                         ),
                       )

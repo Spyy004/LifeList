@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifelist/models/index.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
 
@@ -31,7 +31,7 @@ class CreateBucketScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(
-                          text: CREATE_A_BUCKET,
+                          text:  AppLocalizations.of(context).createaBucket,
                           style: Theme.of(context).textTheme.displayLarge,
                         ),
                         SizedBox(
@@ -47,8 +47,8 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         CustomTextField(
                           nameController: titleController,
-                          labelText: TITLE,
-                          hintText: WORLD_TOUR,
+                          labelText: AppLocalizations.of(context).title,
+                          hintText: AppLocalizations.of(context).worldTour,
                           textInputType: TextInputType.name,
                         ),
                         SizedBox(
@@ -56,8 +56,8 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         CustomTextField(
                           nameController: descriptionController,
-                          labelText: DESCRIPTION,
-                          hintText: KICKING_OFF_DREAMS,
+                          labelText: AppLocalizations.of(context).description,
+                          hintText: AppLocalizations.of(context).kickingOffDreams,
                           textInputType: TextInputType.name,
                         ),
                         SizedBox(
@@ -69,7 +69,7 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         ListTile(
                             title: CustomText(
-                                text: COMPLETED,
+                                text: AppLocalizations.of(context).completed,
                                 style: Theme.of(context).textTheme.bodyLarge),
                             trailing: FlutterSwitch(
                                 activeColor:
@@ -84,7 +84,7 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         ListTile(
                             title: CustomText(
-                                text: TASKS,
+                                text: AppLocalizations.of(context).tasks,
                                 style: Theme.of(context).textTheme.bodyLarge),
                             subtitle: Text(
                               "${bucketModel.activeBucketTasks.length} created",
@@ -112,7 +112,7 @@ class CreateBucketScreen extends StatelessWidget {
                                                 child: Column(
                                                   children: [
                                                     CustomText(
-                                                        text: ADD_TASKS,
+                                                        text: AppLocalizations.of(context).addTasks,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .displayMedium),
@@ -177,7 +177,7 @@ class CreateBucketScreen extends StatelessWidget {
                                                           style: Theme.of(context)
                                                               .textTheme
                                                               .labelLarge,
-                                                          text: DONE,
+                                                          text: AppLocalizations.of(context).done,
                                                         ),
                                                       ),
                                                     ),
@@ -193,7 +193,7 @@ class CreateBucketScreen extends StatelessWidget {
                             )),
                         ListTile(
                           title: CustomText(
-                              text: ADD_DEADLINE,
+                              text: AppLocalizations.of(context).addDeadline,
                               style: Theme.of(context).textTheme.bodyLarge),
                           trailing: IconButton(
                             icon: const Icon(Icons.calendar_today),
@@ -221,7 +221,7 @@ class CreateBucketScreen extends StatelessWidget {
                             },
                             child: CustomText(
                               style: Theme.of(context).textTheme.labelLarge,
-                              text: CREATE,
+                              text: AppLocalizations.of(context).create,
                             ),
                           ),
                         ),
@@ -255,7 +255,7 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
     PERSONALITY_DEVELOPMENT,
     RELATIONSHIPS
   ];
-
+  
   @override
   Widget build(
     BuildContext context,
@@ -272,7 +272,7 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
       ),
       child: Consumer<CreateBucketService>(
         builder: (context, bucketModel, child) => DropdownButton<String>(
-          hint: Text(SELECT_CATEGORY,
+          hint: Text(AppLocalizations.of(context).selectCategory,
               style: Theme.of(context).textTheme.bodyLarge),
           iconEnabledColor: Colors.white,
           value: selectedItem,
@@ -281,6 +281,7 @@ class _MyDropdownMenuState extends State<MyDropdownMenu> {
             bucketModel.setActiveBucketType(selectedItem!);
           },
           items: _items.map((item) {
+            
             return DropdownMenuItem<String>(
               value: item,
               child: Text(item),

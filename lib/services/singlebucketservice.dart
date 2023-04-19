@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/models/index.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../controllers/global_controller.dart';
 
 class BucketService extends ChangeNotifier {
@@ -47,10 +47,10 @@ class BucketService extends ChangeNotifier {
       ..tasks = taskIds;
     int bucketId = await addBucketToDB(bucket);
     if (bucketId == -1) {
-      Fluttertoast.showToast(msg: 'Bucket Creation Failed, try again later');
+      Fluttertoast.showToast(msg:  AppLocalizations.of(context).bucketCreationFailedtryagainlater);
       return;
     }
-    Fluttertoast.showToast(msg: 'Bucket Created successfully');
+    Fluttertoast.showToast(msg:  AppLocalizations.of(context).bucketCreatedsuccessfully);
 
     navigationService.navigateReset(context, 'Home');
   }
@@ -103,11 +103,11 @@ class BucketService extends ChangeNotifier {
 
   Future<void> validateInputs(BuildContext context) async {
     if (activeSingleBucket.name.length < 3) {
-      Fluttertoast.showToast(msg: 'Title must be atleast 3 characters');
+      Fluttertoast.showToast(msg:  AppLocalizations.of(context).titlemustbeatleastthreecharacters);
       return;
     }
     if (activeBucketTasks.isEmpty) {
-      Fluttertoast.showToast(msg: "A Bucket should have atleast 1 task");
+      Fluttertoast.showToast(msg:  AppLocalizations.of(context).abucketshouldhaveatleastonetask);
       return;
     }
     await addBucketinDB(context);
@@ -119,15 +119,15 @@ class BucketService extends ChangeNotifier {
     await deleteTasksFromBucketDB(taskId, bucketId);
   }
 
-  Future<void> editBucket(String name, String desc) async {
+  Future<void> editBucket(String name, String desc,BuildContext context) async {
     loader = true;
     notifyListeners();
     if (name.length < 3 && name.isNotEmpty) {
-      Fluttertoast.showToast(msg: 'Name too small');
+      Fluttertoast.showToast(msg:  AppLocalizations.of(context).nametoosmall);
       return;
     }
     if (desc.length < 3 && desc.isNotEmpty) {
-      Fluttertoast.showToast(msg: 'Desc too small');
+      Fluttertoast.showToast(msg:  AppLocalizations.of(context).desctoosmall);
       return;
     }
     if (name.isNotEmpty) {

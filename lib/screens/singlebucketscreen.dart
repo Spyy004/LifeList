@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/components/empty_page.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
 import '../models/index.dart';
@@ -65,7 +65,7 @@ class BucketDetailsScreen extends StatelessWidget {
                               )
                             : CustomTextField(
                                 nameController: nameController,
-                                labelText: NAME_ARGS,
+                                labelText: AppLocalizations.of(context).name,
                                 textInputType: TextInputType.name,
                                 hintText:
                                     singleBucketModal.activeSingleBucket.name),
@@ -78,7 +78,7 @@ class BucketDetailsScreen extends StatelessWidget {
                               )
                             : CustomTextField(
                                 nameController: descController,
-                                labelText: DESCRIPTION,
+                                labelText:AppLocalizations.of(context).description,
                                 textInputType: TextInputType.name,
                                 hintText: singleBucketModal
                                     .activeSingleBucket.description),
@@ -109,7 +109,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                             .activeSingleBucket.isCompleted
                                         ? Icons.check
                                         : Icons.cancel,
-                                    text: STATUS)
+                                    text: AppLocalizations.of(context).status)
                                 : Column(
                                     children: [
                                       Switch(
@@ -120,7 +120,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 .changeCurrentBucketStatus();
                                           }),
                                       CustomText(
-                                          text: STATUS,
+                                          text: AppLocalizations.of(context).status,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium),
@@ -132,7 +132,7 @@ class BucketDetailsScreen extends StatelessWidget {
                           height: Sizes.screenHeight(context) * 0.04,
                         ),
                         CustomText(
-                            text: TASKS,
+                            text: AppLocalizations.of(context).tasks,
                             style: Theme.of(context).textTheme.displayMedium),
                         const Divider(
                           thickness: 1,
@@ -165,7 +165,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 .check), // Replace with the desired tick-mark icon
                                             onPressed: () {
                                               Fluttertoast.showToast(
-                                                  msg: FEATURE_COMING_SOON);
+                                                  msg: AppLocalizations.of(context).featureComingSoon);
                                             },
                                           ),
                                           IconButton(
@@ -179,7 +179,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                   1) {
                                                 Fluttertoast.showToast(
                                                     msg:
-                                                        ATLEAST_ONE_TASK_PROMPT);
+                                                        AppLocalizations.of(context).abucketshouldhaveatleastonetask);
                                                 return;
                                               }
                                               showDialog(
@@ -194,10 +194,10 @@ class BucketDetailsScreen extends StatelessWidget {
                                                       backgroundColor:
                                                           Theme.of(context)
                                                               .primaryColor,
-                                                      title: const Text(
-                                                          DELETE_TASK_CONFIRM),
-                                                      content: const Text(
-                                                          DELETE_TASK_SUBTITLE),
+                                                      title: Text(
+                                                          AppLocalizations.of(context).deleteTask),
+                                                      content: Text(
+                                                          AppLocalizations.of(context).areyousureyouwanttodeletethistask ),
                                                       actions: [
                                                         TextButton(
                                                           style: TextButton.styleFrom(
@@ -215,7 +215,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                                     context)
                                                                 .textTheme
                                                                 .labelLarge,
-                                                            text: CANCEL,
+                                                            text: AppLocalizations.of(context).cancel,
                                                           ),
                                                         ),
                                                         TextButton(
@@ -247,7 +247,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                                       context)
                                                                   .textTheme
                                                                   .labelLarge,
-                                                              text: CONFIRM,
+                                                              text: AppLocalizations.of(context).confirm,
                                                             )),
                                                       ],
                                                     ),
@@ -281,7 +281,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelLarge,
-                                        text: "Edit",
+                                        text: AppLocalizations.of(context).edit,
                                       ),
                                     )
                                   : ElevatedButton(
@@ -291,7 +291,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                       onPressed: () async {
                                         await singleBucketModal.editBucket(
                                             nameController.text,
-                                            descController.text);
+                                            descController.text,context);
 
                                         singleBucketModal.changeEditStatus();
                                       },
@@ -299,7 +299,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelLarge,
-                                        text: "Save",
+                                        text: AppLocalizations.of(context).save,
                                       ),
                                     ),
                         ),

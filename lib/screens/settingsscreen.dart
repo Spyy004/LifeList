@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifelist/components/index.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../constants/index.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -30,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
                     width: Sizes.screenWidth(context) * 0.02,
                   ),
                   CustomText(
-                      text: SETTINGS,
+                      text: AppLocalizations.of(context).settings,
                       style: Theme.of(context).textTheme.displayLarge),
                 ],
               ),
@@ -48,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
                   size: 20,
                 ),
                 title: CustomText(
-                  text: APP_VERSION,
+                  text: AppLocalizations.of(context).appVersion,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 subtitle: CustomText(
@@ -62,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
                   size: 20,
                 ),
                 title: CustomText(
-                  text: SOURCE_CODE,
+                  text: AppLocalizations.of(context).sourceCode,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
               ),
@@ -72,7 +72,7 @@ class SettingsScreen extends StatelessWidget {
                   size: 20,
                 ),
                 title: CustomText(
-                  text: CLEAR_DATA,
+                  text: AppLocalizations.of(context).clearData,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
                 onTap: () {
@@ -82,8 +82,8 @@ class SettingsScreen extends StatelessWidget {
                       return Consumer<SettingsService>(
                         builder: (context, value, child) => AlertDialog(
                           backgroundColor: Theme.of(context).primaryColor,
-                          title: const Text(CLEAR_DATA_CONFIRM),
-                          content: const Text(CLEAR_DATA_SUBTITLE),
+                          title: Text(AppLocalizations.of(context).clearData),
+                          content: Text(AppLocalizations.of(context).areyousureyouwanttoclearalldata),
                           actions: [
                             TextButton(
                               style: TextButton.styleFrom(
@@ -94,7 +94,7 @@ class SettingsScreen extends StatelessWidget {
                               },
                               child: CustomText(
                                 style: Theme.of(context).textTheme.labelLarge,
-                                text: CANCEL,
+                                text: AppLocalizations.of(context).cancel,
                               ),
                             ),
                             TextButton(
@@ -107,7 +107,7 @@ class SettingsScreen extends StatelessWidget {
                                 },
                                 child: CustomText(
                                   style: Theme.of(context).textTheme.labelLarge,
-                                  text: CONFIRM,
+                                  text: AppLocalizations.of(context).confirm,
                                 )),
                           ],
                         ),

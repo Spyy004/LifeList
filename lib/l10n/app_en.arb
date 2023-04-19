@@ -7,6 +7,14 @@
   "@Root": {
     "description": "Home"
   },
+  "edit": "Edit",
+  "@Edit": {
+  "edit": "edit"
+},
+  "save": "Save",
+  "@Edit": {
+    "save": "save"
+  },
   "zeroBucketListfound": "0 Bucket List found",
   "@0 Bucket List found": {
     "description": "Home"
@@ -226,6 +234,10 @@
   "bucketCreatedsuccessfully":"Bucket Created successfully",
   "@home": {
     "description": "Home"
+  },
+  "traveltolondon":"Travel to London!",
+  "@traveltolondon":{
+    "description":"Home"
   },
   "titlemustbeatleastthreecharacters":"Title must be atleast 3 characters",
   "@home": {

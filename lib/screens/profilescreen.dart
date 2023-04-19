@@ -3,6 +3,7 @@ import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -28,7 +29,7 @@ class ProfilePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomText(
-                            text: PROFILE_TITLE,
+                            text: AppLocalizations.of(context).profile,
                             style: Theme.of(context).textTheme.displayLarge,
                           ),
                           IconButton(
@@ -56,8 +57,8 @@ class ProfilePage extends StatelessWidget {
                         height: Sizes.screenHeight(context) * 0.02,
                       ),
                       Center(
-                        child: Text(
-                          "Name: ${userModel.user.firstName} ${userModel.user.lastName} ",
+                        child: CustomText(
+                          text:"${AppLocalizations.of(context).name}: ${userModel.user.firstName} ${userModel.user.lastName} ",
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),
@@ -65,8 +66,8 @@ class ProfilePage extends StatelessWidget {
                         height: Sizes.screenHeight(context) * 0.02,
                       ),
                       Center(
-                        child: Text(
-                          '$AGE: ${userModel.user.age}',
+                        child: CustomText(
+                          text:'${AppLocalizations.of(context).age}: ${userModel.user.age}',
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),
@@ -85,7 +86,7 @@ class ProfilePage extends StatelessWidget {
                           },
                           child: CustomText(
                             style: Theme.of(context).textTheme.labelLarge,
-                            text: "Settings",
+                            text: AppLocalizations.of(context).settings,
                           ),
                         ),
                       ),

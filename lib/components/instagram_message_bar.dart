@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InstagramMessageBar extends StatefulWidget {
   final ValueChanged<String> onSendMessage;
@@ -42,7 +43,7 @@ class _InstagramMessageBarState extends State<InstagramMessageBar> {
             child: TextField(
               controller: _textEditingController,
               decoration: InputDecoration(
-                hintText: 'Travel to London!',
+                hintText: AppLocalizations.of(context).traveltolondon,
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),

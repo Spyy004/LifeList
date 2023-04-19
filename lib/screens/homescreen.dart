@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppLocalizations.of(context).helloWorld,
+                              text: AppLocalizations.of(context).home,
                               style: Theme.of(context).textTheme.displayLarge,
                             ),
                             IconButton(
@@ -74,10 +74,10 @@ class HomeScreen extends StatelessWidget {
                                                     AlertDialog(
                                               backgroundColor: Theme.of(context)
                                                   .primaryColor,
-                                              title: const Text(
-                                                  DELETE_BUCKET_CONFIRM),
-                                              content: const Text(
-                                                  DELETE_BUCKET_SUBTITLE),
+                                              title: Text(
+                                                  AppLocalizations.of(context).deleteBucket),
+                                              content: Text(
+                                                  AppLocalizations.of(context).areyousureyouwanttodeletethisbucket),
                                               actions: [
                                                 TextButton(
                                                   style: TextButton.styleFrom(
@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge,
-                                                    text: CANCEL,
+                                                    text: AppLocalizations.of(context).cancel,
                                                   ),
                                                 ),
                                                 TextButton(
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge,
-                                                    text: CONFIRM,
+                                                    text: AppLocalizations.of(context).confirm,
                                                   ),
                                                 ),
                                               ],

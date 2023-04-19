@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/constants/consts.dart';
 import 'package:lifelist/controllers/global_controller.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/index.dart';
 
 class OnboardingService extends ChangeNotifier {
   bool loader = false;
   int userId = -1;
   void registerUser(String firstName, String lastName, int age) {}
-  bool checkName(String name) {
+  bool checkName(String name, BuildContext context) {
     bool status = name.length >= 3;
     if (!status) {
       Fluttertoast.showToast(
-          msg: 'FirstName and LastName should be atleast 3 chars');
+          msg: AppLocalizations.of(context).nametoosmall);
     }
     return status;
   }
 
-  bool checkAge(int age) {
+  bool checkAge(int age, BuildContext context) {
     bool status = age > 0 && age <= 100;
     if (!status) {
       Fluttertoast.showToast(
-        msg: 'Age should be less than 100 & greater than 0 ',
+        msg: AppLocalizations.of(context).ageshouldbelessthanhundredandgreaterthanzero,
       );
     }
     return status;
@@ -38,7 +38,7 @@ class OnboardingService extends ChangeNotifier {
     if (userId >= 0) {
       currUser.id = userId;
       setCurrentUser(currUser);
-      Fluttertoast.showToast(msg: 'User registered succesfully');
+      Fluttertoast.showToast(msg: AppLocalizations.of(context).userregisteredsuccesfully);
       if (context.mounted) {
         navigationService.navigateNext(context, HOME);
       }
@@ -48,7 +48,7 @@ class OnboardingService extends ChangeNotifier {
     }
     loader = false;
     notifyListeners();
-    Fluttertoast.showToast(msg: 'User registeration failed, Try again later');
+    Fluttertoast.showToast(msg:  AppLocalizations.of(context).userregisterationfailedTryagainlater);
   }
 
   Map<String, dynamic> createConfig(String name, String lastName, String age) {
