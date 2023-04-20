@@ -117,8 +117,8 @@ class SettingsScreen extends StatelessWidget {
                                 style: TextButton.styleFrom(
                                     backgroundColor:
                                         Theme.of(context).secondaryHeaderColor),
-                                onPressed: () async {
-                                  await value.clearData();
+                                onPressed: () {
+                                  value.clearData();
                                   navigationService.navigatePop(context);
                                 },
                                 child: CustomText(
