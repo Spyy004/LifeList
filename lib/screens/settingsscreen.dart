@@ -4,9 +4,19 @@ import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../constants/index.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
+
+  final Uri _url = Uri.parse('https://github.com/Spyy004/LifeList');
+  Future<void> _launchUrl() async {
+    if (await canLaunch(_url.toString())) {
+      await launch(_url.toString());
+    } else {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +75,7 @@ class SettingsScreen extends StatelessWidget {
                   text: AppLocalizations.of(context).sourceCode,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
+                onTap: _launchUrl;
               ),
               ListTile(
                 leading: const Icon(
