@@ -3,7 +3,7 @@
 LifeList
 ========
 
-LifeList is an offline goal tracking app that allows users to plan, track, and achieve their life goals effortlessly. With LifeList, users can organize their goals, set deadlines, create reminders, and track their progress, all within a simple and user-friendly interface.
+LifeList is an offline bucket list app that helps users plan, track, and achieve their life goals in a simple and user-friendly interface. With LifeList, users can organize their bucket list items, set deadlines, create reminders, and track their progress towards completing them. The app is designed to make goal tracking effortless, allowing users to focus on achieving their bucket list dreams without worrying about the logistics.
 
 Features
 --------
