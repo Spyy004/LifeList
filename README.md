@@ -1,4 +1,3 @@
-![Life_dark](https://user-images.githubusercontent.com/54628130/233258163-ac9efd65-0084-45f6-a604-fbff09f7f31a.png)
 ![Life](https://user-images.githubusercontent.com/54628130/233258221-8e1673f3-e137-4fb3-802d-9bf5a708a64d.png)
 
 LifeList
