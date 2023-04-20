@@ -11,7 +11,7 @@ class CustomBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BottomBar>(
+    return Consumer<BottomBarService>(
       builder: (context, bottomBar, child) => BottomNavigationBar(
         currentIndex: bottomBar.currentIndex,
           onTap: (index) {

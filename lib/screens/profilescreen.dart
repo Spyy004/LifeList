@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       bottomNavigationBar: 
-      Consumer<BottomBar>(
+      Consumer<BottomBarService>(
         builder: (context, bottomBar, child) => BottomNavigationBar(
           currentIndex: bottomBar.currentIndex,
             onTap: (index) {
