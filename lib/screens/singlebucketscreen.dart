@@ -8,10 +8,9 @@ import '../components/index.dart';
 import '../constants/index.dart';
 import '../models/index.dart';
 
-// ignore: must_be_immutable
 class BucketDetailsScreen extends StatelessWidget {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descController = TextEditingController();
   Future<bool> onPop(BuildContext context, singleBucketModel) async {
     await singleBucketModel.clearData();
     navigationService.navigateReset(context, HOME);
