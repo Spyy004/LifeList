@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             IconButton(
                                 onPressed: () {
-                                  navigationService.navigateReset(
+                                  navigationService.navigateNext(
                                       context, PROFILE);
                                 },
                                 icon: const Icon(Icons.person))
