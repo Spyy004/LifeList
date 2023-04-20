@@ -14,6 +14,29 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
+      bottomNavigationBar: 
+      Consumer<BottomBar>(
+        builder: (context, bottomBar, child) => BottomNavigationBar(
+          currentIndex: bottomBar.currentIndex,
+            onTap: (index) {
+              if (index == 0) {
+                bottomBar.changeIndex(index);
+                navigationService.navigateReset(context, HOME);
+              } else if (index == 1) {
+                bottomBar.changeIndex(index);
+                navigationService.navigateReset(context, PROFILE);
+              }
+            },
+            selectedItemColor: Theme.of(context).secondaryHeaderColor,
+            items: [
+              BottomNavigationBarItem(
+                  icon: const Icon(Icons.home),
+                  label: AppLocalizations.of(context).home),
+              BottomNavigationBarItem(
+                  icon: const Icon(Icons.person),
+                  label: AppLocalizations.of(context).profile),
+            ]),
+      ),
       body: Consumer<UserService>(
         builder: (context, userModel, child) => FutureBuilder<void>(
             future: userModel.getUser(),
@@ -22,22 +45,12 @@ class ProfilePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(
-                            text: AppLocalizations.of(context).profile,
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          IconButton(
-                              onPressed: () {
-                                navigationService.navigateReset(context, HOME);
-                              },
-                              icon: const Icon(Icons.dashboard))
-                        ],
+                      CustomText(
+                        text: AppLocalizations.of(context).profile,
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
                       Divider(
                         thickness: 1,
@@ -58,7 +71,8 @@ class ProfilePage extends StatelessWidget {
                       ),
                       Center(
                         child: CustomText(
-                          text:"${AppLocalizations.of(context).name}: ${userModel.user.firstName} ${userModel.user.lastName} ",
+                          text:
+                              "${AppLocalizations.of(context).name}: ${userModel.user.firstName} ${userModel.user.lastName} ",
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),
@@ -67,7 +81,8 @@ class ProfilePage extends StatelessWidget {
                       ),
                       Center(
                         child: CustomText(
-                          text:'${AppLocalizations.of(context).age}: ${userModel.user.age}',
+                          text:
+                              '${AppLocalizations.of(context).age}: ${userModel.user.age}',
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ),

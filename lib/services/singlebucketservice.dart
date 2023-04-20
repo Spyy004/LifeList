@@ -26,9 +26,7 @@ class BucketService extends ChangeNotifier {
   }
 
   Future<void> setActiveSingleBucket(Bucket bucket) async {
- 
-      activeSingleBucket = bucket;
-    
+    activeSingleBucket = bucket;
   }
 
   void changeEditStatus() {
@@ -47,16 +45,24 @@ class BucketService extends ChangeNotifier {
       ..tasks = taskIds;
     int bucketId = await addBucketToDB(bucket);
     if (bucketId == -1) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).bucketCreationFailedtryagainlater);
+      Fluttertoast.showToast(
+          // ignore: use_build_context_synchronously
+          msg: AppLocalizations.of(context).bucketCreationFailedtryagainlater);
       return;
     }
-    Fluttertoast.showToast(msg:  AppLocalizations.of(context).bucketCreatedsuccessfully);
+    Fluttertoast.showToast(
+        msg: AppLocalizations.of(context).bucketCreatedsuccessfully);
 
     navigationService.navigateReset(context, 'Home');
   }
 
   changeCurrentBucketStatus() {
     activeSingleBucket.isCompleted = !activeSingleBucket.isCompleted;
+    notifyListeners();
+  }
+
+  changeCurrentCategory(BucketCategory category) {
+    activeSingleBucket.bucketCategory = category;
     notifyListeners();
   }
 
@@ -103,11 +109,13 @@ class BucketService extends ChangeNotifier {
 
   Future<void> validateInputs(BuildContext context) async {
     if (activeSingleBucket.name.length < 3) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).titlemustbeatleastthreecharacters);
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).titlemustbeatleastthreecharacters);
       return;
     }
     if (activeBucketTasks.isEmpty) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).abucketshouldhaveatleastonetask);
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).abucketshouldhaveatleastonetask);
       return;
     }
     await addBucketinDB(context);
@@ -119,15 +127,16 @@ class BucketService extends ChangeNotifier {
     await deleteTasksFromBucketDB(taskId, bucketId);
   }
 
-  Future<void> editBucket(String name, String desc,BuildContext context) async {
+  Future<void> editBucket(
+      String name, String desc, BuildContext context) async {
     loader = true;
     notifyListeners();
     if (name.length < 3 && name.isNotEmpty) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).nametoosmall);
+      Fluttertoast.showToast(msg: AppLocalizations.of(context).nametoosmall);
       return;
     }
     if (desc.length < 3 && desc.isNotEmpty) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).desctoosmall);
+      Fluttertoast.showToast(msg: AppLocalizations.of(context).desctoosmall);
       return;
     }
     if (name.isNotEmpty) {

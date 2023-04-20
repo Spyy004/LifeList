@@ -13,6 +13,7 @@ import '../screens/index.dart';
 
 const HOME = 'Home';
 const ROOT = 'Root';
+const URL = 'https://github.com/Spyy004/LifeList';
 const ZERO_BUCKET_LIST_FOUND = '0 Bucket List found';
 const LETS_CREATE_BUCKETLIST = "Let's create some bucket Lists";
 const SETTINGS = 'Settings';
@@ -75,7 +76,7 @@ var routes = <String, WidgetBuilder>{
   Routes.createBucket: (context) => CreateBucketScreen(),
   Routes.singleBucket: (contex) => BucketDetailsScreen(),
   Routes.profilePage: (context) => const ProfilePage(),
-  Routes.settingsPage: (context) => const SettingsScreen()
+  Routes.settingsPage: (context) => SettingsScreen()
 };
 
 DBService dbService = DBService();

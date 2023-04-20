@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/components/empty_page.dart';
 import 'package:lifelist/constants/index.dart';
-import 'package:lifelist/services/bucketlistservice.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../services/index.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
+      bottomNavigationBar: const CustomBottomBar(),
       body: SafeArea(
         child: Consumer<BucketListService>(
           builder: (context, model, child) => FutureBuilder<void>(
@@ -22,25 +23,13 @@ class HomeScreen extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.all(Sizes.paddingSizeMedium),
                   child: SingleChildScrollView(
-                    //  physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomText(
-                              text: AppLocalizations.of(context).home,
-                              style: Theme.of(context).textTheme.displayLarge,
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  navigationService.navigateReset(
-                                      context, PROFILE);
-                                },
-                                icon: const Icon(Icons.person))
-                          ],
+                        CustomText(
+                          text: AppLocalizations.of(context).home,
+                          style: Theme.of(context).textTheme.displayLarge,
                         ),
                         Divider(
                           thickness: 1,
@@ -194,3 +183,4 @@ class HomeScreen extends StatelessWidget {
     ));
   }
 }
+

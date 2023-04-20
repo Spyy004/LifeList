@@ -7,12 +7,12 @@ import '../constants/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  SettingsScreen({super.key});
 
-  final Uri _url = Uri.parse('https://github.com/Spyy004/LifeList');
+  final Uri _url = Uri.parse(URL);
   Future<void> _launchUrl() async {
-    if (await canLaunch(_url.toString())) {
-      await launch(_url.toString());
+    if (await canLaunchUrl(_url)) {
+      await launchUrl(_url);
     } else {
       throw 'Could not launch $_url';
     }
@@ -75,7 +75,7 @@ class SettingsScreen extends StatelessWidget {
                   text: AppLocalizations.of(context).sourceCode,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
-                onTap: _launchUrl;
+                onTap: _launchUrl,
               ),
               ListTile(
                 leading: const Icon(
