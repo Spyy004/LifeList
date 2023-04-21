@@ -8,6 +8,7 @@ class BucketListService extends ChangeNotifier {
   Future<void> getAllBuckets() async {
     buckets = await getBucketsFromDB();
     buckets = buckets.whereType<Bucket>().toList();
+    notifyListeners();
   }
 
   deleteBucket(Bucket bucket) async {
