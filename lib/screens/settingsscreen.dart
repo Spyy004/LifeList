@@ -11,8 +11,12 @@ class SettingsScreen extends StatelessWidget {
 
   final Uri _url = Uri.parse('https://github.com/Spyy004/LifeList');
   Future<void> _launchUrl() async {
-    if (await canLaunch(_url.toString())) {
-      await launch(_url.toString());
+    if (await canLaunchUrl(
+      _url,
+    )) {
+      await launchUrl(
+        _url,
+      );
     } else {
       throw 'Could not launch $_url';
     }
