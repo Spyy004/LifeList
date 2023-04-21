@@ -17,9 +17,9 @@ class CustomBottomBar extends StatelessWidget {
           onTap: (index) {
             bottomBar.changeIndex(index);
             if (index == 0) {
-              navigationService.navigateNext(context, HOME);
+              navigationService.navigateReset(context, HOME);
             } else if (index == 1) {
-              navigationService.navigateNext(context, PROFILE);
+              navigationService.navigateReset(context, PROFILE);
             }
           },
           selectedItemColor: Theme.of(context).secondaryHeaderColor,
