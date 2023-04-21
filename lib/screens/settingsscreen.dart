@@ -79,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
                   text: AppLocalizations.of(context).sourceCode,
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
-                onTap: _launchUrl;
+                onTap: _launchUrl,
               ),
               ListTile(
                 leading: const Icon(
@@ -98,7 +98,8 @@ class SettingsScreen extends StatelessWidget {
                         builder: (context, value, child) => AlertDialog(
                           backgroundColor: Theme.of(context).primaryColor,
                           title: Text(AppLocalizations.of(context).clearData),
-                          content: Text(AppLocalizations.of(context).areyousureyouwanttoclearalldata),
+                          content: Text(AppLocalizations.of(context)
+                              .areyousureyouwanttoclearalldata),
                           actions: [
                             TextButton(
                               style: TextButton.styleFrom(
