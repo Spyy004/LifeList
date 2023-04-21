@@ -13,14 +13,13 @@ class CustomBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<BottomBarService>(
       builder: (context, bottomBar, child) => BottomNavigationBar(
-        currentIndex: bottomBar.currentIndex,
+          currentIndex: bottomBar.currentIndex,
           onTap: (index) {
+            bottomBar.changeIndex(index);
             if (index == 0) {
-              bottomBar.changeIndex(index);
-              navigationService.navigateReset(context, HOME);
+              navigationService.navigateNext(context, HOME);
             } else if (index == 1) {
-              bottomBar.changeIndex(index);
-              navigationService.navigateReset(context, PROFILE);
+              navigationService.navigateNext(context, PROFILE);
             }
           },
           selectedItemColor: Theme.of(context).secondaryHeaderColor,

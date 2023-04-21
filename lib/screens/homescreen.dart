@@ -64,9 +64,11 @@ class HomeScreen extends StatelessWidget {
                                               backgroundColor: Theme.of(context)
                                                   .primaryColor,
                                               title: Text(
-                                                  AppLocalizations.of(context).deleteBucket),
-                                              content: Text(
-                                                  AppLocalizations.of(context).areyousureyouwanttodeletethisbucket),
+                                                  AppLocalizations.of(context)
+                                                      .deleteBucket),
+                                              content: Text(AppLocalizations.of(
+                                                      context)
+                                                  .areyousureyouwanttodeletethisbucket),
                                               actions: [
                                                 TextButton(
                                                   style: TextButton.styleFrom(
@@ -81,7 +83,9 @@ class HomeScreen extends StatelessWidget {
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge,
-                                                    text: AppLocalizations.of(context).cancel,
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .cancel,
                                                   ),
                                                 ),
                                                 TextButton(
@@ -101,7 +105,9 @@ class HomeScreen extends StatelessWidget {
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .labelLarge,
-                                                    text: AppLocalizations.of(context).confirm,
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .confirm,
                                                   ),
                                                 ),
                                               ],
@@ -157,8 +163,10 @@ class HomeScreen extends StatelessWidget {
                                   height: 200,
                                   width: 200,
                                   child: EmptyWidget(
-                                    title: AppLocalizations.of(context).zeroBucketListfound,
-                                    subTitle: AppLocalizations.of(context).letscreatesomebucketLists,
+                                    title: AppLocalizations.of(context)
+                                        .zeroBucketListfound,
+                                    subTitle: AppLocalizations.of(context)
+                                        .letscreatesomebucketLists,
                                     hideBackgroundAnimation: true,
                                   ),
                                 ),
@@ -183,4 +191,3 @@ class HomeScreen extends StatelessWidget {
     ));
   }
 }
-

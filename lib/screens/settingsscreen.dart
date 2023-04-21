@@ -11,8 +11,12 @@ class SettingsScreen extends StatelessWidget {
 
   final Uri _url = Uri.parse(URL);
   Future<void> _launchUrl() async {
-    if (await canLaunchUrl(_url)) {
-      await launchUrl(_url);
+    if (await canLaunchUrl(
+      _url,
+    )) {
+      await launchUrl(
+        _url,
+      );
     } else {
       throw 'Could not launch $_url';
     }
@@ -94,7 +98,8 @@ class SettingsScreen extends StatelessWidget {
                         builder: (context, value, child) => AlertDialog(
                           backgroundColor: Theme.of(context).primaryColor,
                           title: Text(AppLocalizations.of(context).clearData),
-                          content: Text(AppLocalizations.of(context).areyousureyouwanttoclearalldata),
+                          content: Text(AppLocalizations.of(context)
+                              .areyousureyouwanttoclearalldata),
                           actions: [
                             TextButton(
                               style: TextButton.styleFrom(
@@ -112,8 +117,8 @@ class SettingsScreen extends StatelessWidget {
                                 style: TextButton.styleFrom(
                                     backgroundColor:
                                         Theme.of(context).secondaryHeaderColor),
-                                onPressed: () async {
-                                  await value.clearData();
+                                onPressed: () {
+                                  value.clearData();
                                   navigationService.navigatePop(context);
                                 },
                                 child: CustomText(
