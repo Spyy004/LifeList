@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+pubspec.lock
 migrate_working_dir/
 
 # IntelliJ related
@@ -20,6 +21,11 @@ migrate_working_dir/
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
 #.vscode/
+
+# Windows
+**/windows/flutter/generated_plugin_registrant.cc
+**/windows/flutter/generated_plugin_registrant.h
+**/windows/flutter/generated_plugins.cmake
 
 # Flutter/Dart/Pub related
 **/doc/api/
