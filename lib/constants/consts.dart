@@ -75,7 +75,7 @@ var routes = <String, WidgetBuilder>{
   Routes.createBucket: (context) => CreateBucketScreen(),
   Routes.singleBucket: (contex) => BucketDetailsScreen(),
   Routes.profilePage: (context) => const ProfilePage(),
-  Routes.settingsPage: (context) => const SettingsScreen()
+  Routes.settingsPage: (context) => SettingsScreen()
 };
 
 DBService dbService = DBService();

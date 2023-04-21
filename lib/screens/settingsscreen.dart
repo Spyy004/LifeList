@@ -7,7 +7,7 @@ import '../constants/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  SettingsScreen({super.key});
 
   final Uri _url = Uri.parse('https://github.com/Spyy004/LifeList');
   Future<void> _launchUrl() async {
