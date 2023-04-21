@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/components/empty_page.dart';
+import 'package:lifelist/screens/createbucketscreen.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -77,7 +78,8 @@ class BucketDetailsScreen extends StatelessWidget {
                               )
                             : CustomTextField(
                                 nameController: descController,
-                                labelText:AppLocalizations.of(context).description,
+                                labelText:
+                                    AppLocalizations.of(context).description,
                                 textInputType: TextInputType.name,
                                 hintText: singleBucketModal
                                     .activeSingleBucket.description),
@@ -85,21 +87,70 @@ class BucketDetailsScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            IconTextWidget(
-                                iconData: Icons.calendar_month,
-                                text:
-                                    "${singleBucketModal.activeSingleBucket.deadline.year}/${singleBucketModal.activeSingleBucket.deadline.month}/${singleBucketModal.activeSingleBucket.deadline.day}"),
+                            InkWell(
+                              onTap: () {
+                                if (singleBucketModal.isEditing) {
+                                  singleBucketModal
+                                      .setActiveBucketDeadlineDate(context);
+                                }
+                              },
+                              child: IconTextWidget(
+                                  iconData: Icons.calendar_month,
+                                  text:
+                                      "${singleBucketModal.activeSingleBucket.deadline.year}/${singleBucketModal.activeSingleBucket.deadline.month}/${singleBucketModal.activeSingleBucket.deadline.day}"),
+                            ),
                             SizedBox(width: Sizes.screenWidth(context) * 0.2),
                             Expanded(
-                              child: IconTextWidget(
-                                  iconData: categoryMap[singleBucketModal
-                                      .activeSingleBucket.bucketCategory],
-                                  text: singleBucketModal
-                                      .activeSingleBucket.bucketCategory
-                                      .toString()
-                                      .split('.')
-                                      .last
-                                      .toUpperCase()),
+                              child: InkWell(
+                                onTap: () {
+                                  if (singleBucketModal.isEditing) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Consumer<BucketService>(
+                                            builder: (context, value, child) =>
+                                                AlertDialog(
+                                              backgroundColor: Theme.of(context)
+                                                  .primaryColor,
+                                              title: Text(
+                                                  AppLocalizations.of(context)
+                                                      .selectCategory),
+                                              content: const MyDropdownMenu(
+                                                  actions: 'EDIT'),
+                                              actions: [
+                                                ElevatedButton(
+                                                    style: TextButton.styleFrom(
+                                                        backgroundColor: Theme
+                                                                .of(context)
+                                                            .secondaryHeaderColor),
+                                                    onPressed: () {
+                                                      navigationService
+                                                          .navigatePop(context);
+                                                    },
+                                                    child: CustomText(
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .done,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium,
+                                                    ))
+                                              ],
+                                            ),
+                                          );
+                                        });
+                                  }
+                                },
+                                child: IconTextWidget(
+                                    iconData: categoryMap[singleBucketModal
+                                        .activeSingleBucket.bucketCategory],
+                                    text: singleBucketModal
+                                        .activeSingleBucket.bucketCategory
+                                        .toString()
+                                        .split('.')
+                                        .last
+                                        .toUpperCase()),
+                              ),
                             ),
                             SizedBox(width: Sizes.screenWidth(context) * 0.2),
                             !singleBucketModal.isEditing
@@ -119,7 +170,8 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 .changeCurrentBucketStatus();
                                           }),
                                       CustomText(
-                                          text: AppLocalizations.of(context).status,
+                                          text: AppLocalizations.of(context)
+                                              .status,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium),
@@ -164,7 +216,9 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 .check), // Replace with the desired tick-mark icon
                                             onPressed: () {
                                               Fluttertoast.showToast(
-                                                  msg: AppLocalizations.of(context).featureComingSoon);
+                                                  msg: AppLocalizations.of(
+                                                          context)
+                                                      .featureComingSoon);
                                             },
                                           ),
                                           IconButton(
@@ -177,8 +231,9 @@ class BucketDetailsScreen extends StatelessWidget {
                                                       .length ==
                                                   1) {
                                                 Fluttertoast.showToast(
-                                                    msg:
-                                                        AppLocalizations.of(context).abucketshouldhaveatleastonetask);
+                                                    msg: AppLocalizations.of(
+                                                            context)
+                                                        .abucketshouldhaveatleastonetask);
                                                 return;
                                               }
                                               showDialog(
@@ -194,9 +249,13 @@ class BucketDetailsScreen extends StatelessWidget {
                                                           Theme.of(context)
                                                               .primaryColor,
                                                       title: Text(
-                                                          AppLocalizations.of(context).deleteTask),
+                                                          AppLocalizations.of(
+                                                                  context)
+                                                              .deleteTask),
                                                       content: Text(
-                                                          AppLocalizations.of(context).areyousureyouwanttodeletethistask ),
+                                                          AppLocalizations.of(
+                                                                  context)
+                                                              .areyousureyouwanttodeletethistask),
                                                       actions: [
                                                         TextButton(
                                                           style: TextButton.styleFrom(
@@ -214,7 +273,9 @@ class BucketDetailsScreen extends StatelessWidget {
                                                                     context)
                                                                 .textTheme
                                                                 .labelLarge,
-                                                            text: AppLocalizations.of(context).cancel,
+                                                            text: AppLocalizations
+                                                                    .of(context)
+                                                                .cancel,
                                                           ),
                                                         ),
                                                         TextButton(
@@ -246,7 +307,9 @@ class BucketDetailsScreen extends StatelessWidget {
                                                                       context)
                                                                   .textTheme
                                                                   .labelLarge,
-                                                              text: AppLocalizations.of(context).confirm,
+                                                              text: AppLocalizations
+                                                                      .of(context)
+                                                                  .confirm,
                                                             )),
                                                       ],
                                                     ),
@@ -290,7 +353,8 @@ class BucketDetailsScreen extends StatelessWidget {
                                       onPressed: () async {
                                         await singleBucketModal.editBucket(
                                             nameController.text,
-                                            descController.text,context);
+                                            descController.text,
+                                            context);
 
                                         singleBucketModal.changeEditStatus();
                                       },
