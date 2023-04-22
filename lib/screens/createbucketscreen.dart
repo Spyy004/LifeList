@@ -7,8 +7,6 @@ import '../components/index.dart';
 import '../constants/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../neopop/widgets/buttons/neopop_button/neopop_button.dart';
-
 // ignore: must_be_immutable
 class CreateBucketScreen extends StatelessWidget {
   CreateBucketScreen({super.key});
@@ -104,131 +102,111 @@ class CreateBucketScreen extends StatelessWidget {
                                   context: context,
                                   isScrollControlled: true,
                                   builder: (BuildContext context) {
-                                    return Consumer<CreateBucketService>(
-                                      builder: (context, bucketModel1, child) =>
-                                          Container(
-                                            color: Theme.of(context).primaryColor,                                       
-                                        height:
-                                            Sizes.screenHeight(context) * 0.8,
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.vertical,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Column(
-                                              children: [
-                                                CustomText(
-                                                    text: AppLocalizations.of(
-                                                            context)
-                                                        .addTasks,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .displayMedium),
-                                                ListView.builder(
-                                                  controller:
-                                                      ScrollController(),
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: bucketModel1
-                                                      .activeBucketTasks.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return ListTile(
-                                                      title: Text(bucketModel1
-                                                          .activeBucketTasks[
-                                                              index]
-                                                          .name),
-                                                      trailing: IconButton(
-                                                        icon: const Icon(
-                                                            Icons.delete),
-                                                        onPressed: () {
-                                                          bucketModel1
-                                                              .deleteTaskFromActiveBucket(
-                                                                  index);
-                                                        },
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                                InstagramMessageBar(
-                                                    onSendMessage: (message) {
-                                                  if (message.length < 3) {
-                                                    Fluttertoast.showToast(
-                                                        msg: AppLocalizations
-                                                                .of(context)
-                                                            .taskNameTooShort);
-                                                    return;
-                                                  }
-                                                  bucketModel1
-                                                      .addTaskInActiveBucket(
-                                                          message);
-                                                }),
-                                                SizedBox(
-                                                  height: Sizes.screenHeight(
-                                                          context) *
-                                                      0.6,
-                                                ),
-                                                SizedBox(
-                                                  width: Sizes.screenWidth(
-                                                      context),
-                                                  height: Sizes.screenHeight(
-                                                          context) *
-                                                      0.05,
-                                                  // child: ElevatedButton(
-                                                  //   style: ElevatedButton.styleFrom(
-                                                  //       backgroundColor: Theme
-                                                  //               .of(context)
-                                                  //           .secondaryHeaderColor),
-                                                  //   onPressed: () async {
-                                                  //     navigationService
-                                                  //         .navigatePop(context);
-                                                  //   },
-                                                  //   child: CustomText(
-                                                  //     style: Theme.of(context)
-                                                  //         .textTheme
-                                                  //         .labelLarge,
-                                                  //     text: AppLocalizations.of(
-                                                  //             context)
-                                                  //         .done,
-                                                  //   ),
-                                                  // ),
-                                                  child: NeoPopButton(
-                                                    bottomShadowColor: Theme.of(
-                                                            context)
-                                                        .secondaryHeaderColor,
-                                                    rightShadowColor: Theme.of(
-                                                            context)
-                                                        .secondaryHeaderColor,
-                                                    animationDuration:
-                                                        const Duration(
-                                                            milliseconds: 300),
-                                                    depth: 5,
-                                                    onTapUp: () async {
-                                                      navigationService
-                                                          .navigatePop(context);
-                                                    },
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    shadowColor: Theme.of(
-                                                            context)
-                                                        .secondaryHeaderColor,
-                                                    child: CustomText(
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .labelLarge,
-                                                      text: AppLocalizations.of(
-                                                              context)
-                                                          .done,
+                                    return Stack(
+                                      children: [
+                                        Consumer<CreateBucketService>(
+                                          builder: (context, bucketModel1, child) =>
+                                              SizedBox(
+                                            height:
+                                                Sizes.screenHeight(context) * 0.8,
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.vertical,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  children: [
+                                                    CustomText(
+                                                        text: AppLocalizations.of(
+                                                                context)
+                                                            .addTasks,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .displayMedium),
+                                                    ListView.builder(
+                                                      controller:
+                                                          ScrollController(),
+                                                      shrinkWrap: true,
+                                                      physics:
+                                                          const NeverScrollableScrollPhysics(),
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount: bucketModel1
+                                                          .activeBucketTasks.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return ListTile(
+                                                          title: Text(bucketModel1
+                                                              .activeBucketTasks[
+                                                                  index]
+                                                              .name),
+                                                          trailing: IconButton(
+                                                            icon: const Icon(
+                                                                Icons.delete),
+                                                            onPressed: () {
+                                                              bucketModel1
+                                                                  .deleteTaskFromActiveBucket(
+                                                                      index);
+                                                            },
+                                                          ),
+                                                        );
+                                                      },
                                                     ),
-                                                  ),
+                                                    InstagramMessageBar(
+                                                        onSendMessage: (message) {
+                                                      if (message.length < 3) {
+                                                        Fluttertoast.showToast(
+                                                            msg: AppLocalizations
+                                                                    .of(context)
+                                                                .taskNameTooShort);
+                                                        return;
+                                                      }
+                                                      bucketModel1
+                                                          .addTaskInActiveBucket(
+                                                              message);
+                                                    }),
+                                                    SizedBox(
+                                                      height: Sizes.screenHeight(
+                                                              context) *
+                                                          0.6,
+                                                    ),
+                                                    
+                                                  ],
                                                 ),
-                                              ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          right: 0,
+                                          child: SizedBox(
+                                                        width: Sizes.screenWidth(
+                                                            context),
+                                                        height: Sizes.screenHeight(
+                                                                context) *
+                                                            0.05,
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              backgroundColor: Theme
+                                                                      .of(context)
+                                                                  .secondaryHeaderColor),
+                                                          onPressed: () async {
+                                                            navigationService
+                                                                .navigatePop(context);
+                                                          },
+                                                          child: CustomText(
+                                                            style: Theme.of(context)
+                                                                .textTheme
+                                                                .labelLarge,
+                                                            text: AppLocalizations.of(
+                                                                    context)
+                                                                .done,
+                                                          ),
+                                                        ),
+                                                      ),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -248,13 +226,13 @@ class CreateBucketScreen extends StatelessWidget {
                               "${bucketModel.activeSingleBucket.deadline.year}/${bucketModel.activeSingleBucket.deadline.month}/${bucketModel.activeSingleBucket.deadline.day}"),
                         ),
                         SizedBox(
-                          height: 0.02 * Sizes.screenHeight(context),
-                        ),
-                        SizedBox(
                           width: Sizes.screenWidth(context),
                           height: Sizes.screenHeight(context) * 0.05,
-                          child: NeoPopButton(
-                            onTapDown: () async {
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Theme.of(context).secondaryHeaderColor),
+                            onPressed: () async {
                               bucketModel
                                   .setActiveBucketName(titleController.text);
                               bucketModel.setActiveDescriptionName(
@@ -262,16 +240,6 @@ class CreateBucketScreen extends StatelessWidget {
                               await bucketModel.validateInputs(context);
                               bucketModel.clearData();
                             },
-                            bottomShadowColor:
-                                Theme.of(context).secondaryHeaderColor,
-                            rightShadowColor:
-                                Theme.of(context).secondaryHeaderColor,
-                            animationDuration:
-                                const Duration(milliseconds: 300),
-                            depth: 5,
-                            onTapUp: () {},
-                            color: Theme.of(context).primaryColor,
-                            shadowColor: Theme.of(context).secondaryHeaderColor,
                             child: CustomText(
                               style: Theme.of(context).textTheme.labelLarge,
                               text: AppLocalizations.of(context).create,
