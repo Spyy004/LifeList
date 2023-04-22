@@ -8,31 +8,23 @@ LifeList is an offline bucket list app that helps users plan, track, and achieve
 Features
 --------
 
--   Offline functionality: LifeList works completely offline, allowing users to track their goals without needing an internet connection.
+- Offline Functionality: LifeList works completely offline, allowing you to track your goals without needing an internet connection. :white_check_mark:
 
--   Goal creation and management: Users can easily create new goals, set deadlines, and organize them into categories for better management.
+- Goal Creation and Management: With LifeList, you can easily create new goals, set deadlines, and organize them into categories for better management.:white_check_mark:
 
--   Deadline reminders: LifeList allows users to set reminders for goal deadlines, helping them stay on track and focused. (WIP)
+- Progress Tracking: LifeList lets you track your progress towards your goals, with visual indicators showing the completion status.:white_check_mark:
 
--   Progress tracking: Users can track their progress towards their goals, with visual indicators showing the completion status.
+- Supports Multiple Languages: LifeList currently supports English and Spanish, with more languages coming soon.:white_check_mark:
 
--   Supports 2 languages. (More coming Soon!)
+- Light and Dark Themes: With support for light and dark themes, LifeList adapts to your device's settings and provides a comfortable viewing experience.:white_check_mark:
 
--   Support for Light & Dark Theme.
+- Reminder System: LifeList's reminder system helps you stay on top of your goals by notifying you a day before the deadline.:hourglass:
 
+- Auto App Updates: LifeList makes it easy to stay up-to-date with the latest features and improvements by automatically updating the app.:hourglass:
 
-Upcoming Features
------------------
+- Google Calendar Integration: LifeList can integrate with your Google Calendar, keeping you informed about your buckets and goals.:hourglass:
 
--   Reminder a day before the deadline: Planned feature to add reminders to notify users one day before the goal deadline.
-
--   Ability to Filter lists based on status and category
-
--   Ability to finish off tasks in the bucket: Planned feature to allow users to mark tasks as completed within a bucket.
-
--   Ability to edit the category and deadline of the bucket: Planned feature to enable users to edit the category and deadline of a created bucket.
-
--   Ability to edit user profile: Planned feature to allow users to edit their profile information, such as name, age, and profile picture.
+- Profile Editing: LifeList allows you to edit your profile information, such as name, age, and profile picture.:hourglass:
 
 Screenshots (Light & Dark Mode)
 --------
