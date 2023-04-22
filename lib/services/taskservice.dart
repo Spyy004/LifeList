@@ -22,4 +22,12 @@ class TaskService extends ChangeNotifier {
     await deleteSingeTaskFromDB(taskId);
     notifyListeners();
   }
+
+  Future<void> updateSingleTask(Task task) async {
+    Iterable<Task?> foundTask =
+    tasks.where((element) => task.id == element?.id);
+    foundTask.first?.isComplete = !foundTask.first!.isComplete;
+    await updateTaskInDB(task);
+    notifyListeners();
+  }
 }

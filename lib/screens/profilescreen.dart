@@ -14,28 +14,8 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      bottomNavigationBar: Consumer<BottomBarService>(
-        builder: (context, bottomBar, child) => BottomNavigationBar(
-            currentIndex: bottomBar.currentIndex,
-            onTap: (index) {
-              if (index == 0) {
-                bottomBar.changeIndex(index);
-                navigationService.navigateReset(context, HOME);
-              } else if (index == 1) {
-                bottomBar.changeIndex(index);
-                navigationService.navigateReset(context, PROFILE);
-              }
-            },
-            selectedItemColor: Theme.of(context).secondaryHeaderColor,
-            items: [
-              BottomNavigationBarItem(
-                  icon: const Icon(Icons.home),
-                  label: AppLocalizations.of(context).home),
-              BottomNavigationBarItem(
-                  icon: const Icon(Icons.person),
-                  label: AppLocalizations.of(context).profile),
-            ]),
-      ),
+      bottomNavigationBar: 
+      const CustomBottomBar(),
       body: Consumer<UserService>(
         builder: (context, userModel, child) => FutureBuilder<void>(
             future: userModel.getUser(),

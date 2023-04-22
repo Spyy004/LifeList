@@ -59,3 +59,7 @@ Future<void> editBucketinDB(Bucket bucket) async {
 Future<void> clearGlobalData() async {
   await dbService.clearGlobalData();
 }
+
+Future<void> updateTaskInDB(Task task) async {
+  await dbService.updateTaskInDB(task);
+}

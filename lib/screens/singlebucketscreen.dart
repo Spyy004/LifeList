@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/components/empty_page.dart';
-import 'package:lifelist/screens/createbucketscreen.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -55,7 +55,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                       },
                                       icon: const Icon(Icons.arrow_back)),
                                   Text(
-                                      singleBucketModal.activeSingleBucket.name,
+                                      singleBucketModal.activeSingleBucket.name.capitalize(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .displayLarge!
@@ -73,7 +73,7 @@ class BucketDetailsScreen extends StatelessWidget {
                         !singleBucketModal.isEditing
                             ? Text(
                                 singleBucketModal
-                                    .activeSingleBucket.description,
+                                    .activeSingleBucket.description.capitalize(),
                                 style: const TextStyle(fontSize: 18),
                               )
                             : CustomTextField(
@@ -206,19 +206,23 @@ class BucketDetailsScreen extends StatelessWidget {
                                     final task = taskService.tasks[index];
 
                                     return ListTile(
-                                      title: Text(task!
-                                          .name), // Replace with the actual task name
+                                      title: !task!.isComplete? CustomText(
+                                        text: task.name.toString().capitalize(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayMedium,
+                                      ):CustomText(text: task.name, style: Theme.of(context).textTheme.displayMedium!.merge(const TextStyle(decoration: TextDecoration.lineThrough))),
+                                      // Replace with the actual task name
                                       trailing: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           IconButton(
-                                            icon: const Icon(Icons
-                                                .check), // Replace with the desired tick-mark icon
-                                            onPressed: () {
-                                              Fluttertoast.showToast(
-                                                  msg: AppLocalizations.of(
-                                                          context)
-                                                      .featureComingSoon);
+                                            icon: !task.isComplete? const Icon(Icons
+                                                .check):const Icon(Icons.cancel), // Replace with the desired tick-mark icon
+                                            onPressed: () async {
+                                              await taskService
+                                                  .updateSingleTask(
+                                                      task);
                                             },
                                           ),
                                           IconButton(

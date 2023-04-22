@@ -102,7 +102,7 @@ class BucketService extends ChangeNotifier {
     activeSingleBucket.bucketCategory = getBucketCategoryName(text)!;
     notifyListeners();
   }
-
+  
   BucketCategory? getBucketCategoryName(String text) {
     return maps[text];
   }

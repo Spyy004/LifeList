@@ -94,4 +94,16 @@ class DBService {
     await isar.writeTxn(() async => {await isar.buckets.where().deleteAll()});
     await isar.writeTxn(() async => {await isar.tasks.where().deleteAll()});
   }
+
+  Future<void> updateTaskInDB(Task task) async {
+    int? id = task.id;
+    var toEditTask = await isar.tasks.where().idEqualTo(id!).findFirst();
+
+    if (toEditTask != null) {
+      // Remove the task from the list of tasks inside the bucket
+      toEditTask = task;
+      await isar.writeTxn(() async => {await isar.tasks.put(toEditTask!)});
+      // Update the bucket in the database to persist the changes
+    }
+  }
 }

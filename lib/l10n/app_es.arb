@@ -43,7 +43,7 @@
   "clearData": "Borrar datos",
   "clearData": "¿Borrar datos?",
   "deleteTask": "¿Eliminar tarea?",
-  "eleteBucket": "¿Eliminar cubo?",
+  "deleteBucket": "¿Eliminar cubo?",
   "cancel": "Cancelar",
   "confirm": "Confirmar",
   "status": "Estado",
