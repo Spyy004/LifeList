@@ -65,5 +65,7 @@
 "userregisteredsuccesfully": "उपयोगकर्ता सफलतापूर्वक रजिस्टर हुआ।",
 "userregisterationfailedTryagainlater": "उपयोगकर्ता पंजीकरण",
 "taskNameTooShort":"टास्क का नाम बहुत छोटा है",
-"featureComingSoon":"जल्द ही आ रहा है!"
+"featureComingSoon":"जल्द ही आ रहा है!",
+"filter":"फ़िल्टर",
+"reset":"रीसेट"
 }

@@ -85,9 +85,19 @@ BucketService bucketService = BucketService();
 NavigationService navigationService = NavigationService();
 TaskService taskService = TaskService();
 
+const categories = [
+  'Travel',
+  'Finance',
+  'Adventure',
+  'Career',
+  'Fitness',
+  'Personality Development',
+  'Relationships',
+];
+
 bool isUserCreated = false;
 
-Map<String, BucketCategory> maps = {
+Map<String, BucketCategory> stringToBucketCategory = {
   'Travel': BucketCategory.travel,
   'Finance': BucketCategory.finance,
   'Adventure': BucketCategory.adventure,

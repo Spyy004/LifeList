@@ -182,13 +182,20 @@ class BucketDetailsScreen extends StatelessWidget {
                         SizedBox(
                           height: Sizes.screenHeight(context) * 0.04,
                         ),
-                        CustomText(
-                            text: AppLocalizations.of(context).tasks,
-                            style: Theme.of(context).textTheme.displayMedium),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                                text: AppLocalizations.of(context).tasks,
+                                style: Theme.of(context).textTheme.displayMedium),
+                                CustomText(
+                                text: '${taskService.completionPercentage.toInt()}% ${AppLocalizations.of(context).done}',
+                                style: Theme.of(context).textTheme.bodyLarge),
+                          ],
+                        ),
                         const Divider(
                           thickness: 1,
-                          indent: 20,
-                          endIndent: 20,
+                      
                         ),
                         taskService.tasks.isEmpty
                             ? const EmptyWidget(

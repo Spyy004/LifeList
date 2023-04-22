@@ -66,5 +66,7 @@
 "ageshouldbelessthanhundredandgreaterthanzero": "L'âge doit être inférieur à 100 et supérieur à 0",
 "userregisteredsuccesfully": "Utilisateur enregistré avec succès",
 "userregisterationfailedTryagainlater": "L'inscription de l'utilisateur a échoué, veuillez réessayer plus tard",
-"taskNameTooShort":"Le nom de la tâche doit comporter plus de 3 lettres"
+"taskNameTooShort":"Le nom de la tâche doit comporter plus de 3 lettres",
+"filter":"Filtre",
+"reset":"Réinitialiser"
 }

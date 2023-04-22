@@ -17,8 +17,8 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: const CustomBottomBar(),
       body: SafeArea(
         child: Consumer<BucketListService>(
-          builder: (context, model, child) => FutureBuilder<void>(
-              future: model.getAllBuckets(),
+          builder: (context, bucketModel, child) => FutureBuilder<void>(
+              future: bucketModel.getAllBuckets(),
               builder: (context, snapshot) {
                 return Padding(
                   padding: EdgeInsets.all(Sizes.paddingSizeMedium),
@@ -37,9 +37,204 @@ class HomeScreen extends StatelessWidget {
                           color: Theme.of(context).dividerColor,
                         ),
                         SizedBox(
-                          height: Sizes.screenHeight(context) * 0.05,
+                          height: Sizes.screenHeight(context) * 0.01,
                         ),
-                        model.buckets.isNotEmpty
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Consumer2<FilterService,
+                                          BucketListService>(
+                                        builder: (context, filterModel,
+                                                bucket2model, child) =>
+                                            SizedBox(
+                                          height:
+                                              Sizes.screenHeight(context) * 0.9,
+                                          width: Sizes.screenWidth(context),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  CustomText(
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .status,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge,
+                                                  ),
+                                                  ListTile(
+                                                    title: CustomText(
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .completed,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyLarge,
+                                                    ),
+                                                    leading: Checkbox(
+                                                      value: filterModel
+                                                          .currentStatus,
+                                                      activeColor: Theme.of(
+                                                              context)
+                                                          .secondaryHeaderColor,
+                                                      onChanged: (value) {
+                                                        filterModel
+                                                            .toggleStatus(
+                                                                value!);
+                                                      },
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  CustomText(
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .selectCategory,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge,
+                                                  ),
+                                                  ListView.builder(
+                                                    shrinkWrap: true,
+                                                    physics:
+                                                        NeverScrollableScrollPhysics(),
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        categories.length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      final category =
+                                                          categories[index];
+                                                      return FilterChip(
+                                                        label: Text(category),
+                                                        backgroundColor:
+                                                            Theme.of(context)
+                                                                .primaryColor,
+                                                        selectedColor: Theme.of(
+                                                                context)
+                                                            .secondaryHeaderColor,
+                                                        selected: filterModel
+                                                            .currentCategories
+                                                            .contains(
+                                                                stringToBucketCategory[
+                                                                    category]),
+                                                        onSelected: (selected) {
+                                                          filterModel.toggleCategory(
+                                                              stringToBucketCategory[
+                                                                  category]!);
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      TextButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                          backgroundColor: Theme
+                                                                  .of(context)
+                                                              .secondaryHeaderColor,
+                                                        ),
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                context),
+                                                        child: CustomText(
+                                                          text: AppLocalizations
+                                                                  .of(context)
+                                                              .cancel,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          width: Sizes
+                                                              .paddingSizeLarge),
+                                                      TextButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                          backgroundColor: Theme
+                                                                  .of(context)
+                                                              .secondaryHeaderColor,
+                                                        ),
+                                                        onPressed: () {
+                                                          bucket2model.filterBuckets(
+                                                              filterModel
+                                                                  .currentCategories,
+                                                              filterModel
+                                                                  .currentStatus);
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: CustomText(
+                                                          text: AppLocalizations
+                                                                  .of(context)
+                                                              .filter,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          width: Sizes
+                                                              .paddingSizeLarge),
+                                                      TextButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                          backgroundColor: Theme
+                                                                  .of(context)
+                                                              .secondaryHeaderColor,
+                                                        ),
+                                                        onPressed: () {
+                                                          filterModel
+                                                              .resetFilters();
+                                                          bucket2model
+                                                              .resetFilter();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: CustomText(
+                                                          text: AppLocalizations
+                                                                  .of(context)
+                                                              .reset,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                icon: Icon(Icons.filter_list))
+                          ],
+                        ),
+                         SizedBox(
+                          height: Sizes.screenHeight(context) * 0.03,
+                        ),
+                        
+                        bucketModel.filteredBuckets.isNotEmpty
                             ? GridView.builder(
                                 scrollDirection: Axis.vertical,
                                 physics: const NeverScrollableScrollPhysics(),
@@ -50,7 +245,7 @@ class HomeScreen extends StatelessWidget {
                                   crossAxisSpacing: 4.0,
                                   mainAxisSpacing: 4.0,
                                 ),
-                                itemCount: model.buckets.length,
+                                itemCount: bucketModel.filteredBuckets.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return InkWell(
                                     onLongPress: () {
@@ -120,17 +315,19 @@ class HomeScreen extends StatelessWidget {
                                       onTap: () {
                                         Navigator.pushNamed(
                                             context, SINGLE_BUCKET, arguments: {
-                                          NAME_ARGS: model.buckets[index]
+                                          NAME_ARGS:
+                                              bucketModel.filteredBuckets[index]
                                         });
                                       },
                                       elevation: 5,
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: 20,
-                                      borderColor:
-                                          model.buckets[index]!.isCompleted
-                                              ? Theme.of(context)
-                                                  .secondaryHeaderColor
-                                              : Colors.grey,
+                                      borderColor: bucketModel
+                                              .filteredBuckets[index]!
+                                              .isCompleted
+                                          ? Theme.of(context)
+                                              .secondaryHeaderColor
+                                          : Colors.grey,
                                       borderWidth: 0.5,
                                       child: Column(
                                         mainAxisAlignment:
@@ -140,14 +337,15 @@ class HomeScreen extends StatelessWidget {
                                         children: [
                                           CustomText(
                                             text:
-                                                '${model.buckets[index]?.name}',
+                                                '${bucketModel.filteredBuckets[index]?.name}',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .displayMedium,
                                           ),
                                           CustomText(
-                                            text: model
-                                                .buckets[index]!.description,
+                                            text: bucketModel
+                                                .filteredBuckets[index]!
+                                                .description,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
@@ -178,14 +376,17 @@ class HomeScreen extends StatelessWidget {
               }),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
-        onPressed: () {
-          navigationService.navigateNext(context, CREATE_BUCKET);
-        },
-        child: Icon(
-          Icons.add,
-          color: Theme.of(context).iconTheme.color,
+      floatingActionButton: Consumer<BucketListService>(
+        builder: (context, bucketlist, child) => FloatingActionButton(
+          backgroundColor: Theme.of(context).secondaryHeaderColor,
+          onPressed: () {
+            bucketlist.toggleAction();
+            navigationService.navigateNext(context, CREATE_BUCKET);
+          },
+          child: Icon(
+            Icons.add,
+            color: Theme.of(context).iconTheme.color,
+          ),
         ),
       ),
     ));

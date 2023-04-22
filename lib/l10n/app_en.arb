@@ -270,5 +270,13 @@
   "userregisterationfailedTryagainlater":"User registeration failed, Try again later",
   "@home": {
     "description": "Home"
+  },
+  "filter":"Filter",
+  "@home": {
+    "description": "Home"
+  },
+  "reset":"Reset",
+  "@home": {
+    "description": "Home"
   }
 }

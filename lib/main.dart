@@ -22,6 +22,7 @@ class LifeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      
       providers: [
         ChangeNotifierProvider<OnboardingService>(
             create: (context) => OnboardingService()),
@@ -32,6 +33,7 @@ class LifeList extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SettingsService()),
         ChangeNotifierProvider(create: (context) => CreateBucketService()),
         ChangeNotifierProvider(create: (context) => BottomBarService()),
+        ChangeNotifierProvider(create: (context) => FilterService()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

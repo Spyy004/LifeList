@@ -104,7 +104,7 @@ class BucketService extends ChangeNotifier {
   }
   
   BucketCategory? getBucketCategoryName(String text) {
-    return maps[text];
+    return stringToBucketCategory[text];
   }
 
   Future<void> validateInputs(BuildContext context) async {

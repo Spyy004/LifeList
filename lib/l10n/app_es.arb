@@ -67,5 +67,7 @@
   "ageshouldbelessthanhundredandgreaterthanzero": "La edad debe ser menor que 100 y mayor que 0",
   "userregisteredsuccesfully": "Usuario registrado con éxito",
   "userregisterationfailedTryagainlater": "El registro de usuario falló, inténtelo de nuevo más tarde",
-  "taskNameTooShort":"pedir nombre debe tener más de 3 letras"
+  "taskNameTooShort":"pedir nombre debe tener más de 3 letras",
+  "filter":"Filtrar",
+  "reset":"Reiniciar"
 }
