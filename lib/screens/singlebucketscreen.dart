@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/components/empty_page.dart';
+import 'package:lifelist/neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,6 +32,7 @@ class BucketDetailsScreen extends StatelessWidget {
         },
         child: Scaffold(
           resizeToAvoidBottomInset: true,
+          backgroundColor: Theme.of(context).primaryColor,
           body: SafeArea(
             child: FutureBuilder<void>(
                 future: Future.wait([
@@ -55,7 +57,8 @@ class BucketDetailsScreen extends StatelessWidget {
                                       },
                                       icon: const Icon(Icons.arrow_back)),
                                   Text(
-                                      singleBucketModal.activeSingleBucket.name.capitalize(),
+                                      singleBucketModal.activeSingleBucket.name
+                                          .capitalize(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .displayLarge!
@@ -72,8 +75,8 @@ class BucketDetailsScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         !singleBucketModal.isEditing
                             ? Text(
-                                singleBucketModal
-                                    .activeSingleBucket.description.capitalize(),
+                                singleBucketModal.activeSingleBucket.description
+                                    .capitalize(),
                                 style: const TextStyle(fontSize: 18),
                               )
                             : CustomTextField(
@@ -187,15 +190,16 @@ class BucketDetailsScreen extends StatelessWidget {
                           children: [
                             CustomText(
                                 text: AppLocalizations.of(context).tasks,
-                                style: Theme.of(context).textTheme.displayMedium),
-                                CustomText(
-                                text: '${taskService.completionPercentage.toInt()}% ${AppLocalizations.of(context).done}',
+                                style:
+                                    Theme.of(context).textTheme.displayMedium),
+                            CustomText(
+                                text:
+                                    '${taskService.completionPercentage.toInt()}% ${AppLocalizations.of(context).done}',
                                 style: Theme.of(context).textTheme.bodyLarge),
                           ],
                         ),
                         const Divider(
                           thickness: 1,
-                      
                         ),
                         taskService.tasks.isEmpty
                             ? const EmptyWidget(
@@ -213,23 +217,35 @@ class BucketDetailsScreen extends StatelessWidget {
                                     final task = taskService.tasks[index];
 
                                     return ListTile(
-                                      title: !task!.isComplete? CustomText(
-                                        text: task.name.toString().capitalize(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .displayMedium,
-                                      ):CustomText(text: task.name, style: Theme.of(context).textTheme.displayMedium!.merge(const TextStyle(decoration: TextDecoration.lineThrough))),
+                                      title: !task!.isComplete
+                                          ? CustomText(
+                                              text: task.name
+                                                  .toString()
+                                                  .capitalize(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displayMedium,
+                                            )
+                                          : CustomText(
+                                              text: task.name,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displayMedium!
+                                                  .merge(const TextStyle(
+                                                      decoration: TextDecoration
+                                                          .lineThrough))),
                                       // Replace with the actual task name
                                       trailing: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           IconButton(
-                                            icon: !task.isComplete? const Icon(Icons
-                                                .check):const Icon(Icons.cancel), // Replace with the desired tick-mark icon
+                                            icon: !task.isComplete
+                                                ? const Icon(Icons.check)
+                                                : const Icon(Icons
+                                                    .cancel), // Replace with the desired tick-mark icon
                                             onPressed: () async {
                                               await taskService
-                                                  .updateSingleTask(
-                                                      task);
+                                                  .updateSingleTask(task);
                                             },
                                           ),
                                           IconButton(
@@ -336,47 +352,68 @@ class BucketDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                         SizedBox(
-                          width: Sizes.screenWidth(context),
-                          height: Sizes.screenHeight(context) * 0.05,
-                          child: singleBucketModal.loader
-                              ? CircularProgressIndicator(
-                                  color: Theme.of(context).secondaryHeaderColor,
-                                )
-                              : !singleBucketModal.isEditing
-                                  ? ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Theme.of(context)
-                                              .secondaryHeaderColor),
-                                      onPressed: () {
-                                        singleBucketModal.changeEditStatus();
-                                      },
-                                      child: CustomText(
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge,
-                                        text: AppLocalizations.of(context).edit,
-                                      ),
-                                    )
-                                  : ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Theme.of(context)
-                                              .secondaryHeaderColor),
-                                      onPressed: () async {
-                                        await singleBucketModal.editBucket(
-                                            nameController.text,
-                                            descController.text,
-                                            context);
+                            width: Sizes.screenWidth(context),
+                            height: Sizes.screenHeight(context) * 0.05,
+                            child: singleBucketModal.loader
+                                ? CircularProgressIndicator(
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
+                                  )
+                                : !singleBucketModal.isEditing
+                                    ? NeoPopButton(
+                                        onTapDown: () async {
+                                        },
+                                        bottomShadowColor: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                        rightShadowColor: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                        animationDuration:
+                                            const Duration(milliseconds: 300),
+                                        depth: 5,
+                                        onTapUp: () {
+                                          singleBucketModal.changeEditStatus();
+                                        },
+                                        color: Theme.of(context).primaryColor,
+                                        shadowColor: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                        child: CustomText(
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelLarge,
+                                          text:
+                                              AppLocalizations.of(context).edit,
+                                        ),
+                                      )
+                                    : NeoPopButton(
+                                        onTapDown: () async {
+                                         
+                                        },
+                                        bottomShadowColor: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                        rightShadowColor: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                        animationDuration:
+                                            const Duration(milliseconds: 300),
+                                        depth: 5,
+                                        onTapUp: ()async {
+                                           await singleBucketModal.editBucket(
+                                              nameController.text,
+                                              descController.text,
+                                              context);
 
-                                        singleBucketModal.changeEditStatus();
-                                      },
-                                      child: CustomText(
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge,
-                                        text: AppLocalizations.of(context).save,
-                                      ),
-                                    ),
-                        ),
+                                          singleBucketModal.changeEditStatus();
+                                        },
+                                        color: Theme.of(context).primaryColor,
+                                        shadowColor: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                        child: CustomText(
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelLarge,
+                                          text:
+                                              AppLocalizations.of(context).save,
+                                        ),
+                                      )),
                       ],
                     ),
                   );

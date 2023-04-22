@@ -7,6 +7,8 @@ import '../components/index.dart';
 import '../constants/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../neopop/widgets/buttons/neopop_button/neopop_button.dart';
+
 // ignore: must_be_immutable
 class CreateBucketScreen extends StatelessWidget {
   CreateBucketScreen({super.key});
@@ -104,7 +106,8 @@ class CreateBucketScreen extends StatelessWidget {
                                   builder: (BuildContext context) {
                                     return Consumer<CreateBucketService>(
                                       builder: (context, bucketModel1, child) =>
-                                          SizedBox(
+                                          Container(
+                                            color: Theme.of(context).primaryColor,                                       
                                         height:
                                             Sizes.screenHeight(context) * 0.8,
                                         child: SingleChildScrollView(
@@ -173,15 +176,44 @@ class CreateBucketScreen extends StatelessWidget {
                                                   height: Sizes.screenHeight(
                                                           context) *
                                                       0.05,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton.styleFrom(
-                                                        backgroundColor: Theme
-                                                                .of(context)
-                                                            .secondaryHeaderColor),
-                                                    onPressed: () async {
+                                                  // child: ElevatedButton(
+                                                  //   style: ElevatedButton.styleFrom(
+                                                  //       backgroundColor: Theme
+                                                  //               .of(context)
+                                                  //           .secondaryHeaderColor),
+                                                  //   onPressed: () async {
+                                                  //     navigationService
+                                                  //         .navigatePop(context);
+                                                  //   },
+                                                  //   child: CustomText(
+                                                  //     style: Theme.of(context)
+                                                  //         .textTheme
+                                                  //         .labelLarge,
+                                                  //     text: AppLocalizations.of(
+                                                  //             context)
+                                                  //         .done,
+                                                  //   ),
+                                                  // ),
+                                                  child: NeoPopButton(
+                                                    bottomShadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    rightShadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    animationDuration:
+                                                        const Duration(
+                                                            milliseconds: 300),
+                                                    depth: 5,
+                                                    onTapUp: () async {
                                                       navigationService
                                                           .navigatePop(context);
                                                     },
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    shadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
                                                     child: CustomText(
                                                       style: Theme.of(context)
                                                           .textTheme
@@ -216,13 +248,13 @@ class CreateBucketScreen extends StatelessWidget {
                               "${bucketModel.activeSingleBucket.deadline.year}/${bucketModel.activeSingleBucket.deadline.month}/${bucketModel.activeSingleBucket.deadline.day}"),
                         ),
                         SizedBox(
+                          height: 0.02 * Sizes.screenHeight(context),
+                        ),
+                        SizedBox(
                           width: Sizes.screenWidth(context),
                           height: Sizes.screenHeight(context) * 0.05,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    Theme.of(context).secondaryHeaderColor),
-                            onPressed: () async {
+                          child: NeoPopButton(
+                            onTapDown: () async {
                               bucketModel
                                   .setActiveBucketName(titleController.text);
                               bucketModel.setActiveDescriptionName(
@@ -230,6 +262,16 @@ class CreateBucketScreen extends StatelessWidget {
                               await bucketModel.validateInputs(context);
                               bucketModel.clearData();
                             },
+                            bottomShadowColor:
+                                Theme.of(context).secondaryHeaderColor,
+                            rightShadowColor:
+                                Theme.of(context).secondaryHeaderColor,
+                            animationDuration:
+                                const Duration(milliseconds: 300),
+                            depth: 5,
+                            onTapUp: () {},
+                            color: Theme.of(context).primaryColor,
+                            shadowColor: Theme.of(context).secondaryHeaderColor,
                             child: CustomText(
                               style: Theme.of(context).textTheme.labelLarge,
                               text: AppLocalizations.of(context).create,

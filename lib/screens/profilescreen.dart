@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifelist/neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
@@ -71,18 +72,26 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(
                         width: Sizes.screenWidth(context),
                         height: Sizes.screenHeight(context) * 0.05,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).secondaryHeaderColor),
-                          onPressed: () {
-                            navigationService.navigateNext(context, SETTINGS);
-                          },
-                          child: CustomText(
-                            style: Theme.of(context).textTheme.labelLarge,
-                            text: AppLocalizations.of(context).settings,
+                        child : NeoPopButton(
+                            onTapDown: ()  {
+                             // navigationService.navigateNext(context, SETTINGS);
+                            },
+                            bottomShadowColor:
+                                Theme.of(context).secondaryHeaderColor,
+                            rightShadowColor:
+                                Theme.of(context).secondaryHeaderColor,
+                            animationDuration: const Duration(milliseconds: 300),
+                            depth: 5,
+                            onTapUp: () {
+                              navigationService.navigateNext(context, SETTINGS);
+                            },
+                            color: Theme.of(context).primaryColor,
+                            shadowColor: Theme.of(context).secondaryHeaderColor,
+                            child: CustomText(
+                              style: Theme.of(context).textTheme.labelLarge,
+                              text: AppLocalizations.of(context).settings,
+                            ),
                           ),
-                        ),
                       ),
                     ],
                   ),
