@@ -278,5 +278,9 @@
   "reset":"Reset",
   "@home": {
     "description": "Home"
+  },
+  "addToCalendar":"Add to Calendar",
+  "@home": {
+    "description": "Home"
   }
 }

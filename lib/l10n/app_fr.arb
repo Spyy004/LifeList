@@ -68,5 +68,6 @@
 "userregisterationfailedTryagainlater": "L'inscription de l'utilisateur a échoué, veuillez réessayer plus tard",
 "taskNameTooShort":"Le nom de la tâche doit comporter plus de 3 lettres",
 "filter":"Filtre",
-"reset":"Réinitialiser"
+"reset":"Réinitialiser",
+"addToCalendar":"Ajouter au calendrier"
 }

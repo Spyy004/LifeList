@@ -67,5 +67,6 @@
 "taskNameTooShort":"टास्क का नाम बहुत छोटा है",
 "featureComingSoon":"जल्द ही आ रहा है!",
 "filter":"फ़िल्टर",
-"reset":"रीसेट"
+"reset":"रीसेट",
+"addToCalendar":"कैलेंडर में जोड़ें"
 }

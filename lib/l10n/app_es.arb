@@ -69,5 +69,6 @@
   "userregisterationfailedTryagainlater": "El registro de usuario falló, inténtelo de nuevo más tarde",
   "taskNameTooShort":"pedir nombre debe tener más de 3 letras",
   "filter":"Filtrar",
-  "reset":"Reiniciar"
+  "reset":"Reiniciar",
+  "addToCalendar":"Añadir al calendario"
 }

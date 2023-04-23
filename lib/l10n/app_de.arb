@@ -69,5 +69,6 @@
 "userregisterationfailedTryagainlater": "Benutzerregistrierung fehlgeschlagen, versuche es später erneut",
 "taskNameTooShort":"Aufgabenname muss mehr als 3 Buchstaben haben",
 "filter":"Filter",
-"reset":"Zurücksetzen"
+"reset":"Zurücksetzen",
+"addToCalendar":"Zum Kalender hinzufügen"
 }

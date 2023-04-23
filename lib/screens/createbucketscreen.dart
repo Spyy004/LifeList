@@ -262,7 +262,7 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         ListTile(
                             title: CustomText(
-                                text: 'Add to Calendar',
+                                text: AppLocalizations.of(context).addToCalendar,
                                 style: Theme.of(context).textTheme.bodyLarge),
                             trailing: FlutterSwitch(
                                 activeColor:
