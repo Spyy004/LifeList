@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifelist/neopop/neopop.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -62,11 +63,14 @@ class OnboardingScreen extends StatelessWidget {
                     ? SizedBox(
                         width: Sizes.screenWidth(context),
                         height: Sizes.screenHeight(context) * 0.05,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).secondaryHeaderColor),
-                          onPressed: () {
+                        child: NeoPopButton(
+                          bottomShadowColor:
+                              Theme.of(context).secondaryHeaderColor,
+                          rightShadowColor:
+                              Theme.of(context).secondaryHeaderColor,
+                          animationDuration: const Duration(milliseconds: 300),
+                          depth: 5,
+                          onTapUp: () {
                             bool nameStatus = onboardingProvider
                                 .checkName(firstNameController.text,context);
                             bool lastNameStatus = onboardingProvider
@@ -81,6 +85,8 @@ class OnboardingScreen extends StatelessWidget {
                                   context);
                             }
                           },
+                          color: Theme.of(context).primaryColor,
+                          shadowColor: Theme.of(context).secondaryHeaderColor,
                           child: CustomText(
                             style: Theme.of(context).textTheme.labelLarge,
                             text: AppLocalizations.of(context).done,
