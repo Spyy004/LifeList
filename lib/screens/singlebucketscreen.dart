@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lifelist/components/empty_page.dart';
 import 'package:lifelist/neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
@@ -56,14 +55,15 @@ class BucketDetailsScreen extends StatelessWidget {
                                             context, HOME);
                                       },
                                       icon: const Icon(Icons.arrow_back)),
-                                  Text(
-                                      singleBucketModal.activeSingleBucket.name
-                                          .capitalize(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge!
-                                          .merge(
-                                              const TextStyle(fontSize: 40))),
+                                  Expanded(
+                                    child: CustomText(
+                                       text: singleBucketModal.activeSingleBucket.name
+                                            .capitalize(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge!
+                                            ),
+                                  ),
                                 ],
                               )
                             : CustomTextField(

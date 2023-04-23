@@ -13,6 +13,7 @@ class CustomBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
   return Consumer<BottomBarService>(
     builder: (context, bottomBar, child) => BottomNavigationBar(
+
       currentIndex: bottomBar.currentIndex,
       onTap: (index) {
         if (index == bottomBar.currentIndex) return;
