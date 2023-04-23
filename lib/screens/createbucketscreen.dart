@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:add_2_calendar/add_2_calendar.dart';
 import '../neopop/widgets/buttons/neopop_button/neopop_button.dart';
 
 // ignore: must_be_immutable
@@ -107,7 +107,7 @@ class CreateBucketScreen extends StatelessWidget {
                                     return Consumer<CreateBucketService>(
                                       builder: (context, bucketModel1, child) =>
                                           Container(
-                                            color: Theme.of(context).primaryColor,                                       
+                                        color: Theme.of(context).primaryColor,
                                         height:
                                             Sizes.screenHeight(context) * 0.8,
                                         child: SingleChildScrollView(
@@ -250,18 +250,25 @@ class CreateBucketScreen extends StatelessWidget {
                         SizedBox(
                           height: 0.02 * Sizes.screenHeight(context),
                         ),
+                        ListTile(
+                            title: CustomText(
+                                text: 'Sync with Calendar',
+                                style: Theme.of(context).textTheme.bodyLarge),
+                            trailing: FlutterSwitch(
+                                activeColor:
+                                    Theme.of(context).secondaryHeaderColor,
+                                value: bucketModel.syncCalendar,
+                                onToggle: (val) {
+                                  bucketModel.changeCalendarSyncStatus();
+                                })),
+                        SizedBox(
+                          height: 0.04 * Sizes.screenHeight(context),
+                        ),
                         SizedBox(
                           width: Sizes.screenWidth(context),
                           height: Sizes.screenHeight(context) * 0.05,
                           child: NeoPopButton(
-                            onTapDown: () async {
-                              bucketModel
-                                  .setActiveBucketName(titleController.text);
-                              bucketModel.setActiveDescriptionName(
-                                  descriptionController.text);
-                              await bucketModel.validateInputs(context);
-                              bucketModel.clearData();
-                            },
+                            onTapDown: () async {},
                             bottomShadowColor:
                                 Theme.of(context).secondaryHeaderColor,
                             rightShadowColor:
@@ -269,7 +276,14 @@ class CreateBucketScreen extends StatelessWidget {
                             animationDuration:
                                 const Duration(milliseconds: 300),
                             depth: 5,
-                            onTapUp: () {},
+                            onTapUp: () async {
+                              bucketModel
+                                  .setActiveBucketName(titleController.text);
+                              bucketModel.setActiveDescriptionName(
+                                  descriptionController.text);
+                              await bucketModel.validateInputs(context);
+                              bucketModel.clearData();
+                            },
                             color: Theme.of(context).primaryColor,
                             shadowColor: Theme.of(context).secondaryHeaderColor,
                             child: CustomText(
@@ -288,4 +302,3 @@ class CreateBucketScreen extends StatelessWidget {
     ));
   }
 }
-

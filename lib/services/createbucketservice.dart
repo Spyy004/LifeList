@@ -1,3 +1,4 @@
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/constants/index.dart';
@@ -9,6 +10,7 @@ class CreateBucketService extends ChangeNotifier {
   bool isEditing = false;
   List<Task> activeBucketTasks = [];
   bool loader = false;
+  bool syncCalendar = false;
   // DateTime activeBucketDeadlineDate = DateTime.now();
   Bucket activeSingleBucket = Bucket()
     ..name = ''
@@ -23,6 +25,7 @@ class CreateBucketService extends ChangeNotifier {
     activeSingleBucket = Bucket();
     activeBucketTasks = [];
     isEditing = false;
+    syncCalendar = false;
   }
 
   Future<void> setActiveSingleBucket(Bucket bucket) async {
@@ -47,11 +50,16 @@ class CreateBucketService extends ChangeNotifier {
       ..tasks = taskIds;
     int bucketId = await addBucketToDB(bucket);
     if (bucketId == -1) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).bucketCreationFailedtryagainlater);
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).bucketCreationFailedtryagainlater);
       return;
     }
-    Fluttertoast.showToast(msg:  AppLocalizations.of(context).bucketCreatedsuccessfully);
+    Fluttertoast.showToast(
+        msg: AppLocalizations.of(context).bucketCreatedsuccessfully);
 
+    if(syncCalendar){
+      await syncWithCalendar();
+    }
     navigationService.navigateReset(context, HOME);
   }
 
@@ -63,6 +71,11 @@ class CreateBucketService extends ChangeNotifier {
   void addTaskInActiveBucket(String msg) {
     Task task = Task()..name = msg;
     activeBucketTasks.add(task);
+    notifyListeners();
+  }
+
+  void changeCalendarSyncStatus(){
+    syncCalendar = !syncCalendar;
     notifyListeners();
   }
 
@@ -103,11 +116,13 @@ class CreateBucketService extends ChangeNotifier {
 
   Future<void> validateInputs(BuildContext context) async {
     if (activeSingleBucket.name.length < 3) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).titlemustbeatleastthreecharacters);
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).titlemustbeatleastthreecharacters);
       return;
     }
     if (activeBucketTasks.isEmpty) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).abucketshouldhaveatleastonetask);
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).abucketshouldhaveatleastonetask);
       return;
     }
     await addBucketinDB(context);
@@ -119,15 +134,16 @@ class CreateBucketService extends ChangeNotifier {
     await deleteTasksFromBucketDB(taskId, bucketId);
   }
 
-  Future<void> editBucket(String name, String desc, BuildContext context) async {
+  Future<void> editBucket(
+      String name, String desc, BuildContext context) async {
     loader = true;
     notifyListeners();
     if (name.length < 3 && name.isNotEmpty) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).nametoosmall);
+      Fluttertoast.showToast(msg: AppLocalizations.of(context).nametoosmall);
       return;
     }
     if (desc.length < 3 && desc.isNotEmpty) {
-      Fluttertoast.showToast(msg:  AppLocalizations.of(context).desctoosmall);
+      Fluttertoast.showToast(msg: AppLocalizations.of(context).desctoosmall);
       return;
     }
     if (name.isNotEmpty) {
@@ -139,5 +155,16 @@ class CreateBucketService extends ChangeNotifier {
     await editBucketinDB(activeSingleBucket);
     loader = false;
     notifyListeners();
+  }
+
+  Future<void> syncWithCalendar() async {
+    final Event event = Event(
+      title: activeSingleBucket.name,
+      description: activeSingleBucket.description,
+      location: 'Event location',
+      startDate: activeSingleBucket.deadline,
+      endDate: activeSingleBucket.deadline.add(Duration(hours: 1)),
+    );
+    await Add2Calendar.addEvent2Cal(event);
   }
 }
