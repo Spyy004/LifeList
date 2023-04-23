@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/models/index.dart';
+import 'package:lifelist/neopop/neopop.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -181,30 +182,59 @@ class CreateBucketScreen extends StatelessWidget {
                                           left: 0,
                                           right: 0,
                                           child: SizedBox(
-                                                        width: Sizes.screenWidth(
-                                                            context),
-                                                        height: Sizes.screenHeight(
-                                                                context) *
-                                                            0.05,
-                                                        child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                              backgroundColor: Theme
-                                                                      .of(context)
-                                                                  .secondaryHeaderColor),
-                                                          onPressed: () async {
-                                                            navigationService
-                                                                .navigatePop(context);
-                                                          },
-                                                          child: CustomText(
-                                                            style: Theme.of(context)
-                                                                .textTheme
-                                                                .labelLarge,
-                                                            text: AppLocalizations.of(
-                                                                    context)
-                                                                .done,
-                                                          ),
-                                                        ),
-                                                      ),
+                                                  width: Sizes.screenWidth(
+                                                      context),
+                                                  height: Sizes.screenHeight(
+                                                          context) *
+                                                      0.05,
+                                                  // child: ElevatedButton(
+                                                  //   style: ElevatedButton.styleFrom(
+                                                  //       backgroundColor: Theme
+                                                  //               .of(context)
+                                                  //           .secondaryHeaderColor),
+                                                  //   onPressed: () async {
+                                                  //     navigationService
+                                                  //         .navigatePop(context);
+                                                  //   },
+                                                  //   child: CustomText(
+                                                  //     style: Theme.of(context)
+                                                  //         .textTheme
+                                                  //         .labelLarge,
+                                                  //     text: AppLocalizations.of(
+                                                  //             context)
+                                                  //         .done,
+                                                  //   ),
+                                                  // ),
+                                                  child: NeoPopButton(
+                                                    bottomShadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    rightShadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    animationDuration:
+                                                        const Duration(
+                                                            milliseconds: 300),
+                                                    depth: 5,
+                                                    onTapUp: () async {
+                                                      navigationService
+                                                          .navigatePop(context);
+                                                    },
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    shadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    child: CustomText(
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .labelLarge,
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .done,
+                                                    ),
+                                                  ),
+                                                ),
                                         ),
                                       ],
                                     );
