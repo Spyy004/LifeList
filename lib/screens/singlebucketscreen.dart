@@ -68,7 +68,7 @@ class BucketDetailsScreen extends StatelessWidget {
                               )
                             : CustomTextField(
                                 nameController: nameController,
-                                labelText: AppLocalizations.of(context).name,
+                                labelText: singleBucketModal.activeSingleBucket.name,
                                 textInputType: TextInputType.name,
                                 hintText:
                                     singleBucketModal.activeSingleBucket.name),
@@ -82,7 +82,8 @@ class BucketDetailsScreen extends StatelessWidget {
                             : CustomTextField(
                                 nameController: descController,
                                 labelText:
-                                    AppLocalizations.of(context).description,
+                                    singleBucketModal
+                                    .activeSingleBucket.description,
                                 textInputType: TextInputType.name,
                                 hintText: singleBucketModal
                                     .activeSingleBucket.description),
@@ -166,6 +167,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                 : Column(
                                     children: [
                                       Switch(
+                                        activeColor: Theme.of(context).secondaryHeaderColor,
                                           value: singleBucketModal
                                               .activeSingleBucket.isCompleted,
                                           onChanged: (val) {

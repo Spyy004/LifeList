@@ -57,10 +57,8 @@ class CreateBucketService extends ChangeNotifier {
     Fluttertoast.showToast(
         msg: AppLocalizations.of(context).bucketCreatedsuccessfully);
 
-    if(syncCalendar){
-      await syncWithCalendar();
-    }
-    navigationService.navigateReset(context, HOME);
+    syncWithCalendar()
+        .then((value) => navigationService.navigateReset(context, HOME));
   }
 
   changeCurrentBucketStatus() {
@@ -74,7 +72,7 @@ class CreateBucketService extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeCalendarSyncStatus(){
+  void changeCalendarSyncStatus() {
     syncCalendar = !syncCalendar;
     notifyListeners();
   }
@@ -158,12 +156,13 @@ class CreateBucketService extends ChangeNotifier {
   }
 
   Future<void> syncWithCalendar() async {
+    if (!syncCalendar) return;
     final Event event = Event(
       title: activeSingleBucket.name,
       description: activeSingleBucket.description,
       location: 'Event location',
       startDate: activeSingleBucket.deadline,
-      endDate: activeSingleBucket.deadline.add(Duration(hours: 1)),
+      endDate: activeSingleBucket.deadline.add(const Duration(hours: 1)),
     );
     await Add2Calendar.addEvent2Cal(event);
   }
