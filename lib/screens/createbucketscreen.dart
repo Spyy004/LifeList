@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/models/index.dart';
+import 'package:lifelist/neopop/neopop.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -104,73 +105,85 @@ class CreateBucketScreen extends StatelessWidget {
                                   context: context,
                                   isScrollControlled: true,
                                   builder: (BuildContext context) {
-                                    return Consumer<CreateBucketService>(
-                                      builder: (context, bucketModel1, child) =>
-                                          Container(
-                                        color: Theme.of(context).primaryColor,
-                                        height:
-                                            Sizes.screenHeight(context) * 0.8,
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.vertical,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(16.0),
-                                            child: Column(
-                                              children: [
-                                                CustomText(
-                                                    text: AppLocalizations.of(
-                                                            context)
-                                                        .addTasks,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .displayMedium),
-                                                ListView.builder(
-                                                  controller:
-                                                      ScrollController(),
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: bucketModel1
-                                                      .activeBucketTasks.length,
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    return ListTile(
-                                                      title: Text(bucketModel1
-                                                          .activeBucketTasks[
-                                                              index]
-                                                          .name),
-                                                      trailing: IconButton(
-                                                        icon: const Icon(
-                                                            Icons.delete),
-                                                        onPressed: () {
-                                                          bucketModel1
-                                                              .deleteTaskFromActiveBucket(
-                                                                  index);
-                                                        },
-                                                      ),
-                                                    );
-                                                  },
+                                    return Stack(
+                                      children: [
+                                        Consumer<CreateBucketService>(
+                                          builder: (context, bucketModel1, child) =>
+                                              SizedBox(
+                                            height:
+                                                Sizes.screenHeight(context) * 0.8,
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.vertical,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  children: [
+                                                    CustomText(
+                                                        text: AppLocalizations.of(
+                                                                context)
+                                                            .addTasks,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .displayMedium),
+                                                    ListView.builder(
+                                                      controller:
+                                                          ScrollController(),
+                                                      shrinkWrap: true,
+                                                      physics:
+                                                          const NeverScrollableScrollPhysics(),
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount: bucketModel1
+                                                          .activeBucketTasks.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return ListTile(
+                                                          title: Text(bucketModel1
+                                                              .activeBucketTasks[
+                                                                  index]
+                                                              .name),
+                                                          trailing: IconButton(
+                                                            icon: const Icon(
+                                                                Icons.delete),
+                                                            onPressed: () {
+                                                              bucketModel1
+                                                                  .deleteTaskFromActiveBucket(
+                                                                      index);
+                                                            },
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                    InstagramMessageBar(
+                                                        onSendMessage: (message) {
+                                                      if (message.length < 3) {
+                                                        Fluttertoast.showToast(
+                                                            msg: AppLocalizations
+                                                                    .of(context)
+                                                                .taskNameTooShort);
+                                                        return;
+                                                      }
+                                                      bucketModel1
+                                                          .addTaskInActiveBucket(
+                                                              message);
+                                                    }),
+                                                    SizedBox(
+                                                      height: Sizes.screenHeight(
+                                                              context) *
+                                                          0.6,
+                                                    ),
+                                                    
+                                                  ],
                                                 ),
-                                                InstagramMessageBar(
-                                                    onSendMessage: (message) {
-                                                  if (message.length < 3) {
-                                                    Fluttertoast.showToast(
-                                                        msg: AppLocalizations
-                                                                .of(context)
-                                                            .taskNameTooShort);
-                                                    return;
-                                                  }
-                                                  bucketModel1
-                                                      .addTaskInActiveBucket(
-                                                          message);
-                                                }),
-                                                SizedBox(
-                                                  height: Sizes.screenHeight(
-                                                          context) *
-                                                      0.6,
-                                                ),
-                                                SizedBox(
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 20,
+                                          left: 20,
+                                          right: 20,
+                                          child: SizedBox(
                                                   width: Sizes.screenWidth(
                                                       context),
                                                   height: Sizes.screenHeight(
@@ -224,11 +237,8 @@ class CreateBucketScreen extends StatelessWidget {
                                                     ),
                                                   ),
                                                 ),
-                                              ],
-                                            ),
-                                          ),
                                         ),
-                                      ),
+                                      ],
                                     );
                                   },
                                 );
@@ -252,7 +262,7 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         ListTile(
                             title: CustomText(
-                                text: 'Sync with Calendar',
+                                text: 'Add to Calendar',
                                 style: Theme.of(context).textTheme.bodyLarge),
                             trailing: FlutterSwitch(
                                 activeColor:
