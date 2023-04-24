@@ -21,11 +21,13 @@ Features
 
 - Light and Dark Themes: With support for light and dark themes, LifeList adapts to your device's settings and provides a comfortable viewing experience.:white_check_mark:
 
-- Reminder System: LifeList's reminder system helps you stay on top of your goals by notifying you a day before the deadline.:hourglass:
+- Google Calendar Integration: LifeList can integrate with your Google Calendar, keeping you informed about your buckets and goals.:white_check_mark:
+
+- Download Buckets as PDF and share with others via Whatsapp, GMail, etc :hourglass:
+
+- Option to categorise buckets as Private or Public :hourglass:
 
 - Auto App Updates: LifeList makes it easy to stay up-to-date with the latest features and improvements by automatically updating the app.:hourglass:
-
-- Google Calendar Integration: LifeList can integrate with your Google Calendar, keeping you informed about your buckets and goals.:hourglass:
 
 - Profile Editing: LifeList allows you to edit your profile information, such as name, age, and profile picture.:hourglass:
 
