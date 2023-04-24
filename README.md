@@ -1,5 +1,8 @@
 ![Life](https://user-images.githubusercontent.com/54628130/233258221-8e1673f3-e137-4fb3-802d-9bf5a708a64d.png)
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Spyy004/LifeList)](https://github.com/Spyy004/LifeList/releases/latest)
+![Github All Releases](https://img.shields.io/github/downloads/Spyy004/LifeList/total.svg)
+
 LifeList
 ========
 
