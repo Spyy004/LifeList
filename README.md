@@ -1,5 +1,8 @@
 ![Life](https://user-images.githubusercontent.com/54628130/233258221-8e1673f3-e137-4fb3-802d-9bf5a708a64d.png)
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Spyy004/LifeList)](https://github.com/Spyy004/LifeList/releases/latest)
+![Github All Releases](https://img.shields.io/github/downloads/Spyy004/LifeList/total.svg)
+
 LifeList
 ========
 
@@ -29,12 +32,12 @@ Features
 Screenshots (Light & Dark Mode)
 --------
 
-![home](https://user-images.githubusercontent.com/54628130/232738303-b11da326-eea6-432f-b779-947eedc2d519.jpg)
-![setting](https://user-images.githubusercontent.com/54628130/232738835-208d51fe-02e1-474b-bd02-848568f37bcf.jpg)
-![task](https://user-images.githubusercontent.com/54628130/232738860-eccdb94e-f64d-44a9-ab2a-ade8780ad9d6.jpg)
-![createBucket](https://user-images.githubusercontent.com/54628130/233011832-b7d3b80d-3ad7-42c0-a210-406c4dcf3a78.jpg)
-![profile](https://user-images.githubusercontent.com/54628130/233011853-7e0f54c3-b356-4e09-954c-33e2c39d8636.jpg)
-![viewbucket](https://user-images.githubusercontent.com/54628130/233011881-5158cd81-9e62-4c64-88c2-87795447192e.jpg)
+![home](https://user-images.githubusercontent.com/54628130/233852515-4ab99c93-3717-4383-a5d5-2dedd1bb5e7a.jpg)
+![create](https://user-images.githubusercontent.com/54628130/233852546-d7580b66-7572-464d-99c8-e89eaf1ca2b0.jpg)
+![vie](https://user-images.githubusercontent.com/54628130/233852554-6c908df0-5bb3-47c7-82dc-50d3fbd42890.jpg)
+![profile](https://user-images.githubusercontent.com/54628130/233852198-e549ff27-52dd-4605-a6bf-f4556a01ccaf.jpg)
+![settings](https://user-images.githubusercontent.com/54628130/233852213-ca2166cd-bb43-4f0c-b222-aa31062bb584.jpg)
+![filter](https://user-images.githubusercontent.com/54628130/233852533-31be3868-6825-41ac-a3de-fcde1d9b0537.jpg)
 
 Installation
 ------------
