@@ -20,6 +20,7 @@ class AppTheme {
     ),
     secondaryHeaderColor: const Color(0xffcf89f8),
     dividerColor: Colors.grey,
+    canvasColor: Colors.white,
     fontFamily: 'Myfont',
     textTheme: const TextTheme(
       displayLarge: TextStyle(
@@ -80,6 +81,7 @@ class AppTheme {
     secondaryHeaderColor: Colors.purple,
     hintColor: Colors.teal,
     iconTheme: const IconThemeData(color: Colors.white),
+    canvasColor: Colors.black,
     dividerColor: Colors.grey,
     fontFamily: 'Myfont',
     textTheme: const TextTheme(

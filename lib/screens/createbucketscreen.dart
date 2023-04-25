@@ -7,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
 import '../constants/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:add_2_calendar/add_2_calendar.dart';
 import '../neopop/widgets/buttons/neopop_button/neopop_button.dart';
 
 // ignore: must_be_immutable
@@ -102,26 +101,32 @@ class CreateBucketScreen extends StatelessWidget {
                               ),
                               onPressed: () {
                                 showModalBottomSheet(
+                                  backgroundColor:
+                                      Theme.of(context).primaryColor,
                                   context: context,
                                   isScrollControlled: true,
                                   builder: (BuildContext context) {
                                     return Stack(
                                       children: [
                                         Consumer<CreateBucketService>(
-                                          builder: (context, bucketModel1, child) =>
-                                              SizedBox(
+                                          builder:
+                                              (context, bucketModel1, child) =>
+                                                  SizedBox(
                                             height:
-                                                Sizes.screenHeight(context) * 0.8,
+                                                Sizes.screenHeight(context) *
+                                                    0.8,
                                             child: SingleChildScrollView(
                                               scrollDirection: Axis.vertical,
                                               child: Padding(
-                                                padding: const EdgeInsets.all(16.0),
+                                                padding:
+                                                    const EdgeInsets.all(16.0),
                                                 child: Column(
                                                   children: [
                                                     CustomText(
-                                                        text: AppLocalizations.of(
-                                                                context)
-                                                            .addTasks,
+                                                        text:
+                                                            AppLocalizations.of(
+                                                                    context)
+                                                                .addTasks,
                                                         style: Theme.of(context)
                                                             .textTheme
                                                             .displayMedium),
@@ -134,7 +139,8 @@ class CreateBucketScreen extends StatelessWidget {
                                                       scrollDirection:
                                                           Axis.vertical,
                                                       itemCount: bucketModel1
-                                                          .activeBucketTasks.length,
+                                                          .activeBucketTasks
+                                                          .length,
                                                       itemBuilder:
                                                           (context, index) {
                                                         return ListTile(
@@ -155,7 +161,8 @@ class CreateBucketScreen extends StatelessWidget {
                                                       },
                                                     ),
                                                     InstagramMessageBar(
-                                                        onSendMessage: (message) {
+                                                        onSendMessage:
+                                                            (message) {
                                                       if (message.length < 3) {
                                                         Fluttertoast.showToast(
                                                             msg: AppLocalizations
@@ -168,11 +175,11 @@ class CreateBucketScreen extends StatelessWidget {
                                                               message);
                                                     }),
                                                     SizedBox(
-                                                      height: Sizes.screenHeight(
-                                                              context) *
-                                                          0.6,
+                                                      height:
+                                                          Sizes.screenHeight(
+                                                                  context) *
+                                                              0.6,
                                                     ),
-                                                    
                                                   ],
                                                 ),
                                               ),
@@ -184,59 +191,56 @@ class CreateBucketScreen extends StatelessWidget {
                                           left: 20,
                                           right: 20,
                                           child: SizedBox(
-                                                  width: Sizes.screenWidth(
-                                                      context),
-                                                  height: Sizes.screenHeight(
-                                                          context) *
-                                                      0.05,
-                                                  // child: ElevatedButton(
-                                                  //   style: ElevatedButton.styleFrom(
-                                                  //       backgroundColor: Theme
-                                                  //               .of(context)
-                                                  //           .secondaryHeaderColor),
-                                                  //   onPressed: () async {
-                                                  //     navigationService
-                                                  //         .navigatePop(context);
-                                                  //   },
-                                                  //   child: CustomText(
-                                                  //     style: Theme.of(context)
-                                                  //         .textTheme
-                                                  //         .labelLarge,
-                                                  //     text: AppLocalizations.of(
-                                                  //             context)
-                                                  //         .done,
-                                                  //   ),
-                                                  // ),
-                                                  child: NeoPopButton(
-                                                    bottomShadowColor: Theme.of(
-                                                            context)
-                                                        .secondaryHeaderColor,
-                                                    rightShadowColor: Theme.of(
-                                                            context)
-                                                        .secondaryHeaderColor,
-                                                    animationDuration:
-                                                        const Duration(
-                                                            milliseconds: 300),
-                                                    depth: 5,
-                                                    onTapUp: () async {
-                                                      navigationService
-                                                          .navigatePop(context);
-                                                    },
-                                                    color: Theme.of(context)
-                                                        .primaryColor,
-                                                    shadowColor: Theme.of(
-                                                            context)
-                                                        .secondaryHeaderColor,
-                                                    child: CustomText(
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .labelLarge,
-                                                      text: AppLocalizations.of(
-                                                              context)
-                                                          .done,
-                                                    ),
-                                                  ),
-                                                ),
+                                            width: Sizes.screenWidth(context),
+                                            height:
+                                                Sizes.screenHeight(context) *
+                                                    0.05,
+                                            // child: ElevatedButton(
+                                            //   style: ElevatedButton.styleFrom(
+                                            //       backgroundColor: Theme
+                                            //               .of(context)
+                                            //           .secondaryHeaderColor),
+                                            //   onPressed: () async {
+                                            //     navigationService
+                                            //         .navigatePop(context);
+                                            //   },
+                                            //   child: CustomText(
+                                            //     style: Theme.of(context)
+                                            //         .textTheme
+                                            //         .labelLarge,
+                                            //     text: AppLocalizations.of(
+                                            //             context)
+                                            //         .done,
+                                            //   ),
+                                            // ),
+                                            child: NeoPopButton(
+                                              bottomShadowColor:
+                                                  Theme.of(context)
+                                                      .secondaryHeaderColor,
+                                              rightShadowColor:
+                                                  Theme.of(context)
+                                                      .secondaryHeaderColor,
+                                              animationDuration: const Duration(
+                                                  milliseconds: 300),
+                                              depth: 5,
+                                              onTapUp: () async {
+                                                navigationService
+                                                    .navigatePop(context);
+                                              },
+                                              color:
+                                                  Theme.of(context).canvasColor,
+                                              shadowColor: Theme.of(context)
+                                                  .secondaryHeaderColor,
+                                              child: CustomText(
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelLarge,
+                                                text:
+                                                    AppLocalizations.of(context)
+                                                        .done,
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     );
@@ -262,7 +266,8 @@ class CreateBucketScreen extends StatelessWidget {
                         ),
                         ListTile(
                             title: CustomText(
-                                text: AppLocalizations.of(context).addToCalendar,
+                                text:
+                                    AppLocalizations.of(context).addToCalendar,
                                 style: Theme.of(context).textTheme.bodyLarge),
                             trailing: FlutterSwitch(
                                 activeColor:
@@ -294,8 +299,10 @@ class CreateBucketScreen extends StatelessWidget {
                               await bucketModel.validateInputs(context);
                               bucketModel.clearData();
                             },
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).canvasColor,
                             shadowColor: Theme.of(context).secondaryHeaderColor,
+                            leftShadowColor:
+                                Theme.of(context).secondaryHeaderColor,
                             child: CustomText(
                               style: Theme.of(context).textTheme.labelLarge,
                               text: AppLocalizations.of(context).create,

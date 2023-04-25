@@ -71,12 +71,12 @@ class OnboardingScreen extends StatelessWidget {
                           animationDuration: const Duration(milliseconds: 300),
                           depth: 5,
                           onTapUp: () {
-                            bool nameStatus = onboardingProvider
-                                .checkName(firstNameController.text,context);
-                            bool lastNameStatus = onboardingProvider
-                                .checkName(lastNameController.text,context);
-                            bool ageStatus = onboardingProvider
-                                .checkAge(int.parse(ageController.text),context);
+                            bool nameStatus = onboardingProvider.checkName(
+                                firstNameController.text, context);
+                            bool lastNameStatus = onboardingProvider.checkName(
+                                lastNameController.text, context);
+                            bool ageStatus = onboardingProvider.checkAge(
+                                int.parse(ageController.text), context);
                             if (nameStatus && lastNameStatus && ageStatus) {
                               onboardingProvider.submitDetails(
                                   firstNameController.text,
@@ -85,7 +85,7 @@ class OnboardingScreen extends StatelessWidget {
                                   context);
                             }
                           },
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).canvasColor,
                           shadowColor: Theme.of(context).secondaryHeaderColor,
                           child: CustomText(
                             style: Theme.of(context).textTheme.labelLarge,

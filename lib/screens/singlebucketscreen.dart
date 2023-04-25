@@ -57,18 +57,19 @@ class BucketDetailsScreen extends StatelessWidget {
                                       icon: const Icon(Icons.arrow_back)),
                                   Expanded(
                                     child: CustomText(
-                                       text: singleBucketModal.activeSingleBucket.name
+                                        text: singleBucketModal
+                                            .activeSingleBucket.name
                                             .capitalize(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .displayLarge!
-                                            ),
+                                            .displayLarge!),
                                   ),
                                 ],
                               )
                             : CustomTextField(
                                 nameController: nameController,
-                                labelText: singleBucketModal.activeSingleBucket.name,
+                                labelText:
+                                    singleBucketModal.activeSingleBucket.name,
                                 textInputType: TextInputType.name,
                                 hintText:
                                     singleBucketModal.activeSingleBucket.name),
@@ -81,8 +82,7 @@ class BucketDetailsScreen extends StatelessWidget {
                               )
                             : CustomTextField(
                                 nameController: descController,
-                                labelText:
-                                    singleBucketModal
+                                labelText: singleBucketModal
                                     .activeSingleBucket.description,
                                 textInputType: TextInputType.name,
                                 hintText: singleBucketModal
@@ -167,7 +167,8 @@ class BucketDetailsScreen extends StatelessWidget {
                                 : Column(
                                     children: [
                                       Switch(
-                                        activeColor: Theme.of(context).secondaryHeaderColor,
+                                          activeColor: Theme.of(context)
+                                              .secondaryHeaderColor,
                                           value: singleBucketModal
                                               .activeSingleBucket.isCompleted,
                                           onChanged: (val) {
@@ -363,8 +364,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                   )
                                 : !singleBucketModal.isEditing
                                     ? NeoPopButton(
-                                        onTapDown: () async {
-                                        },
+                                        onTapDown: () async {},
                                         bottomShadowColor: Theme.of(context)
                                             .secondaryHeaderColor,
                                         rightShadowColor: Theme.of(context)
@@ -375,7 +375,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                         onTapUp: () {
                                           singleBucketModal.changeEditStatus();
                                         },
-                                        color: Theme.of(context).primaryColor,
+                                        color: Theme.of(context).canvasColor,
                                         shadowColor: Theme.of(context)
                                             .secondaryHeaderColor,
                                         child: CustomText(
@@ -387,9 +387,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                         ),
                                       )
                                     : NeoPopButton(
-                                        onTapDown: () async {
-                                         
-                                        },
+                                        onTapDown: () async {},
                                         bottomShadowColor: Theme.of(context)
                                             .secondaryHeaderColor,
                                         rightShadowColor: Theme.of(context)
@@ -397,15 +395,15 @@ class BucketDetailsScreen extends StatelessWidget {
                                         animationDuration:
                                             const Duration(milliseconds: 300),
                                         depth: 5,
-                                        onTapUp: ()async {
-                                           await singleBucketModal.editBucket(
+                                        onTapUp: () async {
+                                          await singleBucketModal.editBucket(
                                               nameController.text,
                                               descController.text,
                                               context);
 
                                           singleBucketModal.changeEditStatus();
                                         },
-                                        color: Theme.of(context).primaryColor,
+                                        color: Theme.of(context).canvasColor,
                                         shadowColor: Theme.of(context)
                                             .secondaryHeaderColor,
                                         child: CustomText(
