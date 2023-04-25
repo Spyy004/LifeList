@@ -27,7 +27,10 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 CustomText(
                   text: AppLocalizations.of(context).letsgetStarted,
-                  style: Theme.of(context).textTheme.displayLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .merge(TextStyle(fontSize: 24)),
                 ),
                 SizedBox(
                   height: Sizes.screenHeight(context) * 0.05,
