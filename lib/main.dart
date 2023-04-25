@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/services/index.dart';
+import 'package:lifelist/services/pdfservice.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,7 +23,6 @@ class LifeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      
       providers: [
         ChangeNotifierProvider<OnboardingService>(
             create: (context) => OnboardingService()),
@@ -34,6 +34,7 @@ class LifeList extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CreateBucketService()),
         ChangeNotifierProvider(create: (context) => BottomBarService()),
         ChangeNotifierProvider(create: (context) => FilterService()),
+        ChangeNotifierProvider(create: (context) => PdfService())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

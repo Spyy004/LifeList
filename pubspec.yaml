@@ -48,6 +48,7 @@ dependencies:
   intl: any
   url_launcher: ^6.0.3
   add_2_calendar: ^2.2.3
+  pdf: ^3.10.1
 
 dev_dependencies:
   flutter_test:

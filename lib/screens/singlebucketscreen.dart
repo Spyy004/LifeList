@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/cli_commands.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:lifelist/services/index.dart';
+import 'package:lifelist/services/pdfservice.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/index.dart';
@@ -64,6 +65,15 @@ class BucketDetailsScreen extends StatelessWidget {
                                             .textTheme
                                             .displayLarge!),
                                   ),
+                                  Consumer<PdfService>(
+                                      builder: (context, pdfModel, child) =>
+                                          IconButton(
+                                              onPressed: () async {
+                                                pdfModel.generatePdf(
+                                                    singleBucketModal
+                                                        .activeSingleBucket);
+                                              },
+                                              icon: Icon(Icons.download)))
                                 ],
                               )
                             : CustomTextField(
