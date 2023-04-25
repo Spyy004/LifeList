@@ -81,6 +81,15 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 onTap: _launchUrl,
               ),
+               ListTile(
+                leading: const Icon(Icons.feedback),
+                title: CustomText(text: 'Submit Feedback',style:Theme.of(context).textTheme.displaySmall),
+                onTap: () {
+                  navigationService.navigateNext(
+                    context,FEEDBACK
+                  );
+                },
+              ),
               ListTile(
                 leading: const Icon(
                   Icons.delete,
@@ -132,6 +141,7 @@ class SettingsScreen extends StatelessWidget {
                   );
                 },
               ),
+             
             ]),
           ),
         ),

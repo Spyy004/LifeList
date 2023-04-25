@@ -49,6 +49,7 @@ class HomeScreen extends StatelessWidget {
                             IconButton(
                                 onPressed: () {
                                   showModalBottomSheet(
+                                    backgroundColor: Theme.of(context).primaryColor,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return Consumer2<FilterService,
@@ -251,6 +252,7 @@ class HomeScreen extends StatelessWidget {
                                     (context, index) => InkWell(
                                           onLongPress: () {
                                             showDialog(
+                                              
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return Consumer<

@@ -1,10 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:lifelist/screens/createbucketscreen.dart';
-import 'package:lifelist/screens/profilescreen.dart';
-import 'package:lifelist/screens/settingsscreen.dart';
-import 'package:lifelist/screens/singlebucketscreen.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:lifelist/services/navigationservice.dart';
 import '../models/index.dart';
@@ -67,7 +63,8 @@ const DELETE_TASK_SUBTITLE = 'Are you sure you want to delete this task?';
 const DELETE_BUCKET_SUBTITLE = 'Are you sure you want to delete this bucket?';
 const DONE = 'Done';
 const CREATE = 'Create';
-
+const FEEDBACK_EMAIL = 'i.yush.004@gmail.com';
+const FEEDBACK = 'Feedback';
 int currIndex = 0;
 String appVersion = '0.0.0';
 var routes = <String, WidgetBuilder>{
@@ -76,7 +73,8 @@ var routes = <String, WidgetBuilder>{
   Routes.createBucket: (context) => CreateBucketScreen(),
   Routes.singleBucket: (contex) => BucketDetailsScreen(),
   Routes.profilePage: (context) => const ProfilePage(),
-  Routes.settingsPage: (context) => SettingsScreen()
+  Routes.settingsPage: (context) => SettingsScreen(),
+  Routes.feedbackPage: (context) => FeedbackForm()
 };
 
 DBService dbService = DBService();

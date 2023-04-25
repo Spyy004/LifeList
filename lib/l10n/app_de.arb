@@ -70,5 +70,6 @@
 "taskNameTooShort":"Aufgabenname muss mehr als 3 Buchstaben haben",
 "filter":"Filter",
 "reset":"Zurücksetzen",
-"addToCalendar":"Zum Kalender hinzufügen"
+"addToCalendar":"Zum Kalender hinzufügen",
+"send":"Schicken"
 }

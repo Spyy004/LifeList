@@ -69,5 +69,6 @@
 "taskNameTooShort": "O nome da tarefa deve ter mais de 3 caracteres",
 "filter": "Filtro",
 "reset": "Redefinir",
-"addToCalendar": "Adicionar ao calendário"
+"addToCalendar": "Adicionar ao calendário",
+"send":"Enviar"
 }

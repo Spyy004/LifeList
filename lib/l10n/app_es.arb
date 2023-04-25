@@ -70,5 +70,6 @@
   "taskNameTooShort":"pedir nombre debe tener más de 3 letras",
   "filter":"Filtrar",
   "reset":"Reiniciar",
-  "addToCalendar":"Añadir al calendario"
+  "addToCalendar":"Añadir al calendario",
+  "send":"Enviar"
 }

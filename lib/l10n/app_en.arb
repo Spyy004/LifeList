@@ -282,5 +282,9 @@
   "addToCalendar":"Add to Calendar",
   "@home": {
     "description": "Home"
+  },
+  "send":"Send",
+  "@home": {
+    "description": "Home"
   }
 }

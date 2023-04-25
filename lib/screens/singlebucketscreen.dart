@@ -71,7 +71,9 @@ class BucketDetailsScreen extends StatelessWidget {
                                               onPressed: () async {
                                                 pdfModel.generatePdf(
                                                     singleBucketModal
-                                                        .activeSingleBucket);
+                                                        .activeSingleBucket,
+                                                        taskService.tasks
+                                                        );
                                               },
                                               icon: Icon(Icons.download)))
                                 ],

@@ -69,5 +69,6 @@
   "taskNameTooShort":"Görev İsimi En Az 3 Haneli Olmalı",
   "filter":"Filtrele",
   "reset":"Sıfırla",
-  "addToCalendar":"Takvime Ekle"
+  "addToCalendar":"Takvime Ekle",
+  "send":"Göndermek"
 }
