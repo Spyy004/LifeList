@@ -72,9 +72,24 @@ class BucketService extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTaskFromActiveBucket(int index) {
+  void deleteTaskFromActiveBucket(int index, int? taskId, String taskName) {
+    if (taskId == null) {
+      activeBucketTasks.removeWhere(
+          (element) => element.id == null && element.name == taskName);
+      return;
+    }
+    if (activeBucketTasks.isEmpty) return;
     activeBucketTasks.removeAt(index);
     notifyListeners();
+  }
+
+  void editTaskInActiveBucket(int? taskId, String taskName) {
+    if (activeBucketTasks.isEmpty) return;
+    activeBucketTasks[
+            activeBucketTasks.indexWhere((element) => taskId == element.id && element.name == taskName)]
+        .isComplete = !activeBucketTasks[
+            activeBucketTasks.indexWhere((element) => taskId == element.id && element.name == taskName)]
+        .isComplete;
   }
 
   Future<void> setActiveBucketDeadlineDate(BuildContext context) async {
@@ -145,7 +160,14 @@ class BucketService extends ChangeNotifier {
     if (desc.isNotEmpty) {
       activeSingleBucket.description = desc;
     }
+    List<int> newTasksId = [];
+    if (activeBucketTasks.isNotEmpty) {
+      newTasksId = await sendTasksToTaskService(activeBucketTasks);
+    }
+    activeSingleBucket.tasks = activeSingleBucket.tasks.toList();
+    activeSingleBucket.tasks.addAll(newTasksId);
     await editBucketinDB(activeSingleBucket);
+    activeBucketTasks = [];
     loader = false;
     notifyListeners();
   }

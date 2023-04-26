@@ -72,8 +72,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 pdfModel.generatePdf(
                                                     singleBucketModal
                                                         .activeSingleBucket,
-                                                        taskService.tasks
-                                                        );
+                                                    taskService.tasks);
                                               },
                                               icon: Icon(Icons.download)))
                                 ],
@@ -207,10 +206,185 @@ class BucketDetailsScreen extends StatelessWidget {
                                 text: AppLocalizations.of(context).tasks,
                                 style:
                                     Theme.of(context).textTheme.displayMedium),
-                            CustomText(
-                                text:
-                                    '${taskService.completionPercentage.toInt()}% ${AppLocalizations.of(context).done}',
-                                style: Theme.of(context).textTheme.bodyLarge),
+                            !singleBucketModal.isEditing
+                                ? CustomText(
+                                    text:
+                                        '${taskService.completionPercentage.toInt()}% ${AppLocalizations.of(context).done}',
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge)
+                                : IconButton(
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                        context: context,
+                                        isScrollControlled: true,
+                                        builder: (BuildContext context) {
+                                          return Stack(
+                                            children: [
+                                              SizedBox(
+                                                height: Sizes.screenHeight(
+                                                        context) *
+                                                    0.8,
+                                                child: Consumer<TaskService>(
+                                                  builder: (context,
+                                                          taskService, child) =>
+                                                      SingleChildScrollView(
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      child: Column(
+                                                        children: [
+                                                          CustomText(
+                                                              text: AppLocalizations
+                                                                      .of(
+                                                                          context)
+                                                                  .addTasks,
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .displayMedium),
+                                                          ListView.builder(
+                                                            controller:
+                                                                ScrollController(),
+                                                            shrinkWrap: true,
+                                                            physics:
+                                                                const NeverScrollableScrollPhysics(),
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount: taskService
+                                                                .temporaryTasks
+                                                                .length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              return ListTile(
+                                                                title: Text(
+                                                                    taskService
+                                                                        .temporaryTasks[
+                                                                            index]
+                                                                        .name),
+                                                                trailing:
+                                                                    IconButton(
+                                                                  icon: const Icon(
+                                                                      Icons
+                                                                          .delete),
+                                                                  onPressed:
+                                                                      () {
+                                                                    taskService
+                                                                        .deleteSingleTemporaryTask(
+                                                                            index);
+                                                                  },
+                                                                ),
+                                                              );
+                                                            },
+                                                          ),
+                                                          InstagramMessageBar(
+                                                              onSendMessage:
+                                                                  (message) {
+                                                            if (message.length <
+                                                                3) {
+                                                              Fluttertoast.showToast(
+                                                                  msg: AppLocalizations.of(
+                                                                          context)
+                                                                      .taskNameTooShort);
+                                                              return;
+                                                            }
+                                                            taskService
+                                                                .addSingleTemporaryTask(
+                                                                    message);
+                                                            singleBucketModal
+                                                                .addTaskInActiveBucket(
+                                                                    message);
+                                                          }),
+                                                          SizedBox(
+                                                            height: Sizes
+                                                                    .screenHeight(
+                                                                        context) *
+                                                                0.6,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 20,
+                                                left: 20,
+                                                right: 20,
+                                                child: SizedBox(
+                                                  width: Sizes.screenWidth(
+                                                      context),
+                                                  height: Sizes.screenHeight(
+                                                          context) *
+                                                      0.05,
+                                                  // child: ElevatedButton(
+                                                  //   style: ElevatedButton.styleFrom(
+                                                  //       backgroundColor: Theme
+                                                  //               .of(context)
+                                                  //           .secondaryHeaderColor),
+                                                  //   onPressed: () async {
+                                                  //     navigationService
+                                                  //         .navigatePop(context);
+                                                  //   },
+                                                  //   child: CustomText(
+                                                  //     style: Theme.of(context)
+                                                  //         .textTheme
+                                                  //         .labelLarge,
+                                                  //     text: AppLocalizations.of(
+                                                  //             context)
+                                                  //         .done,
+                                                  //   ),
+                                                  // ),
+                                                  child: NeoPopButton(
+                                                    bottomShadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    rightShadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    animationDuration:
+                                                        const Duration(
+                                                            milliseconds: 300),
+                                                    depth: 5,
+                                                    onTapUp: () async {
+                                                      navigationService
+                                                          .navigatePop(context);
+
+                                                      // ignore: use_build_context_synchronously
+                                                    },
+                                                    color: Theme.of(context)
+                                                        .canvasColor,
+                                                    shadowColor: Theme.of(
+                                                            context)
+                                                        .secondaryHeaderColor,
+                                                    child: CustomText(
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .labelLarge,
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .done,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ).then((value) async => {
+                                            await taskService
+                                                .transferTemporaryTasks()
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.add,
+                                      size: 30,
+                                    )),
                           ],
                         ),
                         const Divider(
@@ -261,16 +435,19 @@ class BucketDetailsScreen extends StatelessWidget {
                                             onPressed: () async {
                                               await taskService
                                                   .updateSingleTask(task);
+                                              singleBucketModal
+                                                  .editTaskInActiveBucket(
+                                                      task.id, task.name);
                                             },
                                           ),
                                           IconButton(
                                             icon: const Icon(Icons
                                                 .delete), // Replace with the desired delete icon
                                             onPressed: () async {
-                                              if (singleBucketModal
-                                                      .activeSingleBucket
-                                                      .tasks
-                                                      .length ==
+                                              if (taskService.tasks.length ==
+                                                                  
+                                                                   
+                                                        
                                                   1) {
                                                 Fluttertoast.showToast(
                                                     msg: AppLocalizations.of(
@@ -338,7 +515,13 @@ class BucketDetailsScreen extends StatelessWidget {
 
                                                               await taskService
                                                                   .deleteSingleTask(
-                                                                      task.id);
+                                                                      task.id,
+                                                                      task.name);
+                                                              singleBucketModal
+                                                                  .deleteTaskFromActiveBucket(
+                                                                      index,
+                                                                      task.id,
+                                                                      task.name);
                                                               // ignore: use_build_context_synchronously
                                                               navigationService
                                                                   .navigatePop(
@@ -412,8 +595,8 @@ class BucketDetailsScreen extends StatelessWidget {
                                               nameController.text,
                                               descController.text,
                                               context);
-
                                           singleBucketModal.changeEditStatus();
+                                          taskService.toggleFetchStatus();
                                         },
                                         color: Theme.of(context).canvasColor,
                                         shadowColor: Theme.of(context)

@@ -3,9 +3,9 @@ import 'package:lifelist/controllers/global_controller.dart';
 
 class SettingsService extends ChangeNotifier {
   bool loader = false;
-  clearData() {
+  clearData() async{
     loader = !loader;
-    clearGlobalData();
+    await clearGlobalData();
     notifyListeners();
     loader = !loader;
   }

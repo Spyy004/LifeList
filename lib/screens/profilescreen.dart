@@ -11,11 +11,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Access the UserModel using Provider
-
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      bottomNavigationBar: const CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(),
       body: Consumer<UserService>(
         builder: (context, userModel, child) => FutureBuilder<void>(
             future: userModel.getUser(),

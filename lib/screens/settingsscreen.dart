@@ -81,13 +81,13 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 onTap: _launchUrl,
               ),
-               ListTile(
+              ListTile(
                 leading: const Icon(Icons.feedback),
                 title: CustomText(text: 'Submit Feedback',style:Theme.of(context).textTheme.displaySmall),
                 onTap: () {
-                  navigationService.navigateNext(
-                    context,FEEDBACK
-                  );
+                  navigationService.navigateNext(context, FEEDBACK);
+                    
+
                 },
               ),
               ListTile(
@@ -126,8 +126,8 @@ class SettingsScreen extends StatelessWidget {
                                 style: TextButton.styleFrom(
                                     backgroundColor:
                                         Theme.of(context).secondaryHeaderColor),
-                                onPressed: () {
-                                  value.clearData();
+                                onPressed: () async {
+                                  await value.clearData();
                                   navigationService.navigatePop(context);
                                 },
                                 child: CustomText(

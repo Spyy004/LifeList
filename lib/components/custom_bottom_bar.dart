@@ -5,9 +5,8 @@ import '../constants/index.dart';
 import '../services/index.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  const CustomBottomBar({
-    super.key,
-  });
+  CustomBottomBar({super.key, this.bucketListService});
+  BucketListService? bucketListService;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +19,7 @@ class CustomBottomBar extends StatelessWidget {
           if (index == 0) {
             navigationService.navigateReset(context, HOME);
           } else if (index == 1) {
+            bucketListService!.toggleAction();
             navigationService.navigateReset(context, PROFILE);
           }
         },

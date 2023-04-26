@@ -13,7 +13,9 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      bottomNavigationBar: const CustomBottomBar(),
+      bottomNavigationBar: Consumer<BucketListService>(
+        builder: (context, value, child) => 
+         CustomBottomBar(bucketListService:value)),
       body: SafeArea(
         child: Consumer<BucketListService>(
           builder: (context, bucketModel, child) => FutureBuilder<void>(
