@@ -23,30 +23,41 @@ const BucketSchema = CollectionSchema(
       type: IsarType.byte,
       enumMap: _BucketbucketCategoryEnumValueMap,
     ),
-    r'deadline': PropertySchema(
+    r'bucketScope': PropertySchema(
       id: 1,
+      name: r'bucketScope',
+      type: IsarType.byte,
+      enumMap: _BucketbucketScopeEnumValueMap,
+    ),
+    r'deadline': PropertySchema(
+      id: 2,
       name: r'deadline',
       type: IsarType.dateTime,
     ),
     r'description': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'description',
       type: IsarType.string,
     ),
     r'isCompleted': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'isCompleted',
       type: IsarType.bool,
     ),
     r'name': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'name',
       type: IsarType.string,
     ),
     r'tasks': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'tasks',
       type: IsarType.longList,
+    ),
+    r'updatedAt': PropertySchema(
+      id: 7,
+      name: r'updatedAt',
+      type: IsarType.dateTime,
     )
   },
   estimateSize: _bucketEstimateSize,
@@ -82,11 +93,13 @@ void _bucketSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeByte(offsets[0], object.bucketCategory.index);
-  writer.writeDateTime(offsets[1], object.deadline);
-  writer.writeString(offsets[2], object.description);
-  writer.writeBool(offsets[3], object.isCompleted);
-  writer.writeString(offsets[4], object.name);
-  writer.writeLongList(offsets[5], object.tasks);
+  writer.writeByte(offsets[1], object.bucketScope.index);
+  writer.writeDateTime(offsets[2], object.deadline);
+  writer.writeString(offsets[3], object.description);
+  writer.writeBool(offsets[4], object.isCompleted);
+  writer.writeString(offsets[5], object.name);
+  writer.writeLongList(offsets[6], object.tasks);
+  writer.writeDateTime(offsets[7], object.updatedAt);
 }
 
 Bucket _bucketDeserialize(
@@ -99,12 +112,16 @@ Bucket _bucketDeserialize(
   object.bucketCategory =
       _BucketbucketCategoryValueEnumMap[reader.readByteOrNull(offsets[0])] ??
           BucketCategory.travel;
-  object.deadline = reader.readDateTime(offsets[1]);
-  object.description = reader.readString(offsets[2]);
+  object.bucketScope =
+      _BucketbucketScopeValueEnumMap[reader.readByteOrNull(offsets[1])] ??
+          BucketScope.onetime;
+  object.deadline = reader.readDateTime(offsets[2]);
+  object.description = reader.readString(offsets[3]);
   object.id = id;
-  object.isCompleted = reader.readBool(offsets[3]);
-  object.name = reader.readString(offsets[4]);
-  object.tasks = reader.readLongList(offsets[5]) ?? [];
+  object.isCompleted = reader.readBool(offsets[4]);
+  object.name = reader.readString(offsets[5]);
+  object.tasks = reader.readLongList(offsets[6]) ?? [];
+  object.updatedAt = reader.readDateTime(offsets[7]);
   return object;
 }
 
@@ -120,15 +137,20 @@ P _bucketDeserializeProp<P>(
               reader.readByteOrNull(offset)] ??
           BucketCategory.travel) as P;
     case 1:
-      return (reader.readDateTime(offset)) as P;
+      return (_BucketbucketScopeValueEnumMap[reader.readByteOrNull(offset)] ??
+          BucketScope.onetime) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 3:
-      return (reader.readBool(offset)) as P;
-    case 4:
       return (reader.readString(offset)) as P;
+    case 4:
+      return (reader.readBool(offset)) as P;
     case 5:
+      return (reader.readString(offset)) as P;
+    case 6:
       return (reader.readLongList(offset) ?? []) as P;
+    case 7:
+      return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -153,6 +175,14 @@ const _BucketbucketCategoryValueEnumMap = {
   5: BucketCategory.personalitydevelopment,
   6: BucketCategory.creativity,
   7: BucketCategory.relationships,
+};
+const _BucketbucketScopeEnumValueMap = {
+  'onetime': 0,
+  'daily': 1,
+};
+const _BucketbucketScopeValueEnumMap = {
+  0: BucketScope.onetime,
+  1: BucketScope.daily,
 };
 
 Id _bucketGetId(Bucket object) {
@@ -288,6 +318,59 @@ extension BucketQueryFilter on QueryBuilder<Bucket, Bucket, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
         property: r'bucketCategory',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> bucketScopeEqualTo(
+      BucketScope value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'bucketScope',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> bucketScopeGreaterThan(
+    BucketScope value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'bucketScope',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> bucketScopeLessThan(
+    BucketScope value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'bucketScope',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> bucketScopeBetween(
+    BucketScope lower,
+    BucketScope upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'bucketScope',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -822,6 +905,59 @@ extension BucketQueryFilter on QueryBuilder<Bucket, Bucket, QFilterCondition> {
       );
     });
   }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> updatedAtEqualTo(
+      DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> updatedAtGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> updatedAtLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'updatedAt',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> updatedAtBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'updatedAt',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension BucketQueryObject on QueryBuilder<Bucket, Bucket, QFilterCondition> {}
@@ -838,6 +974,18 @@ extension BucketQuerySortBy on QueryBuilder<Bucket, Bucket, QSortBy> {
   QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByBucketCategoryDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'bucketCategory', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByBucketScope() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'bucketScope', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByBucketScopeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'bucketScope', Sort.desc);
     });
   }
 
@@ -888,6 +1036,18 @@ extension BucketQuerySortBy on QueryBuilder<Bucket, Bucket, QSortBy> {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
 }
 
 extension BucketQuerySortThenBy on QueryBuilder<Bucket, Bucket, QSortThenBy> {
@@ -900,6 +1060,18 @@ extension BucketQuerySortThenBy on QueryBuilder<Bucket, Bucket, QSortThenBy> {
   QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByBucketCategoryDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'bucketCategory', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByBucketScope() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'bucketScope', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByBucketScopeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'bucketScope', Sort.desc);
     });
   }
 
@@ -962,12 +1134,30 @@ extension BucketQuerySortThenBy on QueryBuilder<Bucket, Bucket, QSortThenBy> {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByUpdatedAtDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'updatedAt', Sort.desc);
+    });
+  }
 }
 
 extension BucketQueryWhereDistinct on QueryBuilder<Bucket, Bucket, QDistinct> {
   QueryBuilder<Bucket, Bucket, QDistinct> distinctByBucketCategory() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'bucketCategory');
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QDistinct> distinctByBucketScope() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'bucketScope');
     });
   }
 
@@ -1002,6 +1192,12 @@ extension BucketQueryWhereDistinct on QueryBuilder<Bucket, Bucket, QDistinct> {
       return query.addDistinctBy(r'tasks');
     });
   }
+
+  QueryBuilder<Bucket, Bucket, QDistinct> distinctByUpdatedAt() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'updatedAt');
+    });
+  }
 }
 
 extension BucketQueryProperty on QueryBuilder<Bucket, Bucket, QQueryProperty> {
@@ -1015,6 +1211,12 @@ extension BucketQueryProperty on QueryBuilder<Bucket, Bucket, QQueryProperty> {
       bucketCategoryProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'bucketCategory');
+    });
+  }
+
+  QueryBuilder<Bucket, BucketScope, QQueryOperations> bucketScopeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'bucketScope');
     });
   }
 
@@ -1045,6 +1247,12 @@ extension BucketQueryProperty on QueryBuilder<Bucket, Bucket, QQueryProperty> {
   QueryBuilder<Bucket, List<int>, QQueryOperations> tasksProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'tasks');
+    });
+  }
+
+  QueryBuilder<Bucket, DateTime, QQueryOperations> updatedAtProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'updatedAt');
     });
   }
 }

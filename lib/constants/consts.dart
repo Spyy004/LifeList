@@ -93,6 +93,23 @@ const categories = [
   'Relationships',
 ];
 
+const scopes = [
+  'Onetime',
+  'Daily',
+  'All'
+];
+
+Map<String,BucketScope> stringToBucketScope = {
+  'Onetime': BucketScope.onetime,
+  'Daily': BucketScope.daily,
+  'All':BucketScope.all
+};
+
+Map<BucketScope,String> bucketScopeToString = {
+  BucketScope.onetime: 'Onetime',
+  BucketScope.daily: 'Daily'
+};
+
 bool isUserCreated = false;
 
 Map<String, BucketCategory> stringToBucketCategory = {

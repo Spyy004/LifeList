@@ -47,7 +47,8 @@ class CreateBucketService extends ChangeNotifier {
       ..description = activeSingleBucket.description
       ..isCompleted = activeSingleBucket.isCompleted
       ..deadline = activeSingleBucket.deadline
-      ..tasks = taskIds;
+      ..tasks = taskIds
+      ..bucketScope = activeSingleBucket.bucketScope;
     int bucketId = await addBucketToDB(bucket);
     if (bucketId == -1) {
       Fluttertoast.showToast(
@@ -84,25 +85,32 @@ class CreateBucketService extends ChangeNotifier {
 
   Future<void> setActiveBucketDeadlineDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-      builder: (context, child) => Theme(
-         data: Theme.of(context).copyWith(
-          colorScheme: ColorScheme.light(
-            primary: Theme.of(context).secondaryHeaderColor, // <-- SEE HERE
-            onPrimary: MediaQuery.of(context).platformBrightness==Brightness.dark?Colors.white:Colors.black, // <-- SEE HERE
-            onSurface: MediaQuery.of(context).platformBrightness==Brightness.dark?Colors.white:Colors.black // <-- SEE HERE
-          ),
-          textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-              primary: Theme.of(context).secondaryHeaderColor, // button text color
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2100),
+        builder: (context, child) => Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                  primary:
+                      Theme.of(context).secondaryHeaderColor, // <-- SEE HERE
+                  onPrimary: MediaQuery.of(context).platformBrightness ==
+                          Brightness.dark
+                      ? Colors.white
+                      : Colors.black, // <-- SEE HERE
+                  onSurface: MediaQuery.of(context).platformBrightness ==
+                          Brightness.dark
+                      ? Colors.white
+                      : Colors.black // <-- SEE HERE
+                  ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  primary: Theme.of(context)
+                      .secondaryHeaderColor, // button text color
+                ),
+              ),
             ),
-          ),
-        ),
-      child: child!)
-    );
+            child: child!));
     if (pickedDate != null) {
       activeSingleBucket.deadline = pickedDate;
     }
@@ -179,5 +187,10 @@ class CreateBucketService extends ChangeNotifier {
       endDate: activeSingleBucket.deadline.add(const Duration(hours: 1)),
     );
     await Add2Calendar.addEvent2Cal(event);
+  }
+
+  void toggleBucketScope(scope) {
+    activeSingleBucket.bucketScope = scope;
+    notifyListeners();
   }
 }

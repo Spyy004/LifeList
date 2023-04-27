@@ -6,7 +6,8 @@ class BucketListService extends ChangeNotifier {
   List<Bucket?> buckets = [];
   List<Bucket?> filteredBuckets = [];
   int currentAction = 0;
-
+  BucketScope selectedScope = BucketScope.onetime;
+  bool isScopeSelected = false;
   Future<void> getAllBuckets() async {
     if (currentAction == 0) {
       buckets = await getBucketsFromDB();
@@ -52,6 +53,30 @@ class BucketListService extends ChangeNotifier {
       return false;
     }).toList();
     currentAction = 1;
+    notifyListeners();
+  }
+
+  toggleScope(scope) {
+    selectedScope = scope;
+    isScopeSelected = true;
+    notifyListeners();
+  }
+
+  fetchBucketsByScope() {
+    if (!isScopeSelected) {
+      return;
+    }
+    filteredBuckets = buckets.where((element) {
+      if (element!.bucketScope == selectedScope) {
+        return true;
+      }
+      return false;
+    }).toList();
+    notifyListeners();
+  }
+
+  resetScopeFilter() {
+    filteredBuckets = buckets;
     notifyListeners();
   }
 }

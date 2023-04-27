@@ -13,8 +13,8 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       bottomNavigationBar: Consumer<BucketListService>(
-        builder: (context, value, child) => 
-         CustomBottomBar(bucketListService:value)),
+          builder: (context, value, child) =>
+              CustomBottomBar(bucketListService: value)),
       body: SafeArea(
         child: Consumer<BucketListService>(
           builder: (context, bucketModel, child) => FutureBuilder<void>(
@@ -50,7 +50,93 @@ class HomeScreen extends StatelessWidget {
                             IconButton(
                                 onPressed: () {
                                   showModalBottomSheet(
-                                    backgroundColor: Theme.of(context).primaryColor,
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        height:
+                                            Sizes.screenHeight(context) * 0.3,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Consumer<BucketListService>(
+                                            builder:
+                                                (context, bucketModel, child) =>
+                                                    Column(children: [
+                                              CustomText(
+                                                text: 'Select Scope',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge,
+                                              ),
+                                              ListView.builder(
+                                                shrinkWrap: true,
+                                                itemBuilder: (context, index) {
+                                                  return ListTile(
+                                                    title: CustomText(
+                                                      text: scopes[index],
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyLarge,
+                                                    ),
+                                                    leading: Radio(
+                                                      activeColor: Theme.of(
+                                                              context)
+                                                          .secondaryHeaderColor,
+                                                      value: bucketModel
+                                                              .selectedScope ==
+                                                          stringToBucketScope[
+                                                              scopes[index]],
+                                                      groupValue: true,
+                                                      onChanged: (value) {
+                                                        if (scopes[index] ==
+                                                            'All') {
+                                                          bucketModel
+                                                              .resetScopeFilter();
+                                                        }
+                                                        else{
+                                                        bucketModel.toggleScope(
+                                                            stringToBucketScope[
+                                                                scopes[index]]);
+                                                        }
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                                itemCount: scopes.length,
+                                              ),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .secondaryHeaderColor,
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: CustomText(
+                                                  text: AppLocalizations.of(
+                                                          context)
+                                                      .save,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge,
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) =>
+                                      bucketModel.fetchBucketsByScope());
+                                },
+                                icon: Icon(Icons.remove_red_eye)),
+                            IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
                                     context: context,
                                     builder: (BuildContext context) {
                                       return Consumer2<FilterService,
@@ -253,7 +339,6 @@ class HomeScreen extends StatelessWidget {
                                     (context, index) => InkWell(
                                           onLongPress: () {
                                             showDialog(
-
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return Consumer<
@@ -371,14 +456,14 @@ class HomeScreen extends StatelessWidget {
                                                       Sizes.screenHeight(
                                                           context),
                                                 ),
-                                                 Icon(
-
-                                                        categoryMap[bucketModel
-                                                                .filteredBuckets[
-                                                            index]!.bucketCategory]!,
-                                                            color: Theme.of(context).secondaryHeaderColor,
-                                                            size: 30,
-                                                      ),
+                                                Icon(
+                                                  categoryMap[bucketModel
+                                                      .filteredBuckets[index]!
+                                                      .bucketCategory]!,
+                                                  color: Theme.of(context)
+                                                      .secondaryHeaderColor,
+                                                  size: 30,
+                                                ),
                                               ],
                                             ),
                                           ),

@@ -12,6 +12,9 @@ class Bucket {
   bool isCompleted = false;
   List<int> tasks = List.empty(growable: true);
   DateTime deadline = DateTime.now();
+  DateTime updatedAt = DateTime.now();
+  @enumerated BucketScope bucketScope = BucketScope.onetime;
+
 
   int compareTo(Bucket other) {
     return deadline.compareTo(other.deadline);
@@ -27,4 +30,10 @@ enum BucketCategory {
   personalitydevelopment,
   creativity,
   relationships,
+}
+
+enum BucketScope {
+  onetime,
+  daily,
+  all
 }

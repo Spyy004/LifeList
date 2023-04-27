@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifelist/components/custom_dropdown_scope.dart';
 import 'package:lifelist/models/index.dart';
 import 'package:lifelist/neopop/neopop.dart';
 import 'package:lifelist/services/index.dart';
@@ -68,6 +69,10 @@ class CreateBucketScreen extends StatelessWidget {
                           height: Sizes.screenHeight(context) * 0.02,
                         ),
                         const MyDropdownMenu(actions: 'CREATE'),
+                        SizedBox(
+                          height: Sizes.screenHeight(context) * 0.02,
+                        ),
+                        MyDropDownScope(actions: 'CREATE'),
                         SizedBox(
                           height: Sizes.screenHeight(context) * 0.02,
                         ),
