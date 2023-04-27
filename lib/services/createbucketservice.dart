@@ -88,6 +88,20 @@ class CreateBucketService extends ChangeNotifier {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(2100),
+      builder: (context, child) => Theme(
+         data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(
+            primary: Theme.of(context).secondaryHeaderColor, // <-- SEE HERE
+            onPrimary: MediaQuery.of(context).platformBrightness==Brightness.dark?Colors.white:Colors.black, // <-- SEE HERE
+            onSurface: MediaQuery.of(context).platformBrightness==Brightness.dark?Colors.white:Colors.black // <-- SEE HERE
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              primary: Theme.of(context).secondaryHeaderColor, // button text color
+            ),
+          ),
+        ),
+      child: child!)
     );
     if (pickedDate != null) {
       activeSingleBucket.deadline = pickedDate;

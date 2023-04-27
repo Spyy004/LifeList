@@ -15,6 +15,8 @@ class BucketDetailsScreen extends StatelessWidget {
   final TextEditingController descController = TextEditingController();
   Future<bool> onPop(BuildContext context, singleBucketModel) async {
     await singleBucketModel.clearData();
+    nameController.clear();
+    descController.clear();
     navigationService.navigateReset(context, HOME);
     return true;
   }
