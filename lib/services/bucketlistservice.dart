@@ -6,11 +6,13 @@ class BucketListService extends ChangeNotifier {
   List<Bucket?> buckets = [];
   List<Bucket?> filteredBuckets = [];
   int currentAction = 0;
+
   Future<void> getAllBuckets() async {
     if (currentAction == 0) {
       buckets = await getBucketsFromDB();
       buckets = buckets.whereType<Bucket>().toList();
       filteredBuckets = buckets;
+      filteredBuckets.sort((a, b) => a!.compareTo(b!));
       currentAction = 1;
       notifyListeners();
     }
@@ -32,7 +34,6 @@ class BucketListService extends ChangeNotifier {
   }
 
   filterBuckets(List<BucketCategory> categories, bool status) {
-   
     if (categories.isEmpty) {
       filteredBuckets = buckets.where((element) {
         if (element!.isCompleted == status) {

@@ -445,9 +445,6 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 .delete), // Replace with the desired delete icon
                                             onPressed: () async {
                                               if (taskService.tasks.length ==
-                                                                  
-                                                                   
-                                                        
                                                   1) {
                                                 Fluttertoast.showToast(
                                                     msg: AppLocalizations.of(

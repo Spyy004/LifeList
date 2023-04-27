@@ -12,6 +12,10 @@ class Bucket {
   bool isCompleted = false;
   List<int> tasks = List.empty(growable: true);
   DateTime deadline = DateTime.now();
+
+  int compareTo(Bucket other) {
+    return deadline.compareTo(other.deadline);
+  }
 }
 
 enum BucketCategory {
