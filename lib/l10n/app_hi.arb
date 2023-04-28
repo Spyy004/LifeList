@@ -69,5 +69,11 @@
 "filter":"फ़िल्टर",
 "reset":"रीसेट",
 "addToCalendar":"कैलेंडर में जोड़ें",
-"send":"भेज"
+"send":"भेज",
+"feedbackForm": "फ़ीडबैक फ़ॉर्म",
+"pleasenteratitle": "कृपया एक शीर्षक दर्ज करें",
+"pleaseenteradescriptionofatleastencharacterslong": "कृपया कम से कम 10 वर्णों का विवरण दर्ज करें",
+"selectscope": "स्कोप चुनें",
+"submitFeedback": "फ़ीडबैक जमा करें",
+"streak": "स्ट्रीक"
 }

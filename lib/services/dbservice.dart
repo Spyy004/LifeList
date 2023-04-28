@@ -24,6 +24,17 @@ class DBService {
     List<Bucket?> buckets = [];
     await isar
         .writeTxn(() async => {buckets = await isar.buckets.where().findAll()});
+    buckets.forEach((element) async {
+      Duration difference = element!.deadline.difference(DateTime.now());
+      if (difference.isNegative) {
+        if (!element.isCompleted) {
+          element.streak = 0;
+        }
+        element.isCompleted = false;
+        element.deadline = element.deadline.add(const Duration(days: 1));
+        await editBucketInDB(element);
+      }
+    });
     return buckets;
   }
 

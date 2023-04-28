@@ -13,8 +13,8 @@ import '../models/index.dart';
 class BucketDetailsScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descController = TextEditingController();
-  Future<bool> onPop(BuildContext context, singleBucketModel) async {
-    await singleBucketModel.clearData();
+  Future<bool> onPop(BuildContext context, BucketService singleBucketModel) async {
+    singleBucketModel.clearData();
     nameController.clear();
     descController.clear();
     navigationService.navigateReset(context, HOME);
@@ -104,6 +104,7 @@ class BucketDetailsScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            singleBucketModal.activeSingleBucket.bucketScope == BucketScope.onetime?
                             InkWell(
                               onTap: () {
                                 if (singleBucketModal.isEditing) {
@@ -112,10 +113,14 @@ class BucketDetailsScreen extends StatelessWidget {
                                 }
                               },
                               child: IconTextWidget(
-                                  iconData: Icons.calendar_month,
+                                  iconData: Icons.calendar_today,
                                   text:
                                       "${singleBucketModal.activeSingleBucket.deadline.year}/${singleBucketModal.activeSingleBucket.deadline.month}/${singleBucketModal.activeSingleBucket.deadline.day}"),
-                            ),
+                            ):Column(children: [
+                              CustomText(text: "${singleBucketModal.activeSingleBucket.streak}", style: Theme.of(context).textTheme.displayLarge!.merge(TextStyle(color: Theme.of(context).secondaryHeaderColor)),),
+                              CustomText(text: AppLocalizations.of(context).streak, style: Theme.of(context).textTheme.bodyMedium,),
+                            ]),
+
                             SizedBox(width: Sizes.screenWidth(context) * 0.2),
                             Expanded(
                               child: InkWell(

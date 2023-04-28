@@ -57,8 +57,12 @@ class PdfService extends ChangeNotifier {
                       const pw.TextStyle(fontSize: 16, color: PdfColors.black),
                 ),
                 pw.SizedBox(width: 0.5 * PdfPageFormat.cm),
-                pw.Text(
+              bucket.bucketScope == BucketScope.onetime?  pw.Text(
                   'Deadline: ${bucket.deadline.year}/${bucket.deadline.month}/${bucket.deadline.day}',
+                  style:
+                      const pw.TextStyle(fontSize: 16, color: PdfColors.black),
+                ):pw.Text(
+                  'Streak: ${bucket.streak} Days',
                   style:
                       const pw.TextStyle(fontSize: 16, color: PdfColors.black),
                 ),

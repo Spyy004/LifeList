@@ -6,17 +6,59 @@ class BucketListService extends ChangeNotifier {
   List<Bucket?> buckets = [];
   List<Bucket?> filteredBuckets = [];
   int currentAction = 0;
-  BucketScope selectedScope = BucketScope.onetime;
+  BucketScope selectedScope = BucketScope.all;
   bool isScopeSelected = false;
   Future<void> getAllBuckets() async {
     if (currentAction == 0) {
       buckets = await getBucketsFromDB();
       buckets = buckets.whereType<Bucket>().toList();
       filteredBuckets = buckets;
-      filteredBuckets.sort((a, b) => a!.compareTo(b!));
       currentAction = 1;
       notifyListeners();
     }
+    measureTimeLeft();
+    sortBuckets(filteredBuckets);
+  }
+
+  void sortBuckets(List<Bucket?> buckets) {
+    buckets.sort((a, b) {
+      if (a?.bucketScope == BucketScope.daily &&
+          !a!.isCompleted &&
+          b?.bucketScope != BucketScope.daily) {
+        return -1;
+      } else if (a!.bucketScope == BucketScope.onetime &&
+          b!.bucketScope == BucketScope.daily) {
+        return -1;
+      } else if (a.bucketScope == BucketScope.daily &&
+          a.isCompleted &&
+          b!.isCompleted &&
+          b.bucketScope != BucketScope.daily) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  measureTimeLeft() {
+    filteredBuckets.forEach((element) {
+        if(element!.isCompleted){
+          element.timeLeft = "Done";
+          return;
+        }
+      if(element.bucketScope == BucketScope.onetime){
+        if (element.deadline.isBefore(DateTime.now())) {
+          element.timeLeft = "Expired";
+          return;
+      }
+      }
+      Duration difference = element.deadline.difference(DateTime.now());
+      if (difference.inDays > 0) {
+        element.timeLeft = "${difference.inDays.toString()} days left";
+        return;
+      }
+      element.timeLeft = "${difference.inHours.toString()} hours left";
+    });
   }
 
   deleteBucket(Bucket bucket) async {
@@ -58,12 +100,14 @@ class BucketListService extends ChangeNotifier {
 
   toggleScope(scope) {
     selectedScope = scope;
-    isScopeSelected = true;
+    isScopeSelected = !(BucketScope.all == scope);
     notifyListeners();
   }
 
   fetchBucketsByScope() {
     if (!isScopeSelected) {
+      filteredBuckets = buckets;
+      notifyListeners();
       return;
     }
     filteredBuckets = buckets.where((element) {

@@ -18,12 +18,16 @@ class CreateBucketScreen extends StatelessWidget {
   Bucket tempBucket = Bucket();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Consumer<CreateBucketService>(
+    return WillPopScope(
+      onWillPop: () {
+        navigationService.navigatePop(context);
+        return Future.value(true);
+      },
+      child: SafeArea(
+          child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
+        resizeToAvoidBottomInset: false,
+        body: Consumer<CreateBucketService>(
           builder: (context, bucketModel, child) => FutureBuilder<void>(
               future: bucketModel.setActiveSingleBucket(tempBucket),
               builder: (context, snapshot) {
@@ -253,19 +257,25 @@ class CreateBucketScreen extends StatelessWidget {
                                 );
                               },
                             )),
-                        ListTile(
-                          title: CustomText(
-                              text: AppLocalizations.of(context).addDeadline,
-                              style: Theme.of(context).textTheme.bodyLarge),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.calendar_today),
-                            onPressed: () {
-                              bucketModel.setActiveBucketDeadlineDate(context);
-                            },
-                          ),
-                          subtitle: Text(
-                              "${bucketModel.activeSingleBucket.deadline.year}/${bucketModel.activeSingleBucket.deadline.month}/${bucketModel.activeSingleBucket.deadline.day}"),
-                        ),
+                        bucketModel.activeSingleBucket.bucketScope ==
+                                BucketScope.onetime
+                            ? ListTile(
+                                title: CustomText(
+                                    text: AppLocalizations.of(context)
+                                        .addDeadline,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.calendar_today),
+                                  onPressed: () {
+                                    bucketModel
+                                        .setActiveBucketDeadlineDate(context);
+                                  },
+                                ),
+                                subtitle: Text(
+                                    "${bucketModel.activeSingleBucket.deadline.year}/${bucketModel.activeSingleBucket.deadline.month}/${bucketModel.activeSingleBucket.deadline.day}"),
+                              )
+                            : Container(),
                         SizedBox(
                           height: 0.02 * Sizes.screenHeight(context),
                         ),
@@ -320,7 +330,7 @@ class CreateBucketScreen extends StatelessWidget {
                 );
               }),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

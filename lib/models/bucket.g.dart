@@ -49,13 +49,23 @@ const BucketSchema = CollectionSchema(
       name: r'name',
       type: IsarType.string,
     ),
-    r'tasks': PropertySchema(
+    r'streak': PropertySchema(
       id: 6,
+      name: r'streak',
+      type: IsarType.long,
+    ),
+    r'tasks': PropertySchema(
+      id: 7,
       name: r'tasks',
       type: IsarType.longList,
     ),
+    r'timeLeft': PropertySchema(
+      id: 8,
+      name: r'timeLeft',
+      type: IsarType.string,
+    ),
     r'updatedAt': PropertySchema(
-      id: 7,
+      id: 9,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -83,6 +93,7 @@ int _bucketEstimateSize(
   bytesCount += 3 + object.description.length * 3;
   bytesCount += 3 + object.name.length * 3;
   bytesCount += 3 + object.tasks.length * 8;
+  bytesCount += 3 + object.timeLeft.length * 3;
   return bytesCount;
 }
 
@@ -98,8 +109,10 @@ void _bucketSerialize(
   writer.writeString(offsets[3], object.description);
   writer.writeBool(offsets[4], object.isCompleted);
   writer.writeString(offsets[5], object.name);
-  writer.writeLongList(offsets[6], object.tasks);
-  writer.writeDateTime(offsets[7], object.updatedAt);
+  writer.writeLong(offsets[6], object.streak);
+  writer.writeLongList(offsets[7], object.tasks);
+  writer.writeString(offsets[8], object.timeLeft);
+  writer.writeDateTime(offsets[9], object.updatedAt);
 }
 
 Bucket _bucketDeserialize(
@@ -120,8 +133,10 @@ Bucket _bucketDeserialize(
   object.id = id;
   object.isCompleted = reader.readBool(offsets[4]);
   object.name = reader.readString(offsets[5]);
-  object.tasks = reader.readLongList(offsets[6]) ?? [];
-  object.updatedAt = reader.readDateTime(offsets[7]);
+  object.streak = reader.readLong(offsets[6]);
+  object.tasks = reader.readLongList(offsets[7]) ?? [];
+  object.timeLeft = reader.readString(offsets[8]);
+  object.updatedAt = reader.readDateTime(offsets[9]);
   return object;
 }
 
@@ -148,8 +163,12 @@ P _bucketDeserializeProp<P>(
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
-      return (reader.readLongList(offset) ?? []) as P;
+      return (reader.readLong(offset)) as P;
     case 7:
+      return (reader.readLongList(offset) ?? []) as P;
+    case 8:
+      return (reader.readString(offset)) as P;
+    case 9:
       return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -179,10 +198,12 @@ const _BucketbucketCategoryValueEnumMap = {
 const _BucketbucketScopeEnumValueMap = {
   'onetime': 0,
   'daily': 1,
+  'all': 2,
 };
 const _BucketbucketScopeValueEnumMap = {
   0: BucketScope.onetime,
   1: BucketScope.daily,
+  2: BucketScope.all,
 };
 
 Id _bucketGetId(Bucket object) {
@@ -769,6 +790,58 @@ extension BucketQueryFilter on QueryBuilder<Bucket, Bucket, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> streakEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'streak',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> streakGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'streak',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> streakLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'streak',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> streakBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'streak',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
   QueryBuilder<Bucket, Bucket, QAfterFilterCondition> tasksElementEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
@@ -906,6 +979,136 @@ extension BucketQueryFilter on QueryBuilder<Bucket, Bucket, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'timeLeft',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'timeLeft',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'timeLeft',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'timeLeft',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'timeLeft',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'timeLeft',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'timeLeft',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'timeLeft',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'timeLeft',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterFilterCondition> timeLeftIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'timeLeft',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<Bucket, Bucket, QAfterFilterCondition> updatedAtEqualTo(
       DateTime value) {
     return QueryBuilder.apply(this, (query) {
@@ -1037,6 +1240,30 @@ extension BucketQuerySortBy on QueryBuilder<Bucket, Bucket, QSortBy> {
     });
   }
 
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByStreak() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streak', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByStreakDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streak', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByTimeLeft() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeLeft', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByTimeLeftDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeLeft', Sort.desc);
+    });
+  }
+
   QueryBuilder<Bucket, Bucket, QAfterSortBy> sortByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
@@ -1135,6 +1362,30 @@ extension BucketQuerySortThenBy on QueryBuilder<Bucket, Bucket, QSortThenBy> {
     });
   }
 
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByStreak() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streak', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByStreakDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'streak', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByTimeLeft() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeLeft', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByTimeLeftDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'timeLeft', Sort.desc);
+    });
+  }
+
   QueryBuilder<Bucket, Bucket, QAfterSortBy> thenByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
@@ -1187,9 +1438,22 @@ extension BucketQueryWhereDistinct on QueryBuilder<Bucket, Bucket, QDistinct> {
     });
   }
 
+  QueryBuilder<Bucket, Bucket, QDistinct> distinctByStreak() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'streak');
+    });
+  }
+
   QueryBuilder<Bucket, Bucket, QDistinct> distinctByTasks() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'tasks');
+    });
+  }
+
+  QueryBuilder<Bucket, Bucket, QDistinct> distinctByTimeLeft(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'timeLeft', caseSensitive: caseSensitive);
     });
   }
 
@@ -1244,9 +1508,21 @@ extension BucketQueryProperty on QueryBuilder<Bucket, Bucket, QQueryProperty> {
     });
   }
 
+  QueryBuilder<Bucket, int, QQueryOperations> streakProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'streak');
+    });
+  }
+
   QueryBuilder<Bucket, List<int>, QQueryOperations> tasksProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'tasks');
+    });
+  }
+
+  QueryBuilder<Bucket, String, QQueryOperations> timeLeftProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'timeLeft');
     });
   }
 

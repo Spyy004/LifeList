@@ -33,7 +33,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title: const Text('Feedback Form'),
+        title:  Text(AppLocalizations.of(context).feedbackForm),
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -53,7 +53,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
+                    return AppLocalizations.of(context).pleasenteratitle;
                   }
                   return null;
                 },
@@ -69,7 +69,7 @@ class _FeedbackFormState extends State<FeedbackForm> {
                 ),
                 validator: (value) {
                   if (value == null || value.length < 10) {
-                    return 'Please enter a description of at least 10 characters long';
+                    return AppLocalizations.of(context).pleaseenteradescriptionofatleastencharacterslong;
                   }
                   return null;
                 },

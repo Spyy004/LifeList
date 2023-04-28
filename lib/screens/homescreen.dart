@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/constants/index.dart';
+import 'package:lifelist/models/bucket.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                                                 (context, bucketModel, child) =>
                                                     Column(children: [
                                               CustomText(
-                                                text: 'Select Scope',
+                                                text: AppLocalizations.of(context).selectscope,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyLarge,
@@ -89,16 +90,9 @@ class HomeScreen extends StatelessWidget {
                                                               scopes[index]],
                                                       groupValue: true,
                                                       onChanged: (value) {
-                                                        if (scopes[index] ==
-                                                            'All') {
-                                                          bucketModel
-                                                              .resetScopeFilter();
-                                                        }
-                                                        else{
                                                         bucketModel.toggleScope(
                                                             stringToBucketScope[
                                                                 scopes[index]]);
-                                                        }
                                                       },
                                                     ),
                                                   );
@@ -332,6 +326,7 @@ class HomeScreen extends StatelessWidget {
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
+                                  mainAxisSpacing: 20,
                                 ),
                                 delegate: SliverChildBuilderDelegate(
                                     childCount:
@@ -408,64 +403,117 @@ class HomeScreen extends StatelessWidget {
                                               },
                                             );
                                           },
-                                          child: CustomCard(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context, SINGLE_BUCKET,
-                                                  arguments: {
-                                                    NAME_ARGS: bucketModel
-                                                        .filteredBuckets[index]
-                                                  });
-                                            },
-                                            elevation: 5,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            borderRadius: 20,
-                                            borderColor: bucketModel
-                                                    .filteredBuckets[index]!
-                                                    .isCompleted
-                                                ? Theme.of(context)
-                                                    .secondaryHeaderColor
-                                                : Colors.grey,
-                                            borderWidth: 0.5,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Center(
-                                                  child: CustomText(
-                                                    text:
-                                                        '${bucketModel.filteredBuckets[index]?.name}',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .displaySmall,
-                                                  ),
+                                          child: Stack(
+                                            children: [
+                                              CustomCard(
+                                                onTap: () {
+                                                  bucketModel.toggleAction();
+                                                  Navigator.pushNamed(
+                                                      context, SINGLE_BUCKET,
+                                                      arguments: {
+                                                        NAME_ARGS: bucketModel
+                                                                .filteredBuckets[
+                                                            index]
+                                                      });
+                                                },
+                                                elevation: 5,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                borderRadius: 20,
+                                                borderColor: bucketModel
+                                                        .filteredBuckets[index]!
+                                                        .isCompleted
+                                                    ? Theme.of(context)
+                                                        .secondaryHeaderColor
+                                                    : Colors.grey,
+                                                borderWidth: 0.5,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Center(
+                                                      child: CustomText(
+                                                        text:
+                                                            '${bucketModel.filteredBuckets[index]?.name}',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .displaySmall,
+                                                      ),
+                                                    ),
+                                                    CustomText(
+                                                      text: bucketModel
+                                                          .filteredBuckets[
+                                                              index]!
+                                                          .description,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 0.02 *
+                                                          Sizes.screenHeight(
+                                                              context),
+                                                    ),
+                                                    Center(
+                                                      child: Chip(
+                                                        visualDensity:
+                                                            VisualDensity
+                                                                .compact,
+                                                        backgroundColor: Theme
+                                                                .of(context)
+                                                            .secondaryHeaderColor,
+                                                        label: bucketModel
+                                                                    .filteredBuckets[
+                                                                        index]!
+                                                                    .bucketScope ==
+                                                                BucketScope
+                                                                    .daily
+                                                            ? CustomText(
+                                                                text: bucketModel
+                                                                        .filteredBuckets[
+                                                                            index]!
+                                                                        .isCompleted
+                                                                    ? "${bucketModel.filteredBuckets[index]!.streak} Days Streak 🔥"
+                                                                    : "${bucketModel.filteredBuckets[index]!.timeLeft}",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              )
+                                                            : CustomText(
+                                                                text: bucketModel
+                                                                        .filteredBuckets[
+                                                                            index]!
+                                                                        .isCompleted
+                                                                    ? "${bucketModel.filteredBuckets[index]!.timeLeft} 🏆"
+                                                                    : "${bucketModel.filteredBuckets[index]!.timeLeft}",
+                                                                style: Theme.of(
+                                                                        context)
+                                                                    .textTheme
+                                                                    .bodyMedium,
+                                                              ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                                CustomText(
-                                                  text: bucketModel
-                                                      .filteredBuckets[index]!
-                                                      .description,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium,
-                                                ),
-                                                SizedBox(
-                                                  height: 0.02 *
-                                                      Sizes.screenHeight(
-                                                          context),
-                                                ),
-                                                Icon(
-                                                  categoryMap[bucketModel
-                                                      .filteredBuckets[index]!
-                                                      .bucketCategory]!,
+                                              ),
+                                              Positioned(
+                                                left: 7,
+                                                top: -2,
+                                                child: Container(
                                                   color: Theme.of(context)
-                                                      .secondaryHeaderColor,
-                                                  size: 30,
+                                                      .primaryColor,
+                                                  child: Text(
+                                                      bucketScopeToString[
+                                                          bucketModel
+                                                              .filteredBuckets[
+                                                                  index]!
+                                                              .bucketScope]!),
                                                 ),
-                                              ],
-                                            ),
+                                              )
+                                            ],
                                           ),
                                         )),
                               )

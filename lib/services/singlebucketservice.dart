@@ -58,6 +58,13 @@ class BucketService extends ChangeNotifier {
 
   changeCurrentBucketStatus() {
     activeSingleBucket.isCompleted = !activeSingleBucket.isCompleted;
+    if (activeSingleBucket.bucketScope == BucketScope.daily &&
+        activeSingleBucket.isCompleted) {
+      activeSingleBucket.streak++;
+    } else if (activeSingleBucket.bucketScope == BucketScope.daily &&
+        !activeSingleBucket.isCompleted) {
+      activeSingleBucket.streak--;
+    }
     notifyListeners();
   }
 
@@ -85,10 +92,10 @@ class BucketService extends ChangeNotifier {
 
   void editTaskInActiveBucket(int? taskId, String taskName) {
     if (activeBucketTasks.isEmpty) return;
-    activeBucketTasks[
-            activeBucketTasks.indexWhere((element) => taskId == element.id && element.name == taskName)]
-        .isComplete = !activeBucketTasks[
-            activeBucketTasks.indexWhere((element) => taskId == element.id && element.name == taskName)]
+    activeBucketTasks[activeBucketTasks.indexWhere(
+            (element) => taskId == element.id && element.name == taskName)]
+        .isComplete = !activeBucketTasks[activeBucketTasks.indexWhere(
+            (element) => taskId == element.id && element.name == taskName)]
         .isComplete;
   }
 
@@ -117,7 +124,13 @@ class BucketService extends ChangeNotifier {
     activeSingleBucket.bucketCategory = getBucketCategoryName(text)!;
     notifyListeners();
   }
-  
+
+  void changeStreak() {
+    if (activeSingleBucket.bucketScope == BucketScope.daily) {
+      activeSingleBucket.streak++;
+    }
+  }
+
   BucketCategory? getBucketCategoryName(String text) {
     return stringToBucketCategory[text];
   }

@@ -71,5 +71,11 @@
   "filter":"Filtrar",
   "reset":"Reiniciar",
   "addToCalendar":"Añadir al calendario",
-  "send":"Enviar"
+  "send":"Enviar",
+  "feedbackForm": "Formulario de retroalimentación",
+"pleasenteratitle": "Por favor ingrese un título",
+"pleaseenteradescriptionofatleastencharacterslong": "Por favor ingrese una descripción de al menos 10 caracteres",
+"selectscope": "Seleccionar alcance",
+"submitFeedback": "Enviar retroalimentación",
+"streak": "Racha"
 }

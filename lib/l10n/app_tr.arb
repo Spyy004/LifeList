@@ -70,5 +70,11 @@
   "filter":"Filtrele",
   "reset":"Sıfırla",
   "addToCalendar":"Takvime Ekle",
-  "send":"Göndermek"
+  "send":"Göndermek",
+  "feedbackForm": "Geribildirim Formu",
+"pleasenteratitle": "Lütfen bir başlık girin",
+"pleaseenteradescriptionofatleastencharacterslong": "Lütfen en az 10 karakter uzunluğunda bir açıklama girin",
+"selectscope": "Kapsam Seçin",
+"submitFeedback": "Geribildirim Gönder",
+"streak": "Seri"
 }

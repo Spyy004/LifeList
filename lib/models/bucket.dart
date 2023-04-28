@@ -13,8 +13,10 @@ class Bucket {
   List<int> tasks = List.empty(growable: true);
   DateTime deadline = DateTime.now();
   DateTime updatedAt = DateTime.now();
-  @enumerated BucketScope bucketScope = BucketScope.onetime;
-
+  @enumerated
+  BucketScope bucketScope = BucketScope.onetime;
+  int streak = 0;
+  String timeLeft = "0";
 
   int compareTo(Bucket other) {
     return deadline.compareTo(other.deadline);
@@ -32,8 +34,4 @@ enum BucketCategory {
   relationships,
 }
 
-enum BucketScope {
-  onetime,
-  daily,
-  all
-}
+enum BucketScope { onetime, daily, all }

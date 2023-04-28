@@ -70,5 +70,11 @@
 "filter":"Filtre",
 "reset":"Réinitialiser",
 "addToCalendar":"Ajouter au calendrier",
-"send":"Envoyer"
+"send":"Envoyer",
+"feedbackForm": "Formulaire de Commentaires",
+"pleasenteratitle": "Veuillez saisir un titre",
+"pleaseenteradescriptionofatleastencharacterslong": "Veuillez saisir une description d'au moins 10 caractères",
+"selectscope": "Sélectionner la portée",
+"submitFeedback": "Soumettre les commentaires",
+"streak": "Série"
 }

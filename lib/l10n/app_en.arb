@@ -286,5 +286,29 @@
   "send":"Send",
   "@home": {
     "description": "Home"
+  },
+  "feedbackForm":"Feedback Form",
+  "@home": {
+    "description": "Home"
+  },
+  "pleasenteratitle":"Please enter a title",
+  "@home": {
+    "description": "Home"
+  },
+  "pleaseenteradescriptionofatleastencharacterslong":"Please enter a description of at least 10 characters long",
+  "@home": {
+    "description": "Home"
+  },
+  "selectscope":"Select Scope",
+   "@home": {
+    "description": "Home"
+  },
+  "submitFeedback":"Submit Feedback",
+  "@home": {
+    "description": "Home"
+  },
+  "streak":"Streak",
+   "@home": {
+    "description": "Home"
   }
 }

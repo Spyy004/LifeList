@@ -14,7 +14,7 @@ class MyDropDownScope extends StatefulWidget {
 
 class _MyDropDownScopeState extends State<MyDropDownScope> {
   late String? selectedItem = null;
-  final List<String> _items = scopes;
+  final List<String> _items = createScopes;
   @override
   Widget build(
     BuildContext context,
@@ -32,7 +32,7 @@ class _MyDropDownScopeState extends State<MyDropDownScope> {
       child: Consumer2<CreateBucketService, BucketService>(
         builder: (context, bucketModel, editBucketModel, child) =>
             DropdownButton<String>(
-          hint: Text('Select Scope', style: Theme.of(context).textTheme.bodyLarge),
+          hint: Text(AppLocalizations.of(context).selectscope, style: Theme.of(context).textTheme.bodyLarge),
           iconEnabledColor: Colors.white,
           value: selectedItem,
           onChanged: (newValue) {

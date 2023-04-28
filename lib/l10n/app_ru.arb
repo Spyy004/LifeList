@@ -70,7 +70,13 @@
 "filter":"Фильтр",
 "reset":"Сброс",
 "addToCalendar":"Добавить в календарь",
-"send":"Отправлять"
+"send":"Отправлять",
+"feedbackForm":"Форма обратной связи",
+"pleasenteratitle":"Пожалуйста, введите заголовок",
+"pleaseenteradescriptionofatleastencharacterslong":"Пожалуйста, введите описание длиной не менее 10 символов",
+"selectscope":"Выберите сферу",
+"submitFeedback":"Отправить отзыв",
+"streak":"Серия"
 }
 
 

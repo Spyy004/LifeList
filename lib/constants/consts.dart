@@ -93,19 +93,17 @@ const categories = [
   'Relationships',
 ];
 
-const scopes = [
-  'Onetime',
-  'Daily',
-  'All'
-];
+const scopes = ['Onetime', 'Daily', 'All'];
 
-Map<String,BucketScope> stringToBucketScope = {
+const createScopes = ['Onetime', 'Daily'];
+
+Map<String, BucketScope> stringToBucketScope = {
   'Onetime': BucketScope.onetime,
   'Daily': BucketScope.daily,
-  'All':BucketScope.all
+  'All': BucketScope.all
 };
 
-Map<BucketScope,String> bucketScopeToString = {
+Map<BucketScope, String> bucketScopeToString = {
   BucketScope.onetime: 'Onetime',
   BucketScope.daily: 'Daily'
 };
@@ -130,4 +128,10 @@ Map<BucketCategory, IconData> categoryMap = {
   BucketCategory.fitness: Icons.fitness_center,
   BucketCategory.personalitydevelopment: Icons.sentiment_satisfied,
   BucketCategory.relationships: Icons.people
+};
+
+Map<BucketScope, IconData> scopeMap = {
+  BucketScope.onetime: Icons.done,
+  BucketScope.daily: Icons.hourglass_bottom,
+  BucketScope.all: Icons.handshake
 };

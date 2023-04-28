@@ -19,7 +19,10 @@ class CreateBucketService extends ChangeNotifier {
     ..id = null
     ..deadline = DateTime.now()
     ..isCompleted = false
-    ..tasks = [];
+    ..tasks = []
+    ..streak = 0
+    
+    ;
 
   clearData() {
     activeSingleBucket = Bucket();
@@ -182,8 +185,9 @@ class CreateBucketService extends ChangeNotifier {
     final Event event = Event(
       title: activeSingleBucket.name,
       description: activeSingleBucket.description,
-      location: 'Event location',
+      location: 'LifeList',
       startDate: activeSingleBucket.deadline,
+      recurrence: activeSingleBucket.bucketScope==BucketScope.daily?Recurrence(frequency: Frequency.daily):null,
       endDate: activeSingleBucket.deadline.add(const Duration(hours: 1)),
     );
     await Add2Calendar.addEvent2Cal(event);
@@ -191,6 +195,9 @@ class CreateBucketService extends ChangeNotifier {
 
   void toggleBucketScope(scope) {
     activeSingleBucket.bucketScope = scope;
+    if (activeSingleBucket.bucketScope == BucketScope.daily) {
+      activeSingleBucket.deadline = DateTime.now().add(Duration(days: 1));
+    }
     notifyListeners();
   }
 }
