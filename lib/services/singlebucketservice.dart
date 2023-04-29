@@ -63,7 +63,9 @@ class BucketService extends ChangeNotifier {
       activeSingleBucket.streak++;
     } else if (activeSingleBucket.bucketScope == BucketScope.daily &&
         !activeSingleBucket.isCompleted) {
-      activeSingleBucket.streak--;
+      if (activeSingleBucket.streak > 0) {
+        activeSingleBucket.streak--;
+      }
     }
     notifyListeners();
   }

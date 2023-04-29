@@ -20,9 +20,7 @@ class CreateBucketService extends ChangeNotifier {
     ..deadline = DateTime.now()
     ..isCompleted = false
     ..tasks = []
-    ..streak = 0
-    
-    ;
+    ..streak = 0;
 
   clearData() {
     activeSingleBucket = Bucket();
@@ -51,7 +49,8 @@ class CreateBucketService extends ChangeNotifier {
       ..isCompleted = activeSingleBucket.isCompleted
       ..deadline = activeSingleBucket.deadline
       ..tasks = taskIds
-      ..bucketScope = activeSingleBucket.bucketScope;
+      ..bucketScope = activeSingleBucket.bucketScope
+      ..streak = activeSingleBucket.isCompleted ? 1 : 0;
     int bucketId = await addBucketToDB(bucket);
     if (bucketId == -1) {
       Fluttertoast.showToast(
@@ -187,7 +186,9 @@ class CreateBucketService extends ChangeNotifier {
       description: activeSingleBucket.description,
       location: 'LifeList',
       startDate: activeSingleBucket.deadline,
-      recurrence: activeSingleBucket.bucketScope==BucketScope.daily?Recurrence(frequency: Frequency.daily):null,
+      recurrence: activeSingleBucket.bucketScope == BucketScope.daily
+          ? Recurrence(frequency: Frequency.daily)
+          : null,
       endDate: activeSingleBucket.deadline.add(const Duration(hours: 1)),
     );
     await Add2Calendar.addEvent2Cal(event);
