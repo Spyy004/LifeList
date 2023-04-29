@@ -21,7 +21,8 @@ LifeList is an offline bucket list app that helps users plan, track, and achieve
 - [x] Filter Buckets on category and completion status
 - [x] Sync Buckets with Google Calendar
 - [x] Download Buckets as PDF
-- [ ] Categorise Bucket List based on 'Scope'
+- [x] Categorise Bucket List based on 'Scope'
+- [x] Streak feature to keep users motivated to do daily buckets
 - [ ] Edit Profile details
 - [ ] Edit Tasks while editing Buckets
 - [ ] Introduce 'template Buckets' which users can clone in their own account
