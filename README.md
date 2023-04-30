@@ -49,7 +49,8 @@ To use LifeList, follow these steps:
 
 1.  Clone the repository to your local machine using `git clone https://github.com/Spyy004/lifelist.git`
 2.  Install the required dependencies by running `flutter pub get` in the project directory.
-3.  Run the app on an emulator or physical device using `flutter run --debug` command.
+3.  Run the `flutter gen-l10n` command to configure translations in the app.
+4.  Run the app on an emulator or physical device using `flutter run --debug` command.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
