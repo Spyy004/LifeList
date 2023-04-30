@@ -57,7 +57,7 @@ To use LifeList, follow these steps:
 Screenshots (Light & Dark Mode)
 --------
 
-![home](https://user-images.githubusercontent.com/54628130/233852515-4ab99c93-3717-4383-a5d5-2dedd1bb5e7a.jpg)
+![home](https://user-images.githubusercontent.com/54628130/235357468-d7e45462-4c98-4d2a-995b-85b7596a41d0.jpg)
 ![create](https://user-images.githubusercontent.com/54628130/233852546-d7580b66-7572-464d-99c8-e89eaf1ca2b0.jpg)
 ![vie](https://user-images.githubusercontent.com/54628130/233852554-6c908df0-5bb3-47c7-82dc-50d3fbd42890.jpg)
 ![profile](https://user-images.githubusercontent.com/54628130/233852198-e549ff27-52dd-4605-a6bf-f4556a01ccaf.jpg)
