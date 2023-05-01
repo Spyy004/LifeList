@@ -33,69 +33,72 @@ class _FeedbackFormState extends State<FeedbackForm> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title:  Text(AppLocalizations.of(context).feedbackForm),
+        title: Text(AppLocalizations.of(context).feedbackForm),
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TextFormField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context).title,
-                  labelStyle: Theme.of(context).textTheme.bodyMedium,
-                  border: const OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppLocalizations.of(context).pleasenteratitle;
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16.0),
-              TextFormField(
-                controller: _descriptionController,
-                maxLines: 5,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context).description,
-                  labelStyle: Theme.of(context).textTheme.bodyMedium,
-                  border: const OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.length < 10) {
-                    return AppLocalizations.of(context).pleaseenteradescriptionofatleastencharacterslong;
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: Sizes.screenHeight(context)*0.5),
-              SizedBox(
-                      width: Sizes.screenWidth(context),
-                            height: Sizes.screenHeight(context) * 0.05,
-                child: NeoPopButton(
-                  onTapDown: () async {},
-                  bottomShadowColor: Theme.of(context).secondaryHeaderColor,
-                  rightShadowColor: Theme.of(context).secondaryHeaderColor,
-                  animationDuration: const Duration(milliseconds: 300),
-                  depth: 5,
-                  onTapUp: () {
-                    _submitForm();
-                  },
-                  color: Theme.of(context).canvasColor,
-                  shadowColor: Theme.of(context).secondaryHeaderColor,
-                  child: CustomText(
-                    style: Theme.of(context).textTheme.labelLarge,
-                    text: AppLocalizations.of(context).send,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextFormField(
+                  controller: _titleController,
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context).title,
+                    labelStyle: Theme.of(context).textTheme.bodyMedium,
+                    border: const OutlineInputBorder(),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppLocalizations.of(context).pleasenteratitle;
+                    }
+                    return null;
+                  },
                 ),
-              )
-            ],
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: _descriptionController,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context).description,
+                    labelStyle: Theme.of(context).textTheme.bodyMedium,
+                    border: const OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.length < 10) {
+                      return AppLocalizations.of(context)
+                          .pleaseenteradescriptionofatleastencharacterslong;
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: Sizes.screenHeight(context) * 0.5),
+                SizedBox(
+                  width: Sizes.screenWidth(context),
+                  height: Sizes.screenHeight(context) * 0.05,
+                  child: NeoPopButton(
+                    onTapDown: () async {},
+                    bottomShadowColor: Theme.of(context).secondaryHeaderColor,
+                    rightShadowColor: Theme.of(context).secondaryHeaderColor,
+                    animationDuration: const Duration(milliseconds: 300),
+                    depth: 5,
+                    onTapUp: () {
+                      _submitForm();
+                    },
+                    color: Theme.of(context).canvasColor,
+                    shadowColor: Theme.of(context).secondaryHeaderColor,
+                    child: CustomText(
+                      style: Theme.of(context).textTheme.labelLarge,
+                      text: AppLocalizations.of(context).send,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
