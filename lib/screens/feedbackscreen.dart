@@ -76,28 +76,30 @@ class _FeedbackFormState extends State<FeedbackForm> {
                     return null;
                   },
                 ),
-                SizedBox(height: Sizes.screenHeight(context) * 0.5),
-                SizedBox(
-                  width: Sizes.screenWidth(context),
-                  height: Sizes.screenHeight(context) * 0.05,
-                  child: NeoPopButton(
-                    onTapDown: () async {},
-                    bottomShadowColor: Theme.of(context).secondaryHeaderColor,
-                    rightShadowColor: Theme.of(context).secondaryHeaderColor,
-                    animationDuration: const Duration(milliseconds: 300),
-                    depth: 5,
-                    onTapUp: () {
-                      _submitForm();
-                    },
-                    color: Theme.of(context).canvasColor,
-                    shadowColor: Theme.of(context).secondaryHeaderColor,
-                    child: CustomText(
-                      style: Theme.of(context).textTheme.labelLarge,
-                      text: AppLocalizations.of(context).send,
-                    ),
-                  ),
-                )
               ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 32, bottom: 40),
+        child: SizedBox(
+          width: Sizes.screenWidth(context),
+          height: Sizes.screenHeight(context) * 0.05,
+          child: NeoPopButton(
+            onTapDown: () async {},
+            bottomShadowColor: Theme.of(context).secondaryHeaderColor,
+            rightShadowColor: Theme.of(context).secondaryHeaderColor,
+            animationDuration: const Duration(milliseconds: 300),
+            depth: 5,
+            onTapUp: () {
+              _submitForm();
+            },
+            color: Theme.of(context).canvasColor,
+            shadowColor: Theme.of(context).secondaryHeaderColor,
+            child: CustomText(
+              style: Theme.of(context).textTheme.labelLarge,
+              text: AppLocalizations.of(context).send,
             ),
           ),
         ),
