@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/models/bucket.dart';
+import 'package:lifelist/services/firebaseservice.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -65,7 +66,9 @@ class HomeScreen extends StatelessWidget {
                                                 (context, bucketModel, child) =>
                                                     Column(children: [
                                               CustomText(
-                                                text: AppLocalizations.of(context).selectscope,
+                                                text:
+                                                    AppLocalizations.of(context)
+                                                        .selectscope,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyLarge,
@@ -406,8 +409,9 @@ class HomeScreen extends StatelessWidget {
                                           child: Stack(
                                             children: [
                                               CustomCard(
-                                                onTap: () {
+                                                onTap: () async {
                                                   bucketModel.toggleAction();
+                                                 
                                                   Navigator.pushNamed(
                                                       context, SINGLE_BUCKET,
                                                       arguments: {
@@ -540,7 +544,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Consumer<BucketListService>(
         builder: (context, bucketlist, child) => FloatingActionButton(
           backgroundColor: Theme.of(context).secondaryHeaderColor,
-          onPressed: () {
+          onPressed: () async {
             bucketlist.toggleAction();
             navigationService.navigateNext(context, CREATE_BUCKET);
           },

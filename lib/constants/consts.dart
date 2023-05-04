@@ -16,6 +16,7 @@ const SETTINGS = 'Settings';
 const CREATE_BUCKET = 'CreateBucket';
 const SINGLE_BUCKET = 'SingleBucket';
 const PROFILE = 'ProfilePage';
+const EXPLORE = 'Explore';
 const NAME_ARGS = 'name';
 const LETS_GET_STARTED = "Let's get Started";
 const TRAVEL = 'Travel';
@@ -74,7 +75,8 @@ var routes = <String, WidgetBuilder>{
   Routes.singleBucket: (contex) => BucketDetailsScreen(),
   Routes.profilePage: (context) => const ProfilePage(),
   Routes.settingsPage: (context) => SettingsScreen(),
-  Routes.feedbackPage: (context) => FeedbackForm()
+  Routes.feedbackPage: (context) => FeedbackForm(),
+  Routes.explorePage: (context) => const ExploreScreen(),
 };
 
 DBService dbService = DBService();
@@ -117,7 +119,8 @@ Map<String, BucketCategory> stringToBucketCategory = {
   'Career': BucketCategory.career,
   'Fitness': BucketCategory.fitness,
   'Personality Development': BucketCategory.personalitydevelopment,
-  'Relationships': BucketCategory.relationships
+  'Relationships': BucketCategory.relationships,
+  'travel':BucketCategory.travel
 };
 
 Map<BucketCategory, IconData> categoryMap = {

@@ -1,13 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:lifelist/services/pdfservice.dart';
+import 'package:lifelist/services/singletemplateservice.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   appVersion = packageInfo.version;
   dbService = DBService();
@@ -34,7 +37,8 @@ class LifeList extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CreateBucketService()),
         ChangeNotifierProvider(create: (context) => BottomBarService()),
         ChangeNotifierProvider(create: (context) => FilterService()),
-        ChangeNotifierProvider(create: (context) => PdfService())
+        ChangeNotifierProvider(create: (context) => PdfService()),
+        ChangeNotifierProvider(create: (context) => ExploreService()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

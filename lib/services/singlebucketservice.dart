@@ -51,9 +51,25 @@ class BucketService extends ChangeNotifier {
       return;
     }
     Fluttertoast.showToast(
-        msg: AppLocalizations.of(context).bucketCreatedsuccessfully);
+      msg: AppLocalizations.of(context).bucketCreatedsuccessfully);
 
-    navigationService.navigateReset(context, 'Home');
+    navigationService.navigateReset(context, HOME);
+  }
+
+  addBucketsFromTemplate(
+      Bucket bucket, List<Task> tasks, BuildContext context) async {
+    ;
+    List<int> taskIds = await sendTasksToTaskService(tasks);
+    bucket.tasks = taskIds;
+    int bucketId = await addBucketToDB(bucket);
+   
+    if (bucketId == -1) {
+      Fluttertoast.showToast(
+          // ignore: use_build_context_synchronously
+          msg: AppLocalizations.of(context).bucketCreationFailedtryagainlater);
+      return;
+    }
+    Fluttertoast.showToast(msg: 'Bucket Cloned Successfully');
   }
 
   changeCurrentBucketStatus() {

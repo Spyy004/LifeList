@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class IconTextWidget extends StatelessWidget {
   final IconData? iconData;
   final String text;
-
-  const IconTextWidget({super.key, required this.iconData, required this.text});
+  final double iconSize;
+  const IconTextWidget({super.key, required this.iconData, required this.text, this.iconSize = 30.0});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class IconTextWidget extends StatelessWidget {
       children: [
         Icon(
           iconData,
-          size: 30.0,
+          size: iconSize,
           color: Theme.of(context)
               .secondaryHeaderColor, // Set the size of the icon as needed
         ),

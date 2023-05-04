@@ -5,3 +5,4 @@ export 'createbucketscreen.dart';
 export 'profilescreen.dart';
 export 'settingsscreen.dart';
 export 'singlebucketscreen.dart';
+export 'explorescreen.dart';

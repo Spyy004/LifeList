@@ -36,7 +36,7 @@ class BucketDetailsScreen extends StatelessWidget {
           resizeToAvoidBottomInset: true,
           backgroundColor: Theme.of(context).primaryColor,
           body: SafeArea(
-            child: FutureBuilder<void>(
+            child: FutureBuilder<List<void>>(
                 future: Future.wait([
                   taskService.fetchActiveBucketTaskDetails(
                       bucket!.tasks, bucket),
@@ -62,7 +62,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                     child: CustomText(
                                         text: singleBucketModal
                                             .activeSingleBucket.name
-                                            .capitalize(),
+                                            ,
                                         style: Theme.of(context)
                                             .textTheme
                                             .displayLarge!),
@@ -89,8 +89,7 @@ class BucketDetailsScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         !singleBucketModal.isEditing
                             ? Text(
-                                singleBucketModal.activeSingleBucket.description
-                                    .capitalize(),
+                                singleBucketModal.activeSingleBucket.description,
                                 style: const TextStyle(fontSize: 18),
                               )
                             : CustomTextField(

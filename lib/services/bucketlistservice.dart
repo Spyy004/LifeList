@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/controllers/global_controller.dart';
 import 'package:lifelist/models/bucket.dart';
+import 'package:lifelist/services/firebaseservice.dart';
 
 class BucketListService extends ChangeNotifier {
   List<Bucket?> buckets = [];

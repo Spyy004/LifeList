@@ -69,7 +69,8 @@ class ProfilePage extends StatelessWidget {
                       SizedBox(
                         width: Sizes.screenWidth(context),
                         height: Sizes.screenHeight(context) * 0.05,
-                        child: NeoPopButton(
+                        child: 
+                        NeoPopButton(
                           onTapDown: () {
                             // navigationService.navigateNext(context, SETTINGS);
                           },

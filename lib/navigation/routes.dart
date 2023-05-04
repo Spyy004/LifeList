@@ -7,4 +7,5 @@ class Routes {
   static const rootPage = 'RootPage';
   static const settingsPage = 'Settings';
   static const feedbackPage = 'Feedback';
+  static const explorePage = 'Explore';
 }

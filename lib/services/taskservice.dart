@@ -24,14 +24,15 @@ class TaskService extends ChangeNotifier {
 
   Future<void> fetchActiveBucketTaskDetails(
       List<int> taskIds, Bucket bucket) async {
-    if (fetchStatus == 1) {
-      return;
-    }
+    // if (fetchStatus == 1) {
+    //   return;
+    // }
     tasks = await fetchTasksFromDB(taskIds);
     int doneTasks =
         tasks.where((element) => element!.isComplete == true).length;
-    completionPercentage = (doneTasks / tasks.length) * 100;
-
+    if (tasks.length > 0) {
+      completionPercentage = (doneTasks / tasks.length) * 100;
+    }
     //await bucketService.setActiveSingleBucket(bucket);
   }
 
@@ -64,11 +65,11 @@ class TaskService extends ChangeNotifier {
 
   Future<void> updateSingleTask(Task task) async {
     if (task.id == null) {
-       tasks[
-            tasks.indexWhere((element) => task.id == element!.id && element.name == task.name)]!
-        .isComplete = !tasks[
-       tasks.indexWhere((element) => task.id == element!.id && element.name == task.name)]!
-        .isComplete;
+      tasks[tasks.indexWhere((element) =>
+              task.id == element!.id && element.name == task.name)]!
+          .isComplete = !tasks[tasks.indexWhere((element) =>
+              task.id == element!.id && element.name == task.name)]!
+          .isComplete;
     } else {
       Iterable<Task?> foundTask =
           tasks.where((element) => task.id == element?.id);
