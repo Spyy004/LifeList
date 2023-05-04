@@ -225,7 +225,7 @@ class ExploreScreen extends StatelessWidget {
                                                                                 ),
                                                                                 Center(
                                                                                   child: CustomText(
-                                                                                    text: 'hello dwdlwmcdvsnosinvdl',
+                                                                                    text: '',
                                                                                     // snapshot
                                                                                     //     .data![index]!
                                                                                     //     .description!,
