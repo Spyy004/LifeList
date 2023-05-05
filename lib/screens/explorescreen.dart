@@ -375,7 +375,10 @@ class ExploreScreen extends StatelessWidget {
                                                                         .toString()
                                                                         .capitalize()]],
                                                                     text:
-                                                                        'Travel',
+                                                                        bucketCategoryToString[snapshot
+                                                                        .data![
+                                                                            index]!
+                                                                        .category]!,
                                                                     iconSize:
                                                                         20,
                                                                     // icon:categoryMap[stringToBucketCategory[ snapshot.data![index]!.category.toString().capitalize()]],

@@ -120,7 +120,17 @@ Map<String, BucketCategory> stringToBucketCategory = {
   'Fitness': BucketCategory.fitness,
   'Personality Development': BucketCategory.personalitydevelopment,
   'Relationships': BucketCategory.relationships,
-  'travel':BucketCategory.travel
+  'travel': BucketCategory.travel
+};
+
+Map<BucketCategory, String> bucketCategoryToString = {
+   BucketCategory.travel: 'Travel',
+  BucketCategory.finance: 'Finance',
+  BucketCategory.adventure: 'Adventure',
+  BucketCategory.career: 'Career',
+  BucketCategory.fitness: 'Fitness',
+  BucketCategory.personalitydevelopment: 'Personality Development',
+  BucketCategory.relationships: 'Relationships'
 };
 
 Map<BucketCategory, IconData> categoryMap = {

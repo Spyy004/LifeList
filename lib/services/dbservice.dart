@@ -31,7 +31,7 @@ class DBService {
           element.streak = 0;
         }
         element.isCompleted = false;
-        element.deadline = element.deadline.add(const Duration(days: 1));
+        element.deadline = DateTime.now().add(const Duration(days: 1));
         await editBucketInDB(element);
       }
     });
