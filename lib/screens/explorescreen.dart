@@ -225,7 +225,7 @@ class ExploreScreen extends StatelessWidget {
                                                                                 ),
                                                                                 Center(
                                                                                   child: CustomText(
-                                                                                    text: '',
+                                                                                    text: snapshot.data![index]!.description!,
                                                                                     // snapshot
                                                                                     //     .data![index]!
                                                                                     //     .description!,
@@ -253,7 +253,7 @@ class ExploreScreen extends StatelessWidget {
                                                                                       return ListTile(
                                                                                         title: CustomText(
                                                                                           text: task!,
-                                                                                          style: Theme.of(context).textTheme.displaySmall,
+                                                                                          style: Theme.of(context).textTheme.bodyLarge,
                                                                                         ),
                                                                                       );
                                                                                     }),

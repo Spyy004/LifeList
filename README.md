@@ -25,7 +25,7 @@ LifeList is an offline bucket list app that helps users plan, track, and achieve
 - [x] Streak feature to keep users motivated to do daily buckets
 - [ ] Edit Profile details
 - [ ] Edit Tasks while editing Buckets
-- [ ] Introduce 'template Buckets' which users can clone in their own account
+- [x] Introduce 'template Buckets' which users can clone in their own account
 - [ ] Multi-language Support
     - [x] English
     - [x] Spanish
@@ -35,7 +35,7 @@ LifeList is an offline bucket list app that helps users plan, track, and achieve
     - [x] Turkish
     - [x] Russian
     - [x] Portugese
-    - [ ] Arabic
+    - [x] Arabic
     - [ ] Bengali
 
 See the [open issues](https://github.com/Spyy004/LifeList/issues) for a full list of proposed features (and known issues).
