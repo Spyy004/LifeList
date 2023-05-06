@@ -321,19 +321,21 @@ class ExploreScreen extends StatelessWidget {
                                                                   .center,
                                                           children: [
                                                             Center(
-                                                              child: CustomText(
-                                                                text:
-                                                                    '${snapshot.data![index]!.title}',
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .displayMedium,
-                                                              ),
+                                                              child: Wrap(
+                                                                children: [CustomText(
+                                                                  text:
+                                                                      '${snapshot.data![index]!.title}',
+                                                                  style: Theme.of(
+                                                                          context)
+                                                                      .textTheme
+                                                                      .displayMedium,
+                                                                ),
+                                                          ]),
                                                             ),
                                                             Center(
                                                               child: CustomText(
                                                                 text:
-                                                                    'hello dwdlwmcdvsnosinvdl',
+                                                                    'Some Random Description',
                                                                 // snapshot
                                                                 //     .data![index]!
                                                                 //     .description!,
@@ -375,10 +377,11 @@ class ExploreScreen extends StatelessWidget {
                                                                         .toString()
                                                                         .capitalize()]],
                                                                     text:
-                                                                        bucketCategoryToString[snapshot
+                                                                        snapshot
                                                                         .data![
                                                                             index]!
-                                                                        .category]!,
+                                                                        .category!,
+                                                                       
                                                                     iconSize:
                                                                         20,
                                                                     // icon:categoryMap[stringToBucketCategory[ snapshot.data![index]!.category.toString().capitalize()]],
