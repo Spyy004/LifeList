@@ -318,6 +318,7 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 icon: Icon(Icons.filter_list))
                           ],
+                        
                         ),
                         SliverToBoxAdapter(
                           child: SizedBox(

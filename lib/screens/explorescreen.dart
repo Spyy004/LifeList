@@ -86,6 +86,198 @@ class ExploreScreen extends StatelessWidget {
                                       ],
                                     ),
                                   ),
+                                  actions: [
+                            
+                            IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Consumer2<FilterService,
+                                          ExploreService>(
+                                        builder: (context, filterModel,
+                                                bucket2model, child) =>
+                                            SizedBox(
+                                          height:
+                                              Sizes.screenHeight(context) * 0.9,
+                                          width: Sizes.screenWidth(context),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  CustomText(
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .status,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge,
+                                                  ),
+                                                  ListTile(
+                                                    title: CustomText(
+                                                      text: AppLocalizations.of(
+                                                              context)
+                                                          .completed,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyLarge,
+                                                    ),
+                                                    leading: Checkbox(
+                                                      value: filterModel
+                                                          .currentStatus,
+                                                      activeColor: Theme.of(
+                                                              context)
+                                                          .secondaryHeaderColor,
+                                                      onChanged: (value) {
+                                                        filterModel
+                                                            .toggleStatus(
+                                                                value!);
+                                                      },
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  CustomText(
+                                                    text: AppLocalizations.of(
+                                                            context)
+                                                        .selectCategory,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge,
+                                                  ),
+                                                  ListView.builder(
+                                                    shrinkWrap: true,
+                                                    physics:
+                                                        NeverScrollableScrollPhysics(),
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        categories.length,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      final category =
+                                                          categories[index];
+                                                      return FilterChip(
+                                                        label: Text(category),
+                                                        backgroundColor:
+                                                            Theme.of(context)
+                                                                .primaryColor,
+                                                        selectedColor: Theme.of(
+                                                                context)
+                                                            .secondaryHeaderColor,
+                                                        selected: filterModel
+                                                            .currentCategories
+                                                            .contains(
+                                                                stringToBucketCategory[
+                                                                    category]),
+                                                        onSelected: (selected) {
+                                                          filterModel.toggleCategory(
+                                                              stringToBucketCategory[
+                                                                  category]!);
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      TextButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                          backgroundColor: Theme
+                                                                  .of(context)
+                                                              .secondaryHeaderColor,
+                                                        ),
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                context),
+                                                        child: CustomText(
+                                                          text: AppLocalizations
+                                                                  .of(context)
+                                                              .cancel,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          width: Sizes
+                                                              .paddingSizeLarge),
+                                                      TextButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                          backgroundColor: Theme
+                                                                  .of(context)
+                                                              .secondaryHeaderColor,
+                                                        ),
+                                                        onPressed: () {
+                                                          bucket2model.filterBuckets(
+                                                              filterModel
+                                                                  .currentCategories,
+                                                              filterModel
+                                                                  .currentStatus);
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: CustomText(
+                                                          text: AppLocalizations
+                                                                  .of(context)
+                                                              .filter,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          width: Sizes
+                                                              .paddingSizeLarge),
+                                                      TextButton(
+                                                        style: TextButton
+                                                            .styleFrom(
+                                                          backgroundColor: Theme
+                                                                  .of(context)
+                                                              .secondaryHeaderColor,
+                                                        ),
+                                                        onPressed: () {
+                                                          filterModel
+                                                              .resetFilters();
+                                                          bucket2model
+                                                              .resetFilter();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: CustomText(
+                                                          text: AppLocalizations
+                                                                  .of(context)
+                                                              .reset,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                icon: Icon(Icons.filter_list))
+                          ],
+                        
                                 ),
                                 SliverToBoxAdapter(
                                   child: SizedBox(
@@ -221,14 +413,14 @@ class ExploreScreen extends StatelessWidget {
                                                                                 SizedBox(
                                                                                   height: Sizes.paddingSizeSmall,
                                                                                 ),
-                                                                                Center(
-                                                                                  child: CustomText(
+                                                                                Wrap(
+                                                                                  children:[ CustomText(
                                                                                     text: snapshot.data![index]!.description!,
                                                                                     // snapshot
                                                                                     //     .data![index]!
                                                                                     //     .description!,
                                                                                     style: Theme.of(context).textTheme.bodyLarge,
-                                                                                  ),
+                                                                                  ),]
                                                                                 ),
                                                                                 Divider(),
                                                                                 Center(
@@ -333,10 +525,10 @@ class ExploreScreen extends StatelessWidget {
                                                             Center(
                                                               child: CustomText(
                                                                 text:
-                                                                    'Some Random Description',
-                                                                // snapshot
-                                                                //     .data![index]!
-                                                                //     .description!,
+                                                                    // 'Some Random Description',
+                                                                snapshot
+                                                                    .data![index]!
+                                                                    .description!,
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme
@@ -373,7 +565,7 @@ class ExploreScreen extends StatelessWidget {
                                                                             index]!
                                                                         .category
                                                                         .toString()
-                                                                        .capitalize()]],
+                                                                        ]],
                                                                     text:
                                                                         snapshot
                                                                         .data![
@@ -417,11 +609,9 @@ class ExploreScreen extends StatelessWidget {
                                             width: 200,
                                             child: EmptyWidget(
                                               title:
-                                                  AppLocalizations.of(context)
-                                                      .zeroBucketListfound,
-                                              subTitle: AppLocalizations.of(
-                                                      context)
-                                                  .letscreatesomebucketLists,
+                                                  'No templates created yet',
+                                              subTitle: 
+                                              'We are working on it!',
                                               hideBackgroundAnimation: true,
                                             ),
                                           ),
