@@ -76,5 +76,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "10文字以上の説明を入力してください",
 "selectscope": "範囲を選択",
 "submitFeedback": "フィードバックを送信",
-"streak": "連続日数"
+"streak": "連続日数",
+"explore": "探検",
+  "cloneBucket": "バケットを複製する",
+  "sorryNoTemplatesFound": "申し訳ありません、テンプレートが見つかりません",
+  "weAreWorkingOnIt": "現在取り組んでいます",
+  "bucketClonedSuccessfully": "バケットが正常に複製されました"
 }

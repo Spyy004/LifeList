@@ -75,5 +75,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "कृपया कम से कम 10 वर्णों का विवरण दर्ज करें",
 "selectscope": "स्कोप चुनें",
 "submitFeedback": "फ़ीडबैक जमा करें",
-"streak": "स्ट्रीक"
+"streak": "स्ट्रीक",
+"explore": "खोजें",
+  "cloneBucket": "क्लोन बकेट",
+  "sorryNoTemplatesFound": "क्षमा करें, कोई टेम्पलेट नहीं मिला",
+  "weAreWorkingOnIt": "हम इस पर काम कर रहे हैं",
+  "bucketClonedSuccessfully": "बकेट सफलतापूर्वक क्लोन हुआ।"
 }

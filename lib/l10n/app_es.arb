@@ -77,5 +77,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "Por favor ingrese una descripción de al menos 10 caracteres",
 "selectscope": "Seleccionar alcance",
 "submitFeedback": "Enviar retroalimentación",
-"streak": "Racha"
+"streak": "Racha",
+"explore": "Explorar",
+  "cloneBucket": "Clonar Cubo",
+  "sorryNoTemplatesFound": "Lo siento, no se encontraron plantillas",
+  "weAreWorkingOnIt": "Estamos trabajando en ello",
+  "bucketClonedSuccessfully": "Cubo clonado exitosamente"
 }

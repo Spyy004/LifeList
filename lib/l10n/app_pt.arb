@@ -76,5 +76,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "Por favor, insira uma descrição com pelo menos 10 caracteres",
 "selectscope": "Selecione o escopo",
 "submitFeedback": "Enviar feedback",
-"streak": "Sequência"
+"streak": "Sequência",
+"explore": "Explorar",
+  "cloneBucket": "Clonar Bucket",
+  "sorryNoTemplatesFound": "Desculpe, nenhum modelo encontrado",
+  "weAreWorkingOnIt": "Estamos trabalhando nisso",
+  "bucketClonedSuccessfully": "Bucket clonado com sucesso"
 }

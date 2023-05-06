@@ -77,5 +77,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "Bitte geben Sie eine Beschreibung mit mindestens 10 Zeichen ein",
 "selectscope": "Auswählen des Bereichs",
 "submitFeedback": "Feedback absenden",
-"streak": "Serie"
+"streak": "Serie",
+"explore":"Erkunden",
+  "cloneBucket":"Eimer klonen",
+  "sorryNoTemplatesFound" : "Entschuldigung, es wurden keine Vorlagen gefunden",
+  "weAreWorkingOnIt" : "Wir arbeiten daran",
+  "bucketClonedSuccessfully": "Eimer erfolgreich geklont"
 }

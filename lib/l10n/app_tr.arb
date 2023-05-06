@@ -76,5 +76,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "Lütfen en az 10 karakter uzunluğunda bir açıklama girin",
 "selectscope": "Kapsam Seçin",
 "submitFeedback": "Geribildirim Gönder",
-"streak": "Seri"
+"streak": "Seri",
+"explore": "Keşfet",
+  "cloneBucket": "Kova Klonla",
+  "sorryNoTemplatesFound": "Maalesef şablon bulunamadı",
+  "weAreWorkingOnIt": "Çalışıyoruz",
+  "bucketClonedSuccessfully": "Kova başarıyla klonlandı"
 }
