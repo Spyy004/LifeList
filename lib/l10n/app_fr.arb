@@ -76,5 +76,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "Veuillez saisir une description d'au moins 10 caractères",
 "selectscope": "Sélectionner la portée",
 "submitFeedback": "Soumettre les commentaires",
-"streak": "Série"
+"streak": "Série",
+"explore": "Explorer",
+  "cloneBucket": "Cloner le Cubo",
+  "sorryNoTemplatesFound": "Désolé, aucun modèle trouvé",
+  "weAreWorkingOnIt": "Nous travaillons dessus",
+  "bucketClonedSuccessfully": "Le cubo a été cloné avec succès"
 }

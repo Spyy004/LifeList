@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lifelist/constants/sizes.dart';
-import 'package:lifelist/controllers/global_controller.dart';
 import 'package:lifelist/extensions/string_extensions.dart';
 import 'package:lifelist/models/template.dart';
 import 'package:lifelist/neopop/widgets/buttons/neopop_button/neopop_button.dart';
@@ -71,7 +69,7 @@ class ExploreScreen extends StatelessWidget {
                                   expandedHeight: 70,
                                   elevation: 0,
                                   title: CustomText(
-                                    text: 'Explore',
+                                    text: AppLocalizations.of(context).explore,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayLarge,
@@ -291,7 +289,7 @@ class ExploreScreen extends StatelessWidget {
                                                                                   child: Center(
                                                                                     child: CustomText(
                                                                                       style: Theme.of(context).textTheme.labelLarge,
-                                                                                      text: 'Clone Bucket',
+                                                                                      text: AppLocalizations.of(context).cloneBucket,
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -432,10 +430,10 @@ class ExploreScreen extends StatelessWidget {
                               ]),
                         ));
               }
-              return const Center(
+              return Center(
                   child: EmptyWidget(
-                title: 'Sorry, No templates found',
-                subTitle: 'We are working on it',
+                title: AppLocalizations.of(context).sorryNoTemplatesFound,
+                subTitle: AppLocalizations.of(context).weAreWorkingOnIt,
                 hideBackgroundAnimation: true,
               ));
             }),

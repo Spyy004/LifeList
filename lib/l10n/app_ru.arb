@@ -76,7 +76,12 @@
 "pleaseenteradescriptionofatleastencharacterslong":"Пожалуйста, введите описание длиной не менее 10 символов",
 "selectscope":"Выберите сферу",
 "submitFeedback":"Отправить отзыв",
-"streak":"Серия"
+"streak":"Серия",
+"explore": "Исследовать",
+  "cloneBucket": "Клонировать ведро",
+  "sorryNoTemplatesFound": "Извините, шаблоны не найдены",
+  "weAreWorkingOnIt": "Мы работаем над этим",
+  "bucketClonedSuccessfully": "Ведро успешно клонировано"
 }
 
 

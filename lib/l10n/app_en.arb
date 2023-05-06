@@ -310,5 +310,25 @@
   "streak":"Streak",
    "@home": {
     "description": "Home"
+  },
+  "explore":"Explore",
+   "@home": {
+    "description": "Home"
+  },
+  "cloneBucket":"Clone Bucket",
+   "@home": {
+    "description": "Home"
+  },
+  "sorryNoTemplatesFound" : "Sorry, No templates found",
+   "@home": {
+    "description": "Home"
+  },
+  "weAreWorkingOnIt" : "We are working on it",
+   "@home": {
+    "description": "Home"
+  },
+  "bucketClonedSuccessfully": "Bucket cloned successfully",
+   "@home": {
+    "description": "Home"
   }
 }

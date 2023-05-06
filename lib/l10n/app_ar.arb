@@ -75,5 +75,10 @@
 "pleaseenteradescriptionofatleastencharacterslong": "يرجى إدخال وصف لا يقل عن 10 أحرف",
 "selectscope": "تحديد نطاق",
 "submitFeedback": "إرسال التقييم",
-"streak": "سلسلة"
+"streak": "سلسلة",
+"explore": "استكشف",
+  "cloneBucket": "استنساخ الدلو",
+  "sorryNoTemplatesFound": "عذرًا ، لا توجد قوالب",
+  "weAreWorkingOnIt": "نحن نعمل عليه",
+  "bucketClonedSuccessfully": "تم استنساخ الدلو بنجاح"
 }
