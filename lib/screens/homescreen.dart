@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/models/bucket.dart';
-import 'package:lifelist/services/firebaseservice.dart';
 import 'package:provider/provider.dart';
 import '../components/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -56,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                                         Theme.of(context).primaryColor,
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return Container(
+                                      return SizedBox(
                                         height:
                                             Sizes.screenHeight(context) * 0.3,
                                         child: Padding(
@@ -128,7 +127,7 @@ class HomeScreen extends StatelessWidget {
                                   ).then((value) =>
                                       bucketModel.fetchBucketsByScope());
                                 },
-                                icon: Icon(Icons.remove_red_eye)),
+                                icon: const Icon(Icons.remove_red_eye)),
                             IconButton(
                                 onPressed: () {
                                   showModalBottomSheet(
@@ -193,7 +192,7 @@ class HomeScreen extends StatelessWidget {
                                                   ListView.builder(
                                                     shrinkWrap: true,
                                                     physics:
-                                                        NeverScrollableScrollPhysics(),
+                                                        const NeverScrollableScrollPhysics(),
                                                     scrollDirection:
                                                         Axis.vertical,
                                                     itemCount:
@@ -316,9 +315,8 @@ class HomeScreen extends StatelessWidget {
                                     },
                                   );
                                 },
-                                icon: Icon(Icons.filter_list))
+                                icon: const Icon(Icons.filter_list))
                           ],
-                        
                         ),
                         SliverToBoxAdapter(
                           child: SizedBox(
@@ -412,7 +410,7 @@ class HomeScreen extends StatelessWidget {
                                               CustomCard(
                                                 onTap: () async {
                                                   bucketModel.toggleAction();
-                                                 
+
                                                   Navigator.pushNamed(
                                                       context, SINGLE_BUCKET,
                                                       arguments: {
@@ -481,7 +479,10 @@ class HomeScreen extends StatelessWidget {
                                                                             index]!
                                                                         .isCompleted
                                                                     ? "${bucketModel.filteredBuckets[index]!.streak} Days Streak 🔥"
-                                                                    : "${bucketModel.filteredBuckets[index]!.timeLeft}",
+                                                                    : bucketModel
+                                                                        .filteredBuckets[
+                                                                            index]!
+                                                                        .timeLeft,
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme
@@ -493,7 +494,10 @@ class HomeScreen extends StatelessWidget {
                                                                             index]!
                                                                         .isCompleted
                                                                     ? "${bucketModel.filteredBuckets[index]!.timeLeft} 🏆"
-                                                                    : "${bucketModel.filteredBuckets[index]!.timeLeft}",
+                                                                    : bucketModel
+                                                                        .filteredBuckets[
+                                                                            index]!
+                                                                        .timeLeft,
                                                                 style: Theme.of(
                                                                         context)
                                                                     .textTheme

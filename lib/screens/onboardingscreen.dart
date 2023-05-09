@@ -30,7 +30,7 @@ class OnboardingScreen extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
-                      .merge(TextStyle(fontSize: 24)),
+                      .merge(const TextStyle(fontSize: 24)),
                 ),
                 SizedBox(
                   height: Sizes.screenHeight(context) * 0.05,

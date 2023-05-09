@@ -76,7 +76,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                         .activeSingleBucket,
                                                     taskService.tasks);
                                               },
-                                              icon: Icon(Icons.download)))
+                                              icon: const Icon(Icons.download)))
                                 ],
                               )
                             : CustomTextField(
@@ -405,7 +405,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                                 .transferTemporaryTasks()
                                           });
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.add,
                                       size: 30,
                                     )),
