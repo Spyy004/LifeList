@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/models/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lifelist/services/notificationservice.dart';
 import '../controllers/global_controller.dart';
 
 class BucketService extends ChangeNotifier {
@@ -199,6 +200,15 @@ class BucketService extends ChangeNotifier {
     activeSingleBucket.tasks = activeSingleBucket.tasks.toList();
     activeSingleBucket.tasks.addAll(newTasksId);
     await editBucketinDB(activeSingleBucket);
+    String notificationTitle = 'STREAK WILL END SOON! ⌛️';
+    String notificationBody =
+        "Time to finish ${activeSingleBucket.name} bucket for today ✓";
+    NotificationService().scheduleNotification(
+        notificationTitle,
+        notificationBody,
+        activeSingleBucket.id!,
+        activeSingleBucket.isCompleted,
+        activeSingleBucket.deadline);
     activeBucketTasks = [];
     loader = false;
     notifyListeners();

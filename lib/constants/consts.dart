@@ -66,6 +66,10 @@ const DONE = 'Done';
 const CREATE = 'Create';
 const FEEDBACK_EMAIL = 'i.yush.004@gmail.com';
 const FEEDBACK = 'Feedback';
+const NOTIFICATION_CHANNEL_ID = 'streak1';
+const NOTIFICATION_CHANNEL_NAME = 'streak';
+const NOTIFICATION_CHANNEL_DESCRIPTION = 'Notification for streak reminder';
+const APP_LOGO = 'app_logo';
 int currIndex = 0;
 String appVersion = '0.0.0';
 var routes = <String, WidgetBuilder>{
@@ -124,7 +128,7 @@ Map<String, BucketCategory> stringToBucketCategory = {
 };
 
 Map<BucketCategory, String> bucketCategoryToString = {
-   BucketCategory.travel: 'Travel',
+  BucketCategory.travel: 'Travel',
   BucketCategory.finance: 'Finance',
   BucketCategory.adventure: 'Adventure',
   BucketCategory.career: 'Career',

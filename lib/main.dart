@@ -2,15 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lifelist/constants/index.dart';
 import 'package:lifelist/services/index.dart';
+import 'package:lifelist/services/notificationservice.dart';
 import 'package:lifelist/services/pdfservice.dart';
-import 'package:lifelist/services/singletemplateservice.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp();
+  await NotificationService().init();
+  await Firebase.initializeApp();
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
   appVersion = packageInfo.version;
   dbService = DBService();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifelist/controllers/global_controller.dart';
 import 'package:lifelist/models/bucket.dart';
-import 'package:lifelist/services/firebaseservice.dart';
 
 class BucketListService extends ChangeNotifier {
   List<Bucket?> buckets = [];
@@ -43,15 +42,15 @@ class BucketListService extends ChangeNotifier {
 
   measureTimeLeft() {
     filteredBuckets.forEach((element) {
-        if(element!.isCompleted){
-          element.timeLeft = "Done";
-          return;
-        }
-      if(element.bucketScope == BucketScope.onetime){
+      if (element!.isCompleted) {
+        element.timeLeft = "Done";
+        return;
+      }
+      if (element.bucketScope == BucketScope.onetime) {
         if (element.deadline.isBefore(DateTime.now())) {
           element.timeLeft = "Expired";
           return;
-      }
+        }
       }
       Duration difference = element.deadline.difference(DateTime.now());
       if (difference.inDays > 0) {
