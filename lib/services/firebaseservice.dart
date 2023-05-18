@@ -34,4 +34,12 @@ class FirebaseService {
     bucket.cloneCount = (bucket.cloneCount! + 1);
     await collectionReference.doc(id).update({'cloneCount': bucket.cloneCount});
   }
+
+  Future<bool> checkIfUserExists(String docId) async {
+    final CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('user');
+
+    DocumentSnapshot user = await collectionReference.doc(docId).get();
+    return user.exists;
+  }
 }

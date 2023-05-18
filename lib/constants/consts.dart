@@ -88,6 +88,7 @@ UserService userService = UserService();
 BucketService bucketService = BucketService();
 NavigationService navigationService = NavigationService();
 TaskService taskService = TaskService();
+FirebaseService firebaseService = FirebaseService();
 
 const categories = [
   'Travel',

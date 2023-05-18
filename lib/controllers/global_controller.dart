@@ -66,8 +66,12 @@ Future<void> updateTaskInDB(Task task) async {
   await dbService.updateTaskInDB(task);
 }
 
-Future<List<BucketTemplate>> fetchTemplates()async{
+Future<List<BucketTemplate>> fetchTemplates() async {
   var firebaseService = FirebaseService();
   List<BucketTemplate> templates = await firebaseService.getTemplates();
   return templates;
+}
+
+Future<bool> checkIfUserExists(String docId) async {
+  return await firebaseService.checkIfUserExists(docId);
 }
