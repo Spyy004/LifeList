@@ -6,8 +6,10 @@ import 'package:lifelist/services/navigationservice.dart';
 import '../models/index.dart';
 import '../navigation/routes.dart';
 import '../screens/index.dart';
+import '../screens/landingscreen.dart';
 
 const HOME = 'Home';
+const LANDING = 'Landing';
 const ROOT = 'Root';
 const URL = 'https://github.com/Spyy004/LifeList';
 const ZERO_BUCKET_LIST_FOUND = '0 Bucket List found';
@@ -74,6 +76,7 @@ int currIndex = 0;
 String appVersion = '0.0.0';
 var routes = <String, WidgetBuilder>{
   Routes.homePage: (BuildContext context) => const HomeScreen(),
+  Routes.landingPage: (BuildContext context) => const LandingScreen(),
   Routes.onBoardingPage: (context) => OnboardingScreen(),
   Routes.createBucket: (context) => CreateBucketScreen(),
   Routes.singleBucket: (contex) => BucketDetailsScreen(),

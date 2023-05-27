@@ -1,6 +1,7 @@
 class Routes {
   static const onBoardingPage = "Onboarding";
   static const homePage = "Home";
+  static const landingPage = "Landing";
   static const createBucket = 'CreateBucket';
   static const singleBucket = 'SingleBucket';
   static const profilePage = 'ProfilePage';

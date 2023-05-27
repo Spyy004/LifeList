@@ -7,8 +7,10 @@ import '../constants/index.dart';
 import '../neopop/widgets/buttons/neopop_button/neopop_button.dart';
 
 class FeedbackForm extends StatefulWidget {
+  const FeedbackForm({super.key});
+
   @override
-  _FeedbackFormState createState() => _FeedbackFormState();
+  State<FeedbackForm> createState() => _FeedbackFormState();
 }
 
 class _FeedbackFormState extends State<FeedbackForm> {

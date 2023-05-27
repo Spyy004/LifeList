@@ -12,16 +12,18 @@ class UserService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getUser() async {
+  Future<User> getUser() async {
     user = await dbService.getUserFromDB();
     if (user.id! >= 0) {
       String docId = user.firstName! + user.lastName! + user.age.toString();
       doNotShowSyncPopup = await checkIfUserExists(docId);
       notifyListeners();
     }
+    return user;
   }
 
   void syncAccount() {
     doNotShowSyncPopup = !doNotShowSyncPopup;
+    notifyListeners();
   }
 }

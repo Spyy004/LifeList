@@ -72,6 +72,9 @@ class AppTheme {
           fontFamily: 'Myfont',
           overflow: TextOverflow.ellipsis),
     ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: Color(0xffcf89f8),
+    ),
     iconTheme: const IconThemeData(color: Colors.black),
   );
 
