@@ -12,8 +12,7 @@ class OnboardingService extends ChangeNotifier {
   bool checkName(String name, BuildContext context) {
     bool status = name.length >= 3;
     if (!status) {
-      Fluttertoast.showToast(
-          msg: AppLocalizations.of(context).nametoosmall);
+      Fluttertoast.showToast(msg: AppLocalizations.of(context).nametoosmall);
     }
     return status;
   }
@@ -22,7 +21,8 @@ class OnboardingService extends ChangeNotifier {
     bool status = age > 0 && age <= 100;
     if (!status) {
       Fluttertoast.showToast(
-        msg: AppLocalizations.of(context).ageshouldbelessthanhundredandgreaterthanzero,
+        msg: AppLocalizations.of(context)
+            .ageshouldbelessthanhundredandgreaterthanzero,
       );
     }
     return status;
@@ -38,9 +38,10 @@ class OnboardingService extends ChangeNotifier {
     if (userId >= 0) {
       currUser.id = userId;
       setCurrentUser(currUser);
-      Fluttertoast.showToast(msg: AppLocalizations.of(context).userregisteredsuccesfully);
+      Fluttertoast.showToast(
+          msg: AppLocalizations.of(context).userregisteredsuccesfully);
       if (context.mounted) {
-        navigationService.navigateNext(context, HOME);
+        navigationService.navigateNext(context, LANDING);
       }
       loader = false;
       notifyListeners();
@@ -48,7 +49,8 @@ class OnboardingService extends ChangeNotifier {
     }
     loader = false;
     notifyListeners();
-    Fluttertoast.showToast(msg:  AppLocalizations.of(context).userregisterationfailedTryagainlater);
+    Fluttertoast.showToast(
+        msg: AppLocalizations.of(context).userregisterationfailedTryagainlater);
   }
 
   Map<String, dynamic> createConfig(String name, String lastName, String age) {
