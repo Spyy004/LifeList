@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       slivers: [
                         SliverAppBar(
+                          automaticallyImplyLeading: false,
                           backgroundColor: Theme.of(context).primaryColor,
                           pinned: true,
                           expandedHeight: 70,
