@@ -54,12 +54,11 @@ class BucketService extends ChangeNotifier {
     Fluttertoast.showToast(
         msg: AppLocalizations.of(context).bucketCreatedsuccessfully);
 
-    navigationService.navigateReset(context, HOME);
+    navigationService.navigateReset(context, LANDING);
   }
 
   addBucketsFromTemplate(
       Bucket bucket, List<Task> tasks, BuildContext context) async {
-    ;
     List<int> taskIds = await sendTasksToTaskService(tasks);
     bucket.tasks = taskIds;
     int bucketId = await addBucketToDB(bucket);

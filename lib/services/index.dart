@@ -4,6 +4,7 @@ export 'userservice.dart';
 export 'singlebucketservice.dart';
 export 'taskservice.dart';
 export 'bucketlistservice.dart';
+export 'landingservice.dart';
 export 'settingservice.dart';
 export 'createbucketservice.dart';
 export 'bottombarservice.dart';

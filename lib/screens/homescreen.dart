@@ -13,9 +13,6 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      bottomNavigationBar: Consumer<BucketListService>(
-          builder: (context, value, child) =>
-              CustomBottomBar(bucketListService: value)),
       body: SafeArea(
         child: Consumer<BucketListService>(
           builder: (context, bucketModel, child) => FutureBuilder<void>(
@@ -27,6 +24,7 @@ class HomeScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       slivers: [
                         SliverAppBar(
+                          automaticallyImplyLeading: false,
                           backgroundColor: Theme.of(context).primaryColor,
                           pinned: true,
                           expandedHeight: 70,

@@ -18,7 +18,7 @@ class BucketDetailsScreen extends StatelessWidget {
     singleBucketModel.clearData();
     nameController.clear();
     descController.clear();
-    navigationService.navigateReset(context, HOME);
+    navigationService.navigateReset(context, LANDING);
     return true;
   }
 
@@ -56,7 +56,7 @@ class BucketDetailsScreen extends StatelessWidget {
                                       onPressed: () {
                                         singleBucketModal.clearData();
                                         navigationService.navigateReset(
-                                            context, HOME);
+                                            context, LANDING);
                                       },
                                       icon: const Icon(Icons.arrow_back)),
                                   Expanded(

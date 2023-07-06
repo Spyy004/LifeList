@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifelist/models/user.dart';
 import 'package:lifelist/neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:lifelist/services/index.dart';
 import 'package:provider/provider.dart';
@@ -13,113 +14,129 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      bottomNavigationBar: CustomBottomBar(),
       body: Consumer<UserService>(
-        builder: (context, userModel, child) => FutureBuilder<void>(
+        builder: (context, userModel, child) => FutureBuilder<User>(
             future: userModel.getUser(),
             builder: (context, snapshot) {
-              return Stack(
-                children: [
-                  SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          CustomText(
-                            text: AppLocalizations.of(context).profile,
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          Divider(
-                            thickness: 1,
-                            indent: Sizes.paddingSizeSmall - 6,
-                            color: Theme.of(context).dividerColor,
-                          ),
-                          SizedBox(
-                            height: Sizes.screenHeight(context) * 0.05,
-                          ),
-                          const Center(
-                            child: CircleAvatar(
-                              radius: 50.0,
-                              backgroundImage: AssetImage(PROFILE_IMAGE_ASSET),
+              if (snapshot.hasData) {
+                return Stack(
+                  children: [
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            CustomText(
+                              text: AppLocalizations.of(context).profile,
+                              style: Theme.of(context).textTheme.displayLarge,
                             ),
-                          ),
-                          SizedBox(
-                            height: Sizes.screenHeight(context) * 0.02,
-                          ),
-                          Center(
-                            child: CustomText(
-                              text:
-                                  "${AppLocalizations.of(context).name}: ${userModel.user.firstName} ${userModel.user.lastName} ",
-                              style: Theme.of(context).textTheme.displayMedium,
+                            Divider(
+                              thickness: 1,
+                              indent: Sizes.paddingSizeSmall - 6,
+                              color: Theme.of(context).dividerColor,
                             ),
-                          ),
-                          SizedBox(
-                            height: Sizes.screenHeight(context) * 0.02,
-                          ),
-                          Center(
-                            child: CustomText(
-                              text:
-                                  '${AppLocalizations.of(context).age}: ${userModel.user.age}',
-                              style: Theme.of(context).textTheme.displayMedium,
+                            SizedBox(
+                              height: Sizes.screenHeight(context) * 0.05,
                             ),
-                          ),
-                          SizedBox(
-                            height: Sizes.screenHeight(context) * 0.4,
-                          ),
-                          SizedBox(
-                            width: Sizes.screenWidth(context),
-                            height: Sizes.screenHeight(context) * 0.05,
-                            child: NeoPopButton(
-                              onTapDown: () {
-                                // navigationService.navigateNext(context, SETTINGS);
-                              },
-                              bottomShadowColor:
-                                  Theme.of(context).secondaryHeaderColor,
-                              rightShadowColor:
-                                  Theme.of(context).secondaryHeaderColor,
-                              animationDuration:
-                                  const Duration(milliseconds: 300),
-                              depth: 5,
-                              onTapUp: () {
-                                navigationService.navigateNext(
-                                    context, SETTINGS);
-                              },
-                              color: Theme.of(context).canvasColor,
-                              shadowColor:
-                                  Theme.of(context).secondaryHeaderColor,
-                              child: CustomText(
-                                style: Theme.of(context).textTheme.labelLarge,
-                                text: AppLocalizations.of(context).settings,
+                            const Center(
+                              child: CircleAvatar(
+                                radius: 50.0,
+                                backgroundImage:
+                                    AssetImage(PROFILE_IMAGE_ASSET),
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              height: Sizes.screenHeight(context) * 0.02,
+                            ),
+                            Center(
+                              child: CustomText(
+                                text:
+                                    "${AppLocalizations.of(context).name}: ${userModel.user.firstName} ${userModel.user.lastName} ",
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
+                              ),
+                            ),
+                            SizedBox(
+                              height: Sizes.screenHeight(context) * 0.02,
+                            ),
+                            Center(
+                              child: CustomText(
+                                text:
+                                    '${AppLocalizations.of(context).age}: ${userModel.user.age}',
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              color: Theme.of(context).primaryColor,
+                              child: Column(
+                                children: [
+                                  const Text(
+                                      'Your account is not synced with DB'),
+                                  TextButton(
+                                      onPressed: () {
+                                        userModel.syncAccount();
+                                      },
+                                      child: const Text('Sync Now'))
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: Sizes.screenHeight(context) * 0.25,
+                            ),
+                            SizedBox(
+                              height: Sizes.screenHeight(context) * 0.05,
+                              child: NeoPopButton(
+                                onTapDown: () {
+                                  // navigationService.navigateNext(context, SETTINGS);
+                                },
+                                bottomShadowColor:
+                                    Theme.of(context).secondaryHeaderColor,
+                                rightShadowColor:
+                                    Theme.of(context).secondaryHeaderColor,
+                                animationDuration:
+                                    const Duration(milliseconds: 300),
+                                depth: 5,
+                                onTapUp: () {
+                                  navigationService.navigateNext(
+                                      context, SETTINGS);
+                                },
+                                color: Theme.of(context).canvasColor,
+                                shadowColor:
+                                    Theme.of(context).secondaryHeaderColor,
+                                child: CustomText(
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                  text: AppLocalizations.of(context).settings,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  !userModel.doNotShowSyncPopup
-                      ? Positioned(
-                          top: Sizes.screenHeight(context) * 0.5,
-                          left: Sizes.screenWidth(context) * 0.5,
-                          child: Container(
-                            color: Theme.of(context).primaryColor,
-                            child: Column(
-                              children: [
-                                Text('Your account is not synced with DB'),
-                                TextButton(
-                                    onPressed: () {
-                                      userModel.syncAccount();
-                                    },
-                                    child: Text('Sync Now'))
-                              ],
-                            ),
-                          ),
-                        )
-                      : Container()
-                ],
-              );
+                    // !userModel.doNotShowSyncPopup
+                    //     ? Positioned(
+                    //         top: Sizes.screenHeight(context) * 0.5,
+                    //         left: Sizes.screenWidth(context) * 0.5,
+                    //         child:
+                    //       )
+                    //     : Container()
+                  ],
+                );
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return const Center(
+                  child: Text("User is not available"),
+                );
+              }
             }),
       ),
     );
