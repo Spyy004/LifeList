@@ -644,19 +644,6 @@ class ExploreScreen extends StatelessWidget {
               ));
             }),
       ),
-      floatingActionButton: Consumer<BucketListService>(
-        builder: (context, bucketlist, child) => FloatingActionButton(
-          backgroundColor: Theme.of(context).secondaryHeaderColor,
-          onPressed: () async {
-            bucketlist.toggleAction();
-            navigationService.navigateNext(context, CREATE_BUCKET);
-          },
-          child: Icon(
-            Icons.add,
-            color: Theme.of(context).iconTheme.color,
-          ),
-        ),
-      ),
     ));
   }
 }
